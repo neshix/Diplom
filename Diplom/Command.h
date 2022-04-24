@@ -17,16 +17,26 @@ public:
 	Text txt;
 
 	Vector2f movePos;
+	std::list <Vector2f> movePatrolPos;
 
 	RectangleShape box;
 	RectangleShape deldox;
 
 	bool moveTarget = false;
 
-	bool isMoving = false, isMove = false;
+	bool isMove = false, isMoving = false;
 
 	bool isMine = false, mineobjinit = false;
 	bool isMineIron = false, isMineTree = false, isMineStone = false;
+
+	bool isPatrol = false;
+	bool startPatrol = false;
+
+	bool isBuild = false;
+
+	bool isAttack = false;
+
+	bool isDrop = false;
 
 	bool onPoint = true;
 

@@ -24,11 +24,14 @@ public:
 	bool *point;
 
 private:
+	std::list<Vector2f>::iterator tpoint;
+	Vector2f p;
+
 	Clock cl;
 	Time t;
 
 	Font f;
-
+public://надо найти куда запихать в drawble
 	RectangleShape info;
 	Text infoTxt;
 
@@ -55,7 +58,5 @@ public:
 	void realization(Vector2f t, std::list<MineObj*> en);
 
 	void moveTo(Time deltaTime);
-
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 #endif BOTS_H

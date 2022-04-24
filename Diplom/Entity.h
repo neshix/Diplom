@@ -16,7 +16,7 @@ public:
 	CircleShape _shape;
 
 public:
-	float speed = 50;
+	float speed = 100;
 	int health = 100;
 
 private:
@@ -39,6 +39,9 @@ public:
 	{
 		_shape.setPosition(std::forward<Args>(args)...);
 	}
+
+private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
 #endif ENTITY_H

@@ -37,9 +37,9 @@ private:
 	std::list<Bots*> bots;
 	std::list<Enemy*> enemys;
 	std::list<MineObj*> mineobj;
-	Console console;
 
 	bool IsKeyPressed = false;
 
+	Console console;
 };
 #endif GAME_H

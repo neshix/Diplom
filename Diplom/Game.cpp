@@ -9,7 +9,7 @@ void Game::run(int minimum_frame_per_seconds)
 {
     bots.push_back(new Bots);
     bots.push_back(new Bots(300, 300));
-    //enemys.push_back(new Enemy);
+    enemys.push_back(new Enemy);
 
     mineobj.push_back(new MineObj(50, 50, 2));
     mineobj.push_back(new MineObj(100, 300, 0));
@@ -130,11 +130,15 @@ void Game::render()
     _window.draw(console);
 
     for (auto& bot : bots)
-        if(bot->selected)
+        if (bot->selected)
+        {
+            _window.draw(bot->info);
+            _window.draw(bot->infoTxt);
             for (auto& com : bot->command)
             {
                 _window.draw(*com);
             }
+        }
 
     //Update the window
     _window.display();

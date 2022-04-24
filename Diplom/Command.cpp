@@ -2,8 +2,10 @@
 
 void Command::create(Vector2f mousePos, bool& isPressed)
 {
+	//std::cout << isPressed << "\n";
 	if (!isPressed)
 	{
+
 		if (txtpriority.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 		{
 			isPressed = true;
@@ -25,6 +27,10 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			text.clear();
 			text.push_back(new Text("move", font, 15));
 			text.push_back(new Text("mine", font, 15));
+			text.push_back(new Text("patrol", font, 15));
+			text.push_back(new Text("build", font, 15));
+			text.push_back(new Text("attack", font, 15));
+			text.push_back(new Text("drop", font, 15));
 			text.push_back(new Text("if", font, 15));
 		}
 
@@ -37,9 +43,10 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 				if (Mouse::isButtonPressed(Mouse::Left))
 				{
 					isPressed = true;
+
 					if (t->getString() == "move")
 					{
-						txt.setString("move");
+						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
 
 						falcom();
@@ -49,9 +56,9 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					if (t->getString() == "mine")
+					if (t->getString() == "mine")//реализовано
 					{
-						txt.setString("mine");
+						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
 
 						falcom();
@@ -65,11 +72,65 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					if (t->getString() == "if")
+					if (t->getString() == "patrol")//реализовано
+					{
+						txt.setString(t->getString());
+						txt.setPosition(box.getPosition());
+
+						falcom();
+						movePatrolPos.clear();
+						isPatrol = true;
+
+						text.clear();
+						break;
+					}
+
+					if (t->getString() == "build")//не реализовано
+					{
+						txt.setString(t->getString());
+						txt.setPosition(box.getPosition());
+
+						falcom();
+						isBuild = true;
+
+						text.clear();
+						text.push_back(new Text("wall", font, 15));
+						text.push_back(new Text("factory", font, 15));
+						text.push_back(new Text("storage", font, 15));
+						break;
+					}
+
+					if (t->getString() == "attack")//не реализовано
+					{
+						txt.setString(t->getString());
+						txt.setPosition(box.getPosition());
+
+						falcom();
+						isAttack = true;
+
+						text.clear();
+						break;
+					}
+
+					if (t->getString() == "drop")//не реализовано
+					{
+						txt.setString(t->getString());
+						txt.setPosition(box.getPosition());
+
+						falcom();
+						isDrop = true;
+
+						text.clear();
+						text.push_back(new Text("all", font, 15));
+						text.push_back(new Text("materials", font, 15));
+						break;
+					}
+
+					if (t->getString() == "if")//не реализовано
 					{
 						txt.setString("if - dont work");
 						txt.setPosition(box.getPosition());
-
+						
 						falcom();
 
 						text.clear();
@@ -118,6 +179,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 
 		if (isMine)
 		{
+			std::cout << isMine << "\n";
 			//выбор чего копать
 			for (auto& t : text)
 			{
@@ -128,7 +190,6 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					{
 						mineobjinit = false;
 						isPressed = true;
-
 						if (t->getString() == "Iron")
 						{
 							txt.setString("mine(Iron)");
@@ -161,18 +222,69 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
+		if (isPatrol)
+		{
+			//нажать на команду чтобы выбрать куда двигаться
+			if (box.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left) && !isMoving)
+			{
+				isPressed = true;
+				box.setFillColor(Color(255, 50, 100, 255));
+				isMoving = true;
+			}
+			else if (box.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left) && isMoving)
+			{
+				isPressed = true;
+				isMoving = false;
+				box.setFillColor(Color(255, 50, 50, 255));
+			}
+
+			//выбор позиции движения
+			if (Mouse::isButtonPressed(Mouse::Right) && isMoving == true)
+			{
+				isPressed = true;
+
+				startPatrol = true;
+				onPoint = false;
+				moveTarget = true;
+				movePatrolPos.push_back(mousePos);
+				txt.setString("Patrol(point = " + std::to_string(movePatrolPos.size()) + ")");
+			}
+		}
+
+		if (isBuild)
+		{
+
+		}
+
+		if (isAttack)
+		{
+
+		}
+
+		if (isDrop)
+		{
+
+		}
 	}
 }
 
 void Command::falcom()
 {
 	moveTarget = false;
-
-	isMoving = false, isMove = false;
-
+	
+	isMove = false, isMoving = false;
+	
 	isMine = false, mineobjinit = false;
 	isMineIron = false, isMineTree = false, isMineStone = false;
-
+	
+	isPatrol = false;
+	
+	isBuild = false;
+	
+	isAttack = false;
+	
+	isDrop = false;
+	
 	onPoint = true;
 }
 

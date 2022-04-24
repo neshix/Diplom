@@ -39,13 +39,14 @@ void Bots::setPosCommand(Vector2f pos)
 		com->deldox.setPosition(dbpos);
 
 		com->txtpriority.setPosition(com->box.getPosition().x + (com->box.getSize().x - 20), com->box.getPosition().y);
-		i++;
+		
 		int k = 0;
 		for (auto& t : com->text)
 		{
 			t->setPosition(Vector2f(com->box.getPosition().x - 60, com->box.getPosition().y + (t->getCharacterSize() * k)));
 			k++;
 		}
+		i++;
 	}
 
 	info.setPosition(pos.x - info.getSize().x, pos.y);
@@ -75,6 +76,7 @@ void Bots::realization(Vector2f mp, std::list<MineObj*> mine)
 			point = &com->onPoint;
 			if (!*point)
 			{
+				//std::cout << "move" << "\n";
 				finish = true;
 				target = com->movePos;
 			}
@@ -143,6 +145,38 @@ void Bots::realization(Vector2f mp, std::list<MineObj*> mine)
 					}
 				}
 			}
+			else if(com->isPatrol)
+			{
+				if (com->movePatrolPos.empty())
+					continue;
+
+				if (com->startPatrol)
+				{
+					com->startPatrol = false;
+					tpoint = com->movePatrolPos.begin();
+					p = *tpoint;
+					com->movePos = p;
+					*point = false;
+					tpoint++;
+				}
+				else if(*point && tpoint != com->movePatrolPos.end())
+				{
+					std::cout << "tpoint == com->movePatrolPos.end()" << "\n";
+					p = *tpoint;
+					com->movePos = p;
+					*point = false;
+					tpoint++;
+					std::cout << "tpoint == com->movePatrolPos.end()" << "\n";
+				}
+
+				if (*point && tpoint == com->movePatrolPos.end())
+				{
+					tpoint = com->movePatrolPos.begin();
+					p = *tpoint;
+					com->movePos = p;
+					*point = false;
+				}
+			}
 			break;
 		}
 	}
@@ -178,14 +212,4 @@ void Bots::setInfoTXT()
 		+ "\n Tree = " + std::to_string((iventory / 100) % 100)
 		+ "\n Stone = " + std::to_string((iventory / 10000) % 100)
 		+ "\n Iron = " + std::to_string(iventory % 100));
-}
-
-void Bots::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	target.draw(_shape, states);
-	if (selected)
-	{
-		target.draw(info, states);
-		target.draw(infoTxt, states);
-	}
 }
