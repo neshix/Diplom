@@ -16,7 +16,7 @@ public:
 
 	int maxPriority = 0;
 
-	int iventory = 0;
+	int iventory = 121433;
 	int capacity = 0;
 
 	bool finish = false;
@@ -24,7 +24,6 @@ public:
 	bool *point;
 
 private:
-	std::list<Vector2f>::iterator tpoint;
 	Vector2f p;
 
 	Clock cl;
@@ -55,7 +54,7 @@ public:
 	void setPosCommand(Vector2f pos);
 	void setInfoTXT();
 
-	void realization(Vector2f t, std::list<MineObj*> en);
+	void realization(Vector2f t, std::list<MineObj*>& mine);
 
 	void moveTo(Time deltaTime);
 };

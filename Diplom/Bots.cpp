@@ -53,7 +53,7 @@ void Bots::setPosCommand(Vector2f pos)
 	infoTxt.setPosition(info.getPosition() * 1.01f);
 }
 
-void Bots::realization(Vector2f mp, std::list<MineObj*> mine)
+void Bots::realization(Vector2f mp, std::list<MineObj*>& mine)
 {
 	maxPriority = 0;
 	for (auto& com : command)
@@ -153,30 +153,56 @@ void Bots::realization(Vector2f mp, std::list<MineObj*> mine)
 				if (com->startPatrol)
 				{
 					com->startPatrol = false;
-					tpoint = com->movePatrolPos.begin();
-					p = *tpoint;
+					com->tpoint = com->movePatrolPos.begin();
+					p = *com->tpoint;
 					com->movePos = p;
 					*point = false;
-					tpoint++;
+					//tpoint++;
 				}
-				else if(*point && tpoint != com->movePatrolPos.end())
+				
+				if(*point && com->tpoint != com->movePatrolPos.end())
 				{
-					std::cout << "tpoint == com->movePatrolPos.end()" << "\n";
-					p = *tpoint;
-					com->movePos = p;
-					*point = false;
-					tpoint++;
-					std::cout << "tpoint == com->movePatrolPos.end()" << "\n";
-				}
-
-				if (*point && tpoint == com->movePatrolPos.end())
-				{
-					tpoint = com->movePatrolPos.begin();
-					p = *tpoint;
+					if (com->tpoint != com->movePatrolPos.end())
+						com->tpoint++;
+					if (com->tpoint == com->movePatrolPos.end())
+						com->tpoint = com->movePatrolPos.begin();
+					p = *com->tpoint;
 					com->movePos = p;
 					*point = false;
 				}
 			}
+			else if (com->isDrop)
+			{
+				if (iventory > 0)
+				{
+					if (com->isMaterials)
+					{
+						com->isDrop = false;
+						com->isMaterials = false;
+						com->txt.setString("drop(matirials droped)");
+						mine.push_back(new MineObj(_shape.getPosition().x, _shape.getPosition().y, 3));
+						MineObj& m = *mine.back();
+						m.amount = iventory % 1000000;
+						iventory -= m.amount;
+
+						//std::cout << m.amount << "   " << iventory << "\n";
+					}
+
+					if (com->isWeapon)
+					{
+						com->isDrop = false;
+						com->isWeapon = false;
+						com->txt.setString("drop(weapon droped)");
+						mine.push_back(new MineObj(_shape.getPosition().x, _shape.getPosition().y, 3));
+						MineObj& m = *mine.back();
+						m.amount = iventory / 1000000;
+						iventory -= m.amount;
+
+						//std::cout << m.amount << "   " << iventory << "\n";
+					}
+				}
+			}
+
 			break;
 		}
 	}

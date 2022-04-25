@@ -31,6 +31,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			text.push_back(new Text("build", font, 15));
 			text.push_back(new Text("attack", font, 15));
 			text.push_back(new Text("drop", font, 15));
+			text.push_back(new Text("pickUp", font, 15));
 			text.push_back(new Text("if", font, 15));
 		}
 
@@ -44,6 +45,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 				{
 					isPressed = true;
 
+					//реализовано
 					if (t->getString() == "move")
 					{
 						txt.setString(t->getString());
@@ -56,7 +58,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					if (t->getString() == "mine")//реализовано
+					//реализовано
+					if (t->getString() == "mine")
 					{
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
@@ -72,7 +75,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					if (t->getString() == "patrol")//реализовано
+					//реализовано
+					if (t->getString() == "patrol")
 					{
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
@@ -85,7 +89,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					if (t->getString() == "build")//не реализовано
+					//не реализовано
+					if (t->getString() == "build")
 					{
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
@@ -100,6 +105,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
+					//не реализовано
 					if (t->getString() == "attack")//не реализовано
 					{
 						txt.setString(t->getString());
@@ -112,7 +118,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					if (t->getString() == "drop")//не реализовано
+					//реализовано
+					if (t->getString() == "drop")
 					{
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
@@ -121,12 +128,28 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						isDrop = true;
 
 						text.clear();
-						text.push_back(new Text("all", font, 15));
+						//text.push_back(new Text("weapon", font, 15));
 						text.push_back(new Text("materials", font, 15));
 						break;
 					}
 
-					if (t->getString() == "if")//не реализовано
+					//в процессе реализации
+					if (t->getString() == "pickUp")
+					{
+						txt.setString(t->getString());
+						txt.setPosition(box.getPosition());
+
+						falcom();
+						isPickUp = true;
+
+						text.clear();
+						//text.push_back(new Text("weapon", font, 15));
+						text.push_back(new Text("materials", font, 15));
+						break;
+					}
+
+					//не реализовано
+					if (t->getString() == "if")
 					{
 						txt.setString("if - dont work");
 						txt.setPosition(box.getPosition());
@@ -144,6 +167,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
+		//+
 		if (isMove)
 		{
 			//нажать на команду чтобы выбрать куда двигаться
@@ -177,9 +201,10 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
+		//+
 		if (isMine)
 		{
-			std::cout << isMine << "\n";
+			//std::cout << isMine << "\n";
 			//выбор чего копать
 			for (auto& t : text)
 			{
@@ -222,6 +247,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
+		//+
 		if (isPatrol)
 		{
 			//нажать на команду чтобы выбрать куда двигаться
@@ -251,19 +277,100 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
+		//-
 		if (isBuild)
 		{
 
 		}
 
+		//-
 		if (isAttack)
 		{
 
 		}
 
+		//+
 		if (isDrop)
 		{
+			for (auto& t : text)
+			{
+				if (t->getGlobalBounds().contains(mousePos))
+				{
+					t->setFillColor(Color::Green);
+					if (Mouse::isButtonPressed(Mouse::Left))
+					{
+						isPressed = true;
 
+						if (t->getString() == "materials")
+						{
+							txt.setString("drop(materials)");
+							txt.setPosition(box.getPosition());
+
+							isMaterials = true;
+
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "weapon")
+						{
+							txt.setString("drop(weapon)");
+							txt.setPosition(box.getPosition());
+							 
+							isWeapon = true;
+
+							text.clear();
+							break;
+						}
+					}
+				}
+				else
+				{
+					t->setFillColor(Color::White);
+				}
+			}
+		}
+
+		//-+
+		if (isPickUp)
+		{
+			for (auto& t : text)
+			{
+				if (t->getGlobalBounds().contains(mousePos))
+				{
+					t->setFillColor(Color::Green);
+					if (Mouse::isButtonPressed(Mouse::Left))
+					{
+						isPressed = true;
+
+						if (t->getString() == "materials")
+						{
+							txt.setString("pickUp(materials)");
+							txt.setPosition(box.getPosition());
+
+							isMaterials = true;
+
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "weapon")
+						{
+							txt.setString("pickUp(weapon)");
+							txt.setPosition(box.getPosition());
+
+							isWeapon = true;
+
+							text.clear();
+							break;
+						}
+					}
+				}
+				else
+				{
+					t->setFillColor(Color::White);
+				}
+			}
 		}
 	}
 }
@@ -271,20 +378,23 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 void Command::falcom()
 {
 	moveTarget = false;
-	
+
 	isMove = false, isMoving = false;
-	
+
 	isMine = false, mineobjinit = false;
 	isMineIron = false, isMineTree = false, isMineStone = false;
-	
+
 	isPatrol = false;
-	
+	startPatrol = false;
+
 	isBuild = false;
-	
+
 	isAttack = false;
-	
+
 	isDrop = false;
-	
+	isMaterials = false, isWeapon = false;
+	isPickUp = false;
+
 	onPoint = true;
 }
 

@@ -18,6 +18,7 @@ public:
 
 	Vector2f movePos;
 	std::list <Vector2f> movePatrolPos;
+	std::list<Vector2f>::iterator tpoint;
 
 	RectangleShape box;
 	RectangleShape deldox;
@@ -37,6 +38,8 @@ public:
 	bool isAttack = false;
 
 	bool isDrop = false;
+	bool isMaterials = false, isWeapon = false;
+	bool isPickUp = false;
 
 	bool onPoint = true;
 
