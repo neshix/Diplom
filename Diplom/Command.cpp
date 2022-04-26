@@ -32,7 +32,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			text.push_back(new Text("attack", font, 15));
 			text.push_back(new Text("drop", font, 15));
 			text.push_back(new Text("pickUp", font, 15));
-			text.push_back(new Text("if", font, 15));
+			text.push_back(new Text("if", font, 15));//это блядский if меня сломает(
 		}
 
 		//обработка нажатия на текст
@@ -58,7 +58,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					//реализовано
+					//реализовано частично
 					if (t->getString() == "mine")
 					{
 						txt.setString(t->getString());
@@ -89,7 +89,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					//не реализовано
+					//в процессе реализации
 					if (t->getString() == "build")
 					{
 						txt.setString(t->getString());
@@ -99,7 +99,10 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						isBuild = true;
 
 						text.clear();
-						text.push_back(new Text("wall", font, 15));
+						text.push_back(new Text("gates", font, 15));
+						text.push_back(new Text("wooden wall", font, 15));
+						text.push_back(new Text("iron wall", font, 15));
+						text.push_back(new Text("stone wall", font, 15));
 						text.push_back(new Text("factory", font, 15));
 						text.push_back(new Text("storage", font, 15));
 						break;
@@ -133,7 +136,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					//в процессе реализации
+					//реализовано частично (возможно нужно перелапатить)
 					if (t->getString() == "pickUp")
 					{
 						txt.setString(t->getString());
@@ -280,7 +283,76 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 		//-
 		if (isBuild)
 		{
+			for (auto& t : text)
+			{
+				if (t->getGlobalBounds().contains(mousePos))
+				{
+					t->setFillColor(Color::Green);
+					if (Mouse::isButtonPressed(Mouse::Left))
+					{
+						isPressed = true;
 
+						if (t->getString() == "gates")
+						{
+							txt.setString("Build(gates)");
+							txt.setPosition(box.getPosition());
+
+							//здание.push_back( name = t->getString())
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "wooden wall")
+						{
+							txt.setString("Build(wooden wall)");
+							txt.setPosition(box.getPosition());
+
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "iron wall")
+						{
+							txt.setString("Build(iron wall)");
+							txt.setPosition(box.getPosition());
+
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "stone wall")
+						{
+							txt.setString("Build(stone wall)");
+							txt.setPosition(box.getPosition());
+
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "factory")
+						{
+							txt.setString("Build(factory)");
+							txt.setPosition(box.getPosition());
+
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "storage")
+						{
+							txt.setString("Build(storage)");
+							txt.setPosition(box.getPosition());
+
+							text.clear();
+							break;
+						}
+					}
+				}
+				else
+				{
+					t->setFillColor(Color::White);
+				}
+			}
 		}
 
 		//-
@@ -331,7 +403,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
-		//-+
+		//+
 		if (isPickUp)
 		{
 			for (auto& t : text)

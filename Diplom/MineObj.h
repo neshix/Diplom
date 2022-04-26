@@ -11,12 +11,14 @@ class MineObj: public Drawable
 public:
 	enum idName
 	{
-		Tree, Stone, Iron, DMaterial
+		Tree, Stone, Iron, Materials
 	};
 
 	int amount = 0;
 	int extractionTime = 0;
 	std::string name;
+
+	bool life = false;
 
 private:
 	RectangleShape obj;
@@ -45,7 +47,7 @@ public:
 			extractionTime = 25;
 			amount = rand() % 100 + 10;
 			break;
-		case idName::DMaterial:
+		case idName::Materials:
 			name = "Materials";
 			obj.setFillColor(Color(50, 50, 200, 255));
 			break;
@@ -54,6 +56,8 @@ public:
 		obj.setSize(size);
 		obj.setPosition(X, Y);
 		obj.setOrigin(size / 2.0f);//центр обекта
+
+		life = true;
 	};
 
 	RectangleShape getobj() 

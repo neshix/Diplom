@@ -120,7 +120,7 @@ void Bots::realization(Vector2f mp, std::list<MineObj*>& mine)
 				{
 					//крч бл€ть тут ху€рить начинаем
 					capacity = (iventory % 100) + ((iventory / 100) % 100) + ((iventory / 10000) % 100);
-					std::cout << obj->amount << "\n";
+					//std::cout << obj->amount << "\n";
 					t = cl.getElapsedTime();
 					if (capacity < 50 && t.asSeconds() >= obj->extractionTime)
 					{
@@ -199,6 +199,46 @@ void Bots::realization(Vector2f mp, std::list<MineObj*>& mine)
 						iventory -= m.amount;
 
 						//std::cout << m.amount << "   " << iventory << "\n";
+					}
+				}
+			}
+			if (com->isPickUp)
+			{
+				if (!com->mineobjinit)
+				{
+					for (auto& e : mine)
+					{
+						if (com->isMaterials && e->name == "Materials")
+						{
+							com->isMaterials = false;
+							com->movePos = e->getobj().getPosition();
+							com->mineobjinit = true;
+							*point = false;
+							obj = e;
+						}
+
+						if (com->isWeapon && e->name == "Weapon")
+						{
+							com->isWeapon = false;
+							com->movePos = e->getobj().getPosition();
+							com->mineobjinit = true;
+							*point = false;
+							obj = e;
+						}
+					}
+				}
+
+				if (*point && com->mineobjinit)
+				{
+					capacity = (iventory % 100) + ((iventory / 100) % 100) + ((iventory / 10000) % 100);
+					
+					if (capacity < 50)
+					{
+						if (obj->name == "Materials")
+						{
+							iventory = obj->amount;
+							obj->life =false;
+						}
 					}
 				}
 			}

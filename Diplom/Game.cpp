@@ -102,6 +102,20 @@ void Game::update(Time deltaTime)
             bot->_shape.setOutlineThickness(0);
         }
     }
+
+    //удаление трупов
+    for (auto c = mineobj.begin(); c != mineobj.end();)
+    {
+        MineObj* mine = *c;
+        if (mine->life == false)
+        {
+            c = mineobj.erase(c);
+        }
+        else
+        {
+            c++;
+        }
+    }
 }
 
 void Game::render()
