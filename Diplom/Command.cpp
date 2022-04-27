@@ -280,7 +280,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
-		//-
+		//-+
 		if (isBuild)
 		{
 			for (auto& t : text)

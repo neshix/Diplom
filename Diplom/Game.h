@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include<iostream>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <list>
 
@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "Console.h"
 #include "MineObj.h"
+#include "Structure.h"
 
 using namespace sf;
 

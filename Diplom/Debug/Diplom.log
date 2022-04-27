@@ -30,7 +30,6 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244:
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.h(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int,int>(int &&,int &&)"
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(42): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-  Command.cpp
   Enemy.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,22): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
@@ -64,5 +63,7 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244:
               _Ty=int
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.h(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int,int>(int &&,int &&)"
+  Command.cpp
+  Structure.cpp
   Создание кода...
   Diplom.vcxproj -> C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe
