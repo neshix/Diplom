@@ -4,6 +4,7 @@ Structure::Structure(std::string selStruct): Entity(50)
 {
 	name = selStruct;
 	speed = 0;
+	build = true;
 
 	if (name == "wooden wall")
 	{
@@ -50,4 +51,32 @@ Structure::Structure(std::string selStruct): Entity(50)
 		_shape.setFillColor(Color(254, 255, 83, 255));
 		_shape.setOutlineColor(Color::White);
 	}
+}
+
+void Structure::update(Vector2f mousePos, bool& kp)
+{
+
+	if (build)
+	{
+		_shape.setPosition(mousePos);
+		if (Mouse::isButtonPressed(Mouse::Left) && !kp)
+		{
+			kp = true;
+			build = false;
+		}
+	}
+
+	if (gates)
+	{
+
+	}
+	else if (factory)
+	{
+
+	}
+	else if (storage)
+	{
+
+	}
+	
 }

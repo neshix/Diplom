@@ -92,7 +92,7 @@ void Game::update(Time deltaTime)
 
             for (auto& com : bot->command)
             {
-                com->create(mousePos, IsKeyPressed);
+                com->create(mousePos, IsKeyPressed, structure);
             }
 
             bot->_shape.setOutlineThickness(3);
@@ -101,6 +101,11 @@ void Game::update(Time deltaTime)
         {
             bot->_shape.setOutlineThickness(0);
         }
+    }
+
+    for (auto& str: structure)
+    {
+        str->update(mousePos, IsKeyPressed);
     }
 
     //удаление трупов
@@ -125,19 +130,24 @@ void Game::render()
 
     //Draw
     //обекты игры
+    for (auto& m : mineobj)
+    {
+        _window.draw(*m);
+    }
+
     for (auto& bot : bots)
     {
         _window.draw(*bot);
     }
 
+    for (auto& s : structure)
+    {
+        _window.draw(*s);
+    }
+
     for (auto& enemy : enemys)
     {
         _window.draw(*enemy);
-    }
-
-    for (auto& m : mineobj)
-    {
-        _window.draw(*m);
     }
 
     //интерфейс

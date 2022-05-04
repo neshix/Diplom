@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STRUCTURE_H
+#define STRUCTURE_H
 
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
@@ -12,7 +13,11 @@ private:
 	bool factory = false;
 	bool storage = false;
 
+	bool build = false;
+
 public:
 	Structure(std::string name);
-};
 
+	void update(Vector2f mousePos, bool& kp);
+};
+#endif STRUCTURE_H

@@ -1,6 +1,6 @@
 #include "Command.h"
 
-void Command::create(Vector2f mousePos, bool& isPressed)
+void Command::create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& str)
 {
 	//std::cout << isPressed << "\n";
 	if (!isPressed)
@@ -292,60 +292,59 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					{
 						isPressed = true;
 
-						if (t->getString() == "gates")
-						{
-							txt.setString("Build(gates)");
-							txt.setPosition(box.getPosition());
+						//if (t->getString() == "gates")
 
-							//здание.push_back( name = t->getString())
-							text.clear();
-							break;
-						}
+						txt.setString("Build("+ t->getString() + ")");
+						txt.setPosition(box.getPosition());
 
-						if (t->getString() == "wooden wall")
-						{
-							txt.setString("Build(wooden wall)");
-							txt.setPosition(box.getPosition());
+						str.push_back(new Structure(t->getString()));
+						text.clear();
+						break;
 
-							text.clear();
-							break;
-						}
-
-						if (t->getString() == "iron wall")
-						{
-							txt.setString("Build(iron wall)");
-							txt.setPosition(box.getPosition());
-
-							text.clear();
-							break;
-						}
-
-						if (t->getString() == "stone wall")
-						{
-							txt.setString("Build(stone wall)");
-							txt.setPosition(box.getPosition());
-
-							text.clear();
-							break;
-						}
-
-						if (t->getString() == "factory")
-						{
-							txt.setString("Build(factory)");
-							txt.setPosition(box.getPosition());
-
-							text.clear();
-							break;
-						}
-
-						if (t->getString() == "storage")
-						{
-							txt.setString("Build(storage)");
-							txt.setPosition(box.getPosition());
-
-							text.clear();
-							break;
-						}
+						//if (t->getString() == "wooden wall")
+						//{
+						//	txt.setString("Build(wooden wall)");
+						//	txt.setPosition(box.getPosition());
+						//
+						//	text.clear();
+						//	break;
+						//}
+						//
+						//if (t->getString() == "iron wall")
+						//{
+						//	txt.setString("Build(iron wall)");
+						//	txt.setPosition(box.getPosition());
+						//
+						//	text.clear();
+						//	break;
+						//}
+						//
+						//if (t->getString() == "stone wall")
+						//{
+						//	txt.setString("Build(stone wall)");
+						//	txt.setPosition(box.getPosition());
+						//
+						//	text.clear();
+						//	break;
+						//}
+						//
+						//if (t->getString() == "factory")
+						//{
+						//	txt.setString("Build(factory)");
+						//	txt.setPosition(box.getPosition());
+						//
+						//	text.clear();
+						//	break;
+						//}
+						//
+						//if (t->getString() == "storage")
+						//{
+						//	txt.setString("Build(storage)");
+						//	txt.setPosition(box.getPosition());
+						//
+						//	text.clear();
+						//	break;
+						//}
 					}
 				}
 				else

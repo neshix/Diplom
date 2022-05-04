@@ -6,6 +6,8 @@
 #include <list>
 #include <map>
 
+#include "Structure.h"
+
 
 using namespace sf;
 
@@ -66,7 +68,7 @@ public:
 		deldox.setFillColor(Color(255, 255, 255, 255));
 	};
 
-	void create(Vector2f mousePos, bool& isPressed);
+	void create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& str);
 
 	void falcom();
 

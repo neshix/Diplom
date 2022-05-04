@@ -36,6 +36,7 @@ private:
 	Font font;
 
 	std::list<Bots*> bots;
+	std::list<Structure*> structure;
 	std::list<Enemy*> enemys;
 	std::list<MineObj*> mineobj;
 
