@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Game.h"
 #include "Entity.h"
 #include "Command.h"
 #include "MineObj.h"

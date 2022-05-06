@@ -22,21 +22,14 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(196,54): warning C4244
               T=float
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(259,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
-          with
-          [
-              _Ty=int
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.h(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int,int>(int &&,int &&)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(42): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-  Command.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
   Enemy.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,22): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(42): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
           with
           [
               _Ty=int
@@ -46,26 +39,34 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.h(15): message : выпо
   Game.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,22): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(42): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
           with
           [
               _Ty=int
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.h(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int,int>(int &&,int &&)"
-  Structure.cpp
   main.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,22): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(42): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(40,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
           with
           [
               _Ty=int
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.h(15): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int,int>(int &&,int &&)"
+  Command.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,22): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+  Structure.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,22): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(57,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(41): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
   Создание кода...
-  LINK : не найден или не выполнена сборка C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe при последней инкрементной компоновке; выполняется полная компоновка
   Diplom.vcxproj -> C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe

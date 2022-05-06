@@ -105,7 +105,7 @@ void Game::update(Time deltaTime)
 
     for (auto& str: structure)
     {
-        str->update(mousePos, IsKeyPressed);
+        str->update(mousePos, IsKeyPressed, mineobj, bots);
     }
 
     //удаление трупов

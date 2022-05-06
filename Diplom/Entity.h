@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <list>
 
 using namespace sf;
 
@@ -11,6 +12,9 @@ class Entity : public Drawable
 protected:
 	friend class Bots;
 	friend class Enemy;
+	friend class Structure;
+
+	friend class Command;
 
 public:
 	CircleShape _shape;
