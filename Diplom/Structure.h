@@ -23,6 +23,6 @@ private:
 
 public:
 	Structure(std::string name);
-	void update(Vector2f mousePos, bool& kp, std::list<MineObj*> mine, std::list<Bots*> bot);
+	void update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot);
 };
 #endif

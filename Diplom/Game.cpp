@@ -88,11 +88,11 @@ void Game::update(Time deltaTime)
             bot->delCommand(mousePos, IsKeyPressed);
             bot->setPosCommand(console.consol.getPosition());
 
-            bot->realization(mousePos, mineobj);
+            bot->realization(mousePos, mineobj, structure);
 
             for (auto& com : bot->command)
             {
-                com->create(mousePos, IsKeyPressed, structure);
+                com->create(mousePos, IsKeyPressed);
             }
 
             bot->_shape.setOutlineThickness(3);
@@ -105,7 +105,7 @@ void Game::update(Time deltaTime)
 
     for (auto& str: structure)
     {
-        str->update(mousePos, IsKeyPressed, mineobj, bots);
+        str->update(mousePos, IsKeyPressed, bots);
     }
 
     //удаление трупов
@@ -135,14 +135,14 @@ void Game::render()
         _window.draw(*m);
     }
 
-    for (auto& bot : bots)
-    {
-        _window.draw(*bot);
-    }
-
     for (auto& s : structure)
     {
         _window.draw(*s);
+    }
+
+    for (auto& bot : bots)
+    {
+        _window.draw(*bot);
     }
 
     for (auto& enemy : enemys)

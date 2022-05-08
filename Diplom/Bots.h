@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Command.h"
 #include "MineObj.h"
+#include "Structure.h"
 
 class Bots : public Entity
 {
@@ -20,6 +21,7 @@ public:
 
 	bool finish = false;
 	bool selected = false;
+	bool build = false;
 	bool *point;
 
 private:
@@ -53,7 +55,7 @@ public:
 	void setPosCommand(Vector2f pos);
 	void setInfoTXT();
 
-	void realization(Vector2f t, std::list<MineObj*>& mine);
+	void realization(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str);
 
 	void moveTo(Time deltaTime);
 };

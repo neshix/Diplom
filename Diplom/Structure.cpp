@@ -53,32 +53,26 @@ Structure::Structure(std::string selStruct): Entity(50)
 	}
 }
 
-void Structure::update(Vector2f mousePos, bool& kp, std::list<MineObj*> mine, std::list<Bots*> bot)
+void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot)
 {
-
-	if (build)
-	{
-		_shape.setPosition(mousePos);
-		for (auto& m : mine)
-		{
-			if (_shape.getGlobalBounds().intersects(m->getobj().getGlobalBounds()))
-			{
-				constructionZone = false;
-			}
-		}
-
-		if (Mouse::isButtonPressed(Mouse::Left) && !kp && constructionZone)
-		{
-			kp = true;
-			build = false;
-		}
-
-		constructionZone = true;
-	}
 
 	if (gates)
 	{
-
+		for (auto& b : bot)
+		{
+			normal = b->_shape.getPosition() - _shape.getPosition();
+			distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+			if (distanse <= 100)
+			{
+				//std::cout << "check" << "\n";
+				this->_shape.setFillColor(Color(254, 134, 21, 80));
+				break;
+			}
+			else
+			{
+				this->_shape.setFillColor(Color(254, 134, 21, 255));
+			}
+		}
 	}
 	else if (factory)
 	{

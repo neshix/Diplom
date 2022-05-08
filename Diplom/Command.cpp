@@ -1,6 +1,6 @@
 #include "Command.h"
 
-void Command::create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& str)
+void Command::create(Vector2f mousePos, bool& isPressed)
 {
 	//std::cout << isPressed << "\n";
 	if (!isPressed)
@@ -32,6 +32,7 @@ void Command::create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& 
 			text.push_back(new Text("attack", font, 15));
 			text.push_back(new Text("drop", font, 15));
 			text.push_back(new Text("pickUp", font, 15));
+
 			text.push_back(new Text("if", font, 15));//это блядский if меня сломает(
 		}
 
@@ -121,7 +122,7 @@ void Command::create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& 
 						break;
 					}
 
-					//реализовано
+					//реализовано частично
 					if (t->getString() == "drop")
 					{
 						txt.setString(t->getString());
@@ -283,6 +284,14 @@ void Command::create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& 
 		//-+
 		if (isBuild)
 		{
+			if (Mouse::isButtonPressed(Mouse::Left) && bildpos)
+			{
+				isPressed = true;
+				bildpos = false;
+				startbulid = true;
+				movePos = mousePos;
+			}
+
 			for (auto& t : text)
 			{
 				if (t->getGlobalBounds().contains(mousePos))
@@ -291,60 +300,14 @@ void Command::create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& 
 					if (Mouse::isButtonPressed(Mouse::Left))
 					{
 						isPressed = true;
+						bildpos = true;
 
-						//if (t->getString() == "gates")
-
-						txt.setString("Build("+ t->getString() + ")");
+						buildingName = t->getString();
+						txt.setString("Build("+ buildingName + ")(set the position)");
 						txt.setPosition(box.getPosition());
 
-						str.push_back(new Structure(t->getString()));
 						text.clear();
 						break;
-
-						//if (t->getString() == "wooden wall")
-						//{
-						//	txt.setString("Build(wooden wall)");
-						//	txt.setPosition(box.getPosition());
-						//
-						//	text.clear();
-						//	break;
-						//}
-						//
-						//if (t->getString() == "iron wall")
-						//{
-						//	txt.setString("Build(iron wall)");
-						//	txt.setPosition(box.getPosition());
-						//
-						//	text.clear();
-						//	break;
-						//}
-						//
-						//if (t->getString() == "stone wall")
-						//{
-						//	txt.setString("Build(stone wall)");
-						//	txt.setPosition(box.getPosition());
-						//
-						//	text.clear();
-						//	break;
-						//}
-						//
-						//if (t->getString() == "factory")
-						//{
-						//	txt.setString("Build(factory)");
-						//	txt.setPosition(box.getPosition());
-						//
-						//	text.clear();
-						//	break;
-						//}
-						//
-						//if (t->getString() == "storage")
-						//{
-						//	txt.setString("Build(storage)");
-						//	txt.setPosition(box.getPosition());
-						//
-						//	text.clear();
-						//	break;
-						//}
 					}
 				}
 				else
@@ -459,7 +422,8 @@ void Command::falcom()
 	startPatrol = false;
 
 	isBuild = false;
-
+	bildpos = false, startbulid = false;
+	
 	isAttack = false;
 
 	isDrop = false;

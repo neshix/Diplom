@@ -18,14 +18,13 @@ protected:
 
 public:
 	CircleShape _shape;
+	Vector2f target;
 
 public:
 	float speed = 100;
 	int health = 100;
 
 private:
-	Vector2f target;
-
 	Vector2f normal;
 	Vector2f moveToPoint;
 

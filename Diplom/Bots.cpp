@@ -53,7 +53,7 @@ void Bots::setPosCommand(Vector2f pos)
 	infoTxt.setPosition(info.getPosition() * 1.01f);
 }
 
-void Bots::realization(Vector2f mp, std::list<MineObj*>& mine)
+void Bots::realization(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str)
 {
 	maxPriority = 0;
 	for (auto& com : command)
@@ -242,7 +242,18 @@ void Bots::realization(Vector2f mp, std::list<MineObj*>& mine)
 					}
 				}
 			}
+			else if(com->isBuild)
+			{
+				build = true;
+				if (com->startbulid)
+				{
+					com->startbulid = false;
 
+					*point = false;
+					str.push_back(new Structure(com->buildingName));
+					str.back()->setPosition(com->movePos);
+				}
+			}
 			break;
 		}
 	}

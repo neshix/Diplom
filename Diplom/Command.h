@@ -36,6 +36,8 @@ public:
 	bool startPatrol = false;
 
 	bool isBuild = false;
+	bool bildpos = false, startbulid = false;
+	std::string buildingName;
 
 	bool isAttack = false;
 
@@ -68,7 +70,7 @@ public:
 		deldox.setFillColor(Color(255, 255, 255, 255));
 	};
 
-	void create(Vector2f mousePos, bool& isPressed, std::list<Structure*>& str);
+	void create(Vector2f mousePos, bool& isPressed);
 
 	void falcom();
 
