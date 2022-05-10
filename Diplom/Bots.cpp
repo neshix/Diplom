@@ -202,7 +202,7 @@ void Bots::realization(Vector2f mp, std::list<MineObj*>& mine, std::list<Structu
 					}
 				}
 			}
-			if (com->isPickUp)
+			else if (com->isPickUp)
 			{
 				if (!com->mineobjinit)
 				{

@@ -161,6 +161,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="MineObj.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="Structure.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

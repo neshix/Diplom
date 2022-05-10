@@ -11,6 +11,7 @@
 #include "Console.h"
 #include "MineObj.h"
 #include "Structure.h"
+#include "Storage.h"
 
 using namespace sf;
 
@@ -43,5 +44,6 @@ private:
 	bool IsKeyPressed = false;
 
 	Console console;
+	Storage storage;
 };
 #endif GAME_H

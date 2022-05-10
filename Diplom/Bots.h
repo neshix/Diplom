@@ -30,8 +30,8 @@ private:
 	Clock cl;
 	Time t;
 
-	Font f;
 public://надо найти куда запихать в drawble
+	Font f;
 	RectangleShape info;
 	Text infoTxt;
 

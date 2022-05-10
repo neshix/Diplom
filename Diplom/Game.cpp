@@ -152,6 +152,7 @@ void Game::render()
 
     //интерфейс
     _window.draw(console);
+    _window.draw(storage);
 
     for (auto& bot : bots)
         if (bot->selected)
@@ -163,6 +164,7 @@ void Game::render()
                 _window.draw(*com);
             }
         }
+
 
     //Update the window
     _window.display();
