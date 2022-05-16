@@ -7,6 +7,7 @@
 #include "Command.h"
 #include "MineObj.h"
 #include "Structure.h"
+#include "Storage.h"
 
 class Bots : public Entity
 {
@@ -55,7 +56,7 @@ public:
 	void setPosCommand(Vector2f pos);
 	void setInfoTXT();
 
-	void realization(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str);
+	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage stor);
 
 	void moveTo(Time deltaTime);
 };

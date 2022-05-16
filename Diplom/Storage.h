@@ -44,9 +44,9 @@ public:
 	void addMatirials(int& amount)
 	{
 		//тут раскидываем матириалы
-		tree = (amount / 100) % 100;
-		stone = (amount / 10000) % 100;
-		iron = amount % 100;
+		tree += (amount / 100) % 100;
+		stone += (amount / 10000) % 100;
+		iron += amount % 100;
 
 		int i = amount % 1000000;
 		amount -= i;
@@ -60,21 +60,24 @@ public:
 
 		if (tree >= (amount / 100) % 100 && stone >= (amount / 10000) % 100 && iron >= amount % 100)
 		{
-			tree -= (amount / 100) % 100;
-			stone -= (amount / 10000) % 100;
-			iron -= amount % 100;
-
+			std::cout << tree << stone << iron << "\n";
+			this->tree -= (amount / 100) % 100;
+			this->stone -= (amount / 10000) % 100;
+			this->iron -= amount % 100;
+			std::cout << tree << stone << iron << "\n";
+			setTxt();
 			return true;
 		}
 		else
 		{
+			std::cout << "no";
 			return false;
 		}
-		setTxt();
 	}
 
 	void setTxt()
 	{
+		std::cout << tree << stone << iron << "\n";
 		text.setString("Tree = " + std::to_string(tree)
 			+ "\n Stone = " + std::to_string(stone)
 			+ "\n Iron = " + std::to_string(iron));

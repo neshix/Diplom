@@ -53,7 +53,7 @@ void Bots::setPosCommand(Vector2f pos)
 	infoTxt.setPosition(info.getPosition() * 1.01f);
 }
 
-void Bots::realization(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str)
+void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage stor)
 {
 	maxPriority = 0;
 	for (auto& com : command)
@@ -247,11 +247,58 @@ void Bots::realization(Vector2f mp, std::list<MineObj*>& mine, std::list<Structu
 				build = true;
 				if (com->startbulid)
 				{
-					com->startbulid = false;
+					if (com->buildingName == "wooden wall" && stor.delMatirials(10))
+					{
+						com->startbulid = false;
 
-					*point = false;
-					str.push_back(new Structure(com->buildingName));
-					str.back()->setPosition(com->movePos);
+						*point = false;
+						str.push_back(new Structure(com->buildingName));
+						str.back()->setPosition(com->movePos);
+					}
+					else if (com->buildingName == "iron wall" && stor.delMatirials(1000))
+					{
+						com->startbulid = false;
+
+						*point = false;
+						str.push_back(new Structure(com->buildingName));
+						str.back()->setPosition(com->movePos);
+					}
+					else if (com->buildingName == "stone wall" && stor.delMatirials(100000))
+					{
+						com->startbulid = false;
+
+						*point = false;
+						str.push_back(new Structure(com->buildingName));
+						str.back()->setPosition(com->movePos);
+					}
+					else if (com->buildingName == "gates" && stor.delMatirials(1111))
+					{
+						com->startbulid = false;
+
+						*point = false;
+						str.push_back(new Structure(com->buildingName));
+						str.back()->setPosition(com->movePos);
+					}
+					else if (com->buildingName == "factory" && stor.delMatirials(101010))
+					{
+						com->startbulid = false;
+
+						*point = false;
+						str.push_back(new Structure(com->buildingName));
+						str.back()->setPosition(com->movePos);
+					}
+					else if (com->buildingName == "storage" && stor.delMatirials(0))
+					{
+						com->startbulid = false;
+
+						*point = false;
+						str.push_back(new Structure(com->buildingName));
+						str.back()->setPosition(com->movePos);
+					}
+					else
+					{
+						com->txt.setString("Build(no matirials)");
+					}
 				}
 			}
 			break;

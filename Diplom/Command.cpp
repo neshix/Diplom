@@ -303,7 +303,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						bildpos = true;
 
 						buildingName = t->getString();
-						txt.setString("Build("+ buildingName + ")(set the position)");
+						txt.setString("Build("+ buildingName + ")");
 						txt.setPosition(box.getPosition());
 
 						text.clear();

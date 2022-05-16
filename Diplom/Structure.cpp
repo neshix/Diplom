@@ -53,7 +53,7 @@ Structure::Structure(std::string selStruct): Entity(50)
 	}
 }
 
-void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot)
+void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::list<MineObj*>& mine, Storage& store)
 {
 
 	if (gates)
@@ -80,7 +80,18 @@ void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot)
 	}
 	else if (storage)
 	{
-
+		for (auto& m : mine)
+		{
+			if (m->name == "Materials")
+			{
+				normal = m->getobj().getPosition() - _shape.getPosition();
+				distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+				if (distanse <= 300)
+				{
+					std::cout << m->amount;
+					store.addMatirials(m->amount);
+				}
+			}
+		}
 	}
-	
 }

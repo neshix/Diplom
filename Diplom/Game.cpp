@@ -55,6 +55,7 @@ void Game::update(Time deltaTime)
 
     for (auto& bot : bots)
     {
+        bot->update(mousePos, mineobj, structure, storage);
         bot->moveTo(deltaTime);
 
         //выбор бота
@@ -88,7 +89,7 @@ void Game::update(Time deltaTime)
             bot->delCommand(mousePos, IsKeyPressed);
             bot->setPosCommand(console.consol.getPosition());
 
-            bot->realization(mousePos, mineobj, structure);
+            //bot->update(mousePos, mineobj, structure, storage);
 
             for (auto& com : bot->command)
             {
@@ -105,13 +106,18 @@ void Game::update(Time deltaTime)
 
     for (auto& str: structure)
     {
-        str->update(mousePos, IsKeyPressed, bots);
+        str->update(mousePos, IsKeyPressed, bots, mineobj, storage);
     }
 
     //удаление трупов
     for (auto c = mineobj.begin(); c != mineobj.end();)
     {
         MineObj* mine = *c;
+        if (mine->amount <= 0)
+        {
+            mine->life = false;
+        }
+
         if (mine->life == false)
         {
             c = mineobj.erase(c);
