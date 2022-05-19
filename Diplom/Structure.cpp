@@ -88,7 +88,7 @@ void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::
 				distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 				if (distanse <= 300)
 				{
-					std::cout << m->amount;
+					//std::cout << m->amount;
 					store.addMatirials(m->amount);
 				}
 			}

@@ -32,7 +32,7 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(196,54): warning C4244
           [
               T=float
           ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(317,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(354,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(43,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.h(44): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
   Command.cpp

@@ -56,7 +56,7 @@ public:
 	void setPosCommand(Vector2f pos);
 	void setInfoTXT();
 
-	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage stor);
+	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor);
 
 	void moveTo(Time deltaTime);
 };

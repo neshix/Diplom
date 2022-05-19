@@ -53,7 +53,7 @@ void Bots::setPosCommand(Vector2f pos)
 	infoTxt.setPosition(info.getPosition() * 1.01f);
 }
 
-void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage stor)
+void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor)
 {
 	maxPriority = 0;
 	for (auto& com : command)
@@ -247,56 +247,94 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				build = true;
 				if (com->startbulid)
 				{
-					if (com->buildingName == "wooden wall" && stor.delMatirials(10))
+					int i = 0;
+					if (com->buildingName == "wooden wall")
 					{
-						com->startbulid = false;
+						i = 10;
+						if (stor.delMatirials(i))
+						{
+							stor.dm(i);
 
-						*point = false;
-						str.push_back(new Structure(com->buildingName));
-						str.back()->setPosition(com->movePos);
+							com->startbulid = false;
+
+							*point = false;
+							str.push_back(new Structure(com->buildingName));
+							str.back()->setPosition(com->movePos);
+						}
 					}
-					else if (com->buildingName == "iron wall" && stor.delMatirials(1000))
+					else if (com->buildingName == "iron wall")
 					{
-						com->startbulid = false;
+						i = 1000;
+						if (stor.delMatirials(i))
+						{
+							stor.dm(i);
 
-						*point = false;
-						str.push_back(new Structure(com->buildingName));
-						str.back()->setPosition(com->movePos);
+							com->startbulid = false;
+
+							*point = false;
+							str.push_back(new Structure(com->buildingName));
+							str.back()->setPosition(com->movePos);
+						}
 					}
-					else if (com->buildingName == "stone wall" && stor.delMatirials(100000))
+					else if (com->buildingName == "stone wall")
 					{
-						com->startbulid = false;
+						i = 100000;
+						if (stor.delMatirials(i))
+						{
+							stor.dm(i);
 
-						*point = false;
-						str.push_back(new Structure(com->buildingName));
-						str.back()->setPosition(com->movePos);
+							com->startbulid = false;
+
+							*point = false;
+							str.push_back(new Structure(com->buildingName));
+							str.back()->setPosition(com->movePos);
+						}
 					}
-					else if (com->buildingName == "gates" && stor.delMatirials(1111))
+					else if (com->buildingName == "gates")
 					{
-						com->startbulid = false;
+						i = 1111;
+						if (stor.delMatirials(i))
+						{
+							stor.dm(i);
 
-						*point = false;
-						str.push_back(new Structure(com->buildingName));
-						str.back()->setPosition(com->movePos);
+							com->startbulid = false;
+
+							*point = false;
+							str.push_back(new Structure(com->buildingName));
+							str.back()->setPosition(com->movePos);
+						}
 					}
-					else if (com->buildingName == "factory" && stor.delMatirials(101010))
+					else if (com->buildingName == "factory")
 					{
-						com->startbulid = false;
+						i = 101010;
+						if (stor.delMatirials(i))
+						{
+							stor.dm(i);
 
-						*point = false;
-						str.push_back(new Structure(com->buildingName));
-						str.back()->setPosition(com->movePos);
+							com->startbulid = false;
+
+							*point = false;
+							str.push_back(new Structure(com->buildingName));
+							str.back()->setPosition(com->movePos);
+						}
 					}
-					else if (com->buildingName == "storage" && stor.delMatirials(0))
+					else if (com->buildingName == "storage")
 					{
-						com->startbulid = false;
+						i = 0;
+						if (stor.delMatirials(i))
+						{
+							stor.dm(i);
 
-						*point = false;
-						str.push_back(new Structure(com->buildingName));
-						str.back()->setPosition(com->movePos);
+							com->startbulid = false;
+
+							*point = false;
+							str.push_back(new Structure(com->buildingName));
+							str.back()->setPosition(com->movePos);
+						}
 					}
 					else
 					{
+						com->startbulid = false;
 						com->txt.setString("Build(no matirials)");
 					}
 				}
