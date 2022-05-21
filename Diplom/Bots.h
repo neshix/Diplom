@@ -39,8 +39,8 @@ public://надо найти куда запихать в drawble
 public:
 	Bots(int x = 500, int y = 500) :Entity()
 	{
-		_shape.setFillColor(Color::Blue);
-		_shape.setOutlineColor(Color::White);
+		_texture.loadFromFile("data/img/bot.png");
+		_sprite.setTexture(_texture);
 		setPosition(x, y);
 
 		info.setSize(Vector2f(200, 200));

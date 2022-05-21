@@ -11,7 +11,8 @@ class Enemy : public Entity
 public:
 	Enemy() :Entity()
 	{
-		_shape.setFillColor(Color::Red);
+		_texture.loadFromFile("data/img/enemy.png");
+		_sprite.setTexture(_texture);
 		setPosition(800, 800);
 	};
 };

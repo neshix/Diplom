@@ -17,7 +17,9 @@ protected:
 	friend class Command;
 
 public:
-	CircleShape _shape;
+	Texture _texture;
+	Sprite _sprite;
+
 	Vector2f target;
 
 public:
@@ -35,12 +37,12 @@ private:
 
 public:
 
-	Entity(float radius = 25);
+	Entity();
 
 	template<typename ... Args>
 	void setPosition(Args&& ... args)
 	{
-		_shape.setPosition(std::forward<Args>(args)...);
+		_sprite.setPosition(std::forward<Args>(args)...);
 	}
 
 private:

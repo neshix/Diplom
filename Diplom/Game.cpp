@@ -59,7 +59,7 @@ void Game::update(Time deltaTime)
         bot->moveTo(deltaTime);
 
         //выбор бота
-        if (Mouse::isButtonPressed(Mouse::Right) && bot->_shape.getGlobalBounds().contains(mousePos))
+        if (Mouse::isButtonPressed(Mouse::Right) && bot->_sprite.getGlobalBounds().contains(mousePos))
         {
             for (auto& b : bots) { b->selected = false; }
             bot->selected = true;
@@ -96,11 +96,11 @@ void Game::update(Time deltaTime)
                 com->create(mousePos, IsKeyPressed);
             }
 
-            bot->_shape.setOutlineThickness(3);
+            //bot->_sprite.setOutlineThickness(3);
         }
         else
         {
-            bot->_shape.setOutlineThickness(0);
+            //bot->_sprite.setOutlineThickness(0);
         }
     }
 

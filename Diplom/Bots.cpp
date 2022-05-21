@@ -180,7 +180,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						com->isDrop = false;
 						com->isMaterials = false;
 						com->txt.setString("drop(matirials droped)");
-						mine.push_back(new MineObj(_shape.getPosition().x, _shape.getPosition().y, 3));
+						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 3));
 						MineObj& m = *mine.back();
 						m.amount = iventory % 1000000;
 						iventory -= m.amount;
@@ -193,7 +193,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						com->isDrop = false;
 						com->isWeapon = false;
 						com->txt.setString("drop(weapon droped)");
-						mine.push_back(new MineObj(_shape.getPosition().x, _shape.getPosition().y, 3));
+						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 3));
 						MineObj& m = *mine.back();
 						m.amount = iventory / 1000000;
 						iventory -= m.amount;
@@ -248,63 +248,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				if (com->startbulid)
 				{
 					int i = 0;
-					if (com->buildingName == "wooden wall")
-					{
-						i = 10;
-						if (stor.delMatirials(i))
-						{
-							stor.dm(i);
-
-							com->startbulid = false;
-
-							*point = false;
-							str.push_back(new Structure(com->buildingName));
-							str.back()->setPosition(com->movePos);
-						}
-					}
-					else if (com->buildingName == "iron wall")
-					{
-						i = 1000;
-						if (stor.delMatirials(i))
-						{
-							stor.dm(i);
-
-							com->startbulid = false;
-
-							*point = false;
-							str.push_back(new Structure(com->buildingName));
-							str.back()->setPosition(com->movePos);
-						}
-					}
-					else if (com->buildingName == "stone wall")
-					{
-						i = 100000;
-						if (stor.delMatirials(i))
-						{
-							stor.dm(i);
-
-							com->startbulid = false;
-
-							*point = false;
-							str.push_back(new Structure(com->buildingName));
-							str.back()->setPosition(com->movePos);
-						}
-					}
-					else if (com->buildingName == "gates")
-					{
-						i = 1111;
-						if (stor.delMatirials(i))
-						{
-							stor.dm(i);
-
-							com->startbulid = false;
-
-							*point = false;
-							str.push_back(new Structure(com->buildingName));
-							str.back()->setPosition(com->movePos);
-						}
-					}
-					else if (com->buildingName == "factory")
+					if (com->buildingName == "factory")
 					{
 						i = 101010;
 						if (stor.delMatirials(i))
@@ -351,14 +295,14 @@ void Bots::moveTo(Time deltaTime)
 	{
 		time = deltaTime.asSeconds();
 
-		normal = target - _shape.getPosition();
+		normal = target - _sprite.getPosition();
 		float v = sqrt(pow(normal.x, 2) + pow(normal.y, 2));
 		moveToPoint = (normal / v) * speed * time;
 		distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 
 		if (distanse >= 5)
 		{
-			_shape.move(moveToPoint);
+			_sprite.move(moveToPoint);
 		}
 		else
 		{

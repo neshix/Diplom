@@ -90,7 +90,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						break;
 					}
 
-					//в процессе реализации
+					//реализовано частично
 					if (t->getString() == "build")
 					{
 						txt.setString(t->getString());
@@ -100,17 +100,14 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						isBuild = true;
 
 						text.clear();
-						text.push_back(new Text("gates", font, 15));
-						text.push_back(new Text("wooden wall", font, 15));
-						text.push_back(new Text("iron wall", font, 15));
-						text.push_back(new Text("stone wall", font, 15));
+
 						text.push_back(new Text("factory", font, 15));
 						text.push_back(new Text("storage", font, 15));
 						break;
 					}
 
-					//не реализовано
-					if (t->getString() == "attack")//не реализовано
+					//в процессе реализации
+					if (t->getString() == "attack")
 					{
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
@@ -281,7 +278,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
-		//-+
+		//+
 		if (isBuild)
 		{
 			if (Mouse::isButtonPressed(Mouse::Left) && bildpos)
@@ -315,12 +312,6 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					t->setFillColor(Color::White);
 				}
 			}
-		}
-
-		//-
-		if (isAttack)
-		{
-
 		}
 
 		//+
