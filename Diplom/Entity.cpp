@@ -1,9 +1,15 @@
 #include "Entity.h"
 
+Entity::Entity(std::string pathToTexture)
+{
+	life = true;
+	_texture.loadFromFile(pathToTexture);
+	_sprite.setTexture(_texture);
+}
+
 Entity::Entity()
 {
 	life = true;
-	//_sprite.setTexture(_texture);
 }
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const

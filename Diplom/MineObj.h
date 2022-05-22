@@ -4,70 +4,54 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 
+#include "Entity.h"
+
 using namespace sf;
 
-class MineObj: public Drawable
+class MineObj: public Entity
 {
 public:
 	enum idName
 	{
-		Tree, Stone, Iron, Materials
+		Stone, Iron, Materials
 	};
 
 	int amount = 0;
 	int extractionTime = 0;
 	std::string name;
 
-	bool life = false;
-
 private:
-	RectangleShape obj;
 	Vector2f size = Vector2f(50, 50);
 
 public:
-	MineObj(int X, int Y, int id)
+	MineObj(int X, int Y, int id): Entity()
 	{
 		switch (id)
 		{
-		case idName::Tree:
-			name = "Tree";
-			obj.setFillColor(Color(153, 75, 0, 255));
-			extractionTime = 5;
-			amount = rand() % 100 + 10;
-			break;
 		case idName::Stone:
 			name = "Stone";
-			obj.setFillColor(Color(136, 136, 136, 255));
+			_texture.loadFromFile("data/img/stone.png");
+			_sprite.setTexture(_texture);
+
 			extractionTime = 15;
 			amount = rand() % 100 + 10;
 			break;
 		case idName::Iron:
 			name = "Iron";
-			obj.setFillColor(Color(100, 136, 200, 255));
+			_texture.loadFromFile("data/img/iron.png");
+			_sprite.setTexture(_texture);
+
 			extractionTime = 25;
 			amount = rand() % 100 + 10;
 			break;
 		case idName::Materials:
 			name = "Materials";
-			obj.setFillColor(Color(50, 50, 200, 255));
+			_texture.loadFromFile("data/img/box.png");
+			_sprite.setTexture(_texture);
+
 			break;
 		}
-
-		obj.setSize(size);
-		obj.setPosition(X, Y);
-		obj.setOrigin(size / 2.0f);//центр обекта
-
-		life = true;
+		setPosition(X, Y);
 	};
-
-	RectangleShape getobj() 
-	{
-		return obj;
-	}
-
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override
-	{
-		target.draw(obj, states);
-	}
 };
 #endif MINEOBJ_H

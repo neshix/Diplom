@@ -6,13 +6,11 @@
 #include "Game.h"
 #include "Entity.h"
 
-class Enemy : public Entity
+class Enemy : public livingEntity
 {
 public:
-	Enemy() :Entity()
+	Enemy() :livingEntity("data/img/enemy.png")
 	{
-		_texture.loadFromFile("data/img/enemy.png");
-		_sprite.setTexture(_texture);
 		setPosition(800, 800);
 	};
 };

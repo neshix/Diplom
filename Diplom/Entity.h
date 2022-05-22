@@ -20,22 +20,20 @@ public:
 	Texture _texture;
 	Sprite _sprite;
 
-	Vector2f target;
+	Vector2f normal;
 
 public:
-	float speed = 100;
 	int health = 100;
-
-private:
-	Vector2f normal;
-	Vector2f moveToPoint;
-
 	float distanse = 0;
-	float time = 0;
 
 	bool life = false;
+private:
+	float time = 0;
+
+	//bool life = false;
 
 public:
+	Entity(std::string pathToTexture);
 
 	Entity();
 

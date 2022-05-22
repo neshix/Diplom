@@ -3,16 +3,21 @@
 Structure::Structure(std::string selStruct): Entity()
 {
 	name = selStruct;
-	speed = 0;
 	build = true;
 
 	if (name == "factory")
 	{
+		_texture.loadFromFile("data/img/factory.png");
+		_sprite.setTexture(_texture);
+
 		factory = true;
 		health = 100;
 	}
 	else if (name == "storage")
 	{
+		_texture.loadFromFile("data/img/storage.png");
+		_sprite.setTexture(_texture);
+
 		storage = true;
 		health = 100;
 	}
@@ -30,7 +35,7 @@ void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::
 		{
 			if (m->name == "Materials")
 			{
-				normal = m->getobj().getPosition() - _sprite.getPosition();
+				normal = m->_sprite.getPosition() - _sprite.getPosition();
 				distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 				if (distanse <= 300)
 				{

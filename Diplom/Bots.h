@@ -3,13 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Entity.h"
+#include "livingEntity.h"
 #include "Command.h"
 #include "MineObj.h"
 #include "Structure.h"
 #include "Storage.h"
 
-class Bots : public Entity
+class Bots : public livingEntity
 {
 public:
 	std::list<Command*> command;
@@ -37,10 +37,8 @@ public://надо найти куда запихать в drawble
 	Text infoTxt;
 
 public:
-	Bots(int x = 500, int y = 500) :Entity()
+	Bots(int x = 500, int y = 500) :livingEntity("data/img/bot.png")
 	{
-		_texture.loadFromFile("data/img/bot.png");
-		_sprite.setTexture(_texture);
 		setPosition(x, y);
 
 		info.setSize(Vector2f(200, 200));

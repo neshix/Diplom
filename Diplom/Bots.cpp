@@ -90,7 +90,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						if (com->isMineIron && e->name == "Iron")
 						{
 							com->isMineIron = false;
-							com->movePos = e->getobj().getPosition();
+							com->movePos = e->_sprite.getPosition();
 							com->mineobjinit = true;
 							*point = false;
 							obj = e;
@@ -99,7 +99,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						if (com->isMineTree && e->name == "Tree")
 						{
 							com->isMineTree = false;
-							com->movePos = e->getobj().getPosition();
+							com->movePos = e->_sprite.getPosition();
 							com->mineobjinit = true;
 							*point = false;
 							obj = e;
@@ -108,7 +108,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						if (com->isMineStone && e->name == "Stone")
 						{
 							com->isMineStone = false;
-							com->movePos = e->getobj().getPosition();
+							com->movePos = e->_sprite.getPosition();
 							com->mineobjinit = true;
 							*point = false;
 							obj = e;
@@ -180,7 +180,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						com->isDrop = false;
 						com->isMaterials = false;
 						com->txt.setString("drop(matirials droped)");
-						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 3));
+						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 2));
 						MineObj& m = *mine.back();
 						m.amount = iventory % 1000000;
 						iventory -= m.amount;
@@ -193,7 +193,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						com->isDrop = false;
 						com->isWeapon = false;
 						com->txt.setString("drop(weapon droped)");
-						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 3));
+						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 2));
 						MineObj& m = *mine.back();
 						m.amount = iventory / 1000000;
 						iventory -= m.amount;
@@ -211,7 +211,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						if (com->isMaterials && e->name == "Materials")
 						{
 							com->isMaterials = false;
-							com->movePos = e->getobj().getPosition();
+							com->movePos = e->_sprite.getPosition();
 							com->mineobjinit = true;
 							*point = false;
 							obj = e;
@@ -220,7 +220,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						if (com->isWeapon && e->name == "Weapon")
 						{
 							com->isWeapon = false;
-							com->movePos = e->getobj().getPosition();
+							com->movePos = e->_sprite.getPosition();
 							com->mineobjinit = true;
 							*point = false;
 							obj = e;

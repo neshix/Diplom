@@ -11,9 +11,8 @@ void Game::run(int minimum_frame_per_seconds)
     bots.push_back(new Bots(300, 300));
     enemys.push_back(new Enemy);
 
-    mineobj.push_back(new MineObj(50, 50, 2));
-    mineobj.push_back(new MineObj(100, 300, 0));
-    mineobj.push_back(new MineObj(550, 200, 1));
+    mineobj.push_back(new MineObj(500, 500, 0));
+    mineobj.push_back(new MineObj(100, 300,1));
 
    Clock clock;
    Time timeSinceLastUpdate;
