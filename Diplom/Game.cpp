@@ -54,7 +54,7 @@ void Game::update(Time deltaTime)
 
     for (auto& bot : bots)
     {
-        bot->update(mousePos, mineobj, structure, storage);
+        bot->update(mousePos, mineobj, structure, storage, enemys, bullets);
         bot->moveTo(deltaTime);
 
         //выбор бота
@@ -108,6 +108,9 @@ void Game::update(Time deltaTime)
         str->update(mousePos, IsKeyPressed, bots, mineobj, storage);
     }
 
+    for (auto& bul : bullets)
+        bul->update(deltaTime);
+
     //удаление трупов
     for (auto c = mineobj.begin(); c != mineobj.end();)
     {
@@ -153,6 +156,11 @@ void Game::render()
     for (auto& enemy : enemys)
     {
         _window.draw(*enemy);
+    }
+
+    for (auto& bullet : bullets)
+    {
+        _window.draw(*bullet);
     }
 
     //интерфейс

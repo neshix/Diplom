@@ -53,7 +53,7 @@ void Bots::setPosCommand(Vector2f pos)
 	infoTxt.setPosition(info.getPosition() * 1.01f);
 }
 
-void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor)
+void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& enemy, std::list<Bullet*>& bul)
 {
 	maxPriority = 0;
 	for (auto& com : command)
@@ -96,15 +96,6 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							obj = e;
 						}
 
-						if (com->isMineTree && e->name == "Tree")
-						{
-							com->isMineTree = false;
-							com->movePos = e->_sprite.getPosition();
-							com->mineobjinit = true;
-							*point = false;
-							obj = e;
-						}
-
 						if (com->isMineStone && e->name == "Stone")
 						{
 							com->isMineStone = false;
@@ -119,33 +110,27 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				if (*point && com->mineobjinit)
 				{
 					//крч бл€ть тут ху€рить начинаем
-					capacity = (iventory % 100) + ((iventory / 100) % 100) + ((iventory / 10000) % 100);
+					capacity = (iventory % 100) + ((iventory / 100) % 100);
 					//std::cout << obj->amount << "\n";
 					t = cl.getElapsedTime();
 					if (capacity < 50 && t.asSeconds() >= obj->extractionTime)
 					{
 						t = cl.restart();
-						if (obj->name == "Iron")
+						if (obj->name == "Stone")
 						{
 							iventory += 1;
 							obj->amount--;
 						}
 
-						if (obj->name == "Tree")
+						if (obj->name == "Iron")
 						{
 							iventory += 100;
-							obj->amount--;
-						}
-
-						if (obj->name == "Stone")
-						{
-							iventory += 10000;
 							obj->amount--;
 						}
 					}
 				}
 			}
-			else if(com->isPatrol)
+			if(com->isPatrol)
 			{
 				if (com->movePatrolPos.empty())
 					continue;
@@ -171,7 +156,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					*point = false;
 				}
 			}
-			else if (com->isDrop)
+			if (com->isDrop)
 			{
 				if (iventory > 0)
 				{
@@ -179,7 +164,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					{
 						com->isDrop = false;
 						com->isMaterials = false;
-						com->txt.setString("drop(matirials droped)");
+						com->txt.setString("drop -> droped");
 						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 2));
 						MineObj& m = *mine.back();
 						m.amount = iventory % 1000000;
@@ -187,22 +172,9 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 
 						//std::cout << m.amount << "   " << iventory << "\n";
 					}
-
-					if (com->isWeapon)
-					{
-						com->isDrop = false;
-						com->isWeapon = false;
-						com->txt.setString("drop(weapon droped)");
-						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 2));
-						MineObj& m = *mine.back();
-						m.amount = iventory / 1000000;
-						iventory -= m.amount;
-
-						//std::cout << m.amount << "   " << iventory << "\n";
-					}
 				}
 			}
-			else if (com->isPickUp)
+			if (com->isPickUp)
 			{
 				if (!com->mineobjinit)
 				{
@@ -216,21 +188,12 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							*point = false;
 							obj = e;
 						}
-
-						if (com->isWeapon && e->name == "Weapon")
-						{
-							com->isWeapon = false;
-							com->movePos = e->_sprite.getPosition();
-							com->mineobjinit = true;
-							*point = false;
-							obj = e;
-						}
 					}
 				}
 
 				if (*point && com->mineobjinit)
 				{
-					capacity = (iventory % 100) + ((iventory / 100) % 100) + ((iventory / 10000) % 100);
+					capacity = (iventory % 100) + ((iventory / 100) % 100);
 					
 					if (capacity < 50)
 					{
@@ -242,7 +205,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					}
 				}
 			}
-			else if(com->isBuild)
+			if(com->isBuild)
 			{
 				build = true;
 				if (com->startbulid)
@@ -250,7 +213,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					int i = 0;
 					if (com->buildingName == "factory")
 					{
-						i = 101010;
+						i = 1010;
 						if (stor.delMatirials(i))
 						{
 							stor.dm(i);
@@ -280,6 +243,29 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					{
 						com->startbulid = false;
 						com->txt.setString("Build(no matirials)");
+					}
+				}
+			}
+			if (com->isAttack)
+			{
+				//std::cout << "a";
+				for (auto& e : enemy)
+				{
+					normal = e->_sprite.getPosition() - _sprite.getPosition();
+					distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+					if (distanse >= 400)
+					{
+						*point = false;
+						com->movePos = e->_sprite.getPosition();
+					}
+					else
+					{
+						if (true)
+						{
+							bul.push_back(new Bullet(_sprite.getPosition(), e->_sprite.getPosition()));
+						}
+						finish = false;
+						*point = true;
 					}
 				}
 			}
@@ -315,7 +301,6 @@ void Bots::moveTo(Time deltaTime)
 void Bots::setInfoTXT()
 {
 	infoTxt.setString(std::to_string(capacity) + "/50		health = " + std::to_string(health)
-		+ "\n Tree = " + std::to_string((iventory / 100) % 100)
-		+ "\n Stone = " + std::to_string((iventory / 10000) % 100)
-		+ "\n Iron = " + std::to_string(iventory % 100));
+		+ "\n Iron = " + std::to_string((iventory / 100) % 100)
+		+ "\n Stone = " + std::to_string(iventory % 100));
 }

@@ -12,6 +12,7 @@
 #include "MineObj.h"
 #include "Structure.h"
 #include "Storage.h"
+#include "Bullet.h"
 
 using namespace sf;
 
@@ -40,6 +41,7 @@ private:
 	std::list<Enemy*> enemys;
 	std::list<MineObj*> mineobj;
 	std::list<Structure*> structure;
+	std::list<Bullet*> bullets;
 
 	bool IsKeyPressed = false;
 

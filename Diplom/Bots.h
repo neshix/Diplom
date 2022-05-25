@@ -8,6 +8,8 @@
 #include "MineObj.h"
 #include "Structure.h"
 #include "Storage.h"
+#include "Enemy.h"
+#include "Bullet.h"
 
 class Bots : public livingEntity
 {
@@ -17,7 +19,7 @@ public:
 
 	int maxPriority = 0;
 
-	int iventory = 121433;
+	int iventory = 2525;
 	int capacity = 0;
 
 	bool finish = false;
@@ -44,6 +46,8 @@ public:
 		info.setSize(Vector2f(200, 200));
 		info.setFillColor(Color(128, 128, 128, 255));
 
+		capacity = (iventory % 100) + ((iventory / 100) % 100);
+
 		if (!f.loadFromFile("fons/calibri.ttf")) std::cout << "ne naideno";
 		infoTxt.setFont(f);
 		infoTxt.setCharacterSize(15);
@@ -54,7 +58,7 @@ public:
 	void setPosCommand(Vector2f pos);
 	void setInfoTXT();
 
-	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor);
+	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& en, std::list<Bullet*>& bul);
 
 	void moveTo(Time deltaTime);
 };
