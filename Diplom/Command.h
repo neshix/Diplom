@@ -22,15 +22,24 @@ public:
 	std::list <Vector2f> movePatrolPos;
 	std::list<Vector2f>::iterator tpoint;
 
-	RectangleShape box;
-	RectangleShape deldox;
+	std::list<RectangleShape> points;
+	RectangleShape ppoint;
+	RectangleShape mpoint;
 
+	Texture texture;
+	Sprite plusb;
+	Sprite xb;
+
+	RectangleShape box;
+	RectangleShape* choice;
+
+public:
 	bool moveTarget = false;
 
 	bool isMove = false, isMoving = false;
 
 	bool isMine = false, mineobjinit = false;
-	bool isMineIron = false, isMineTree = false, isMineStone = false;
+	bool isMineIron = false, isMineStone = false;
 
 	bool isPatrol = false;
 	bool startPatrol = false;
@@ -66,8 +75,21 @@ public:
 		box.setOutlineColor(Color::White);
 		box.setFillColor(Color(255,50,50,255));
 
-		deldox.setSize(Vector2f(20, 20));
-		deldox.setFillColor(Color(255, 255, 255, 255));
+		ppoint.setSize(Vector2f(5, 5));
+		ppoint.setOrigin(2.5, 2.5);
+		ppoint.setFillColor(Color::Yellow);
+
+		mpoint.setSize(Vector2f(5, 5));
+		mpoint.setOrigin(2.5, 2.5);
+		mpoint.setFillColor(Color::Red);
+
+		texture.loadFromFile("data/img/icons/icons.png");
+		plusb.setTexture(texture);
+		plusb.setTextureRect(IntRect(0, 0, 25, 25));
+		xb.setTexture(texture);
+		xb.setTextureRect(IntRect(25, 0, 25, 25));
+
+		choice = new RectangleShape;
 	};
 
 	void create(Vector2f mousePos, bool& isPressed);

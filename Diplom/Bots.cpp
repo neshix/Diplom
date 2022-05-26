@@ -14,8 +14,10 @@ void Bots::delCommand(Vector2f mpos, bool& press)
 	for (auto c = command.begin(); c != command.end();)
 	{
 		Command *com = *c;
-		if (Mouse::isButtonPressed(Mouse::Left) && com->deldox.getGlobalBounds().contains(mpos) && press == false)
+		if (Mouse::isButtonPressed(Mouse::Left) && com->xb.getGlobalBounds().contains(mpos) && press == false)
 		{
+			com->falcom();
+
 			press = true;
 			c = command.erase(c);
 		}
@@ -33,10 +35,11 @@ void Bots::setPosCommand(Vector2f pos)
 	for (auto& com : command)
 	{
 		com->box.setPosition(pos.x, pos.y + 100 + (com->box.getSize().y * i));
-		dbpos = Vector2f(com->box.getPosition().x + (com->box.getSize().x - com->deldox.getSize().x),
-						 com->box.getPosition().y + (com->box.getSize().y - com->deldox.getSize().y));
+		dbpos = Vector2f(com->box.getPosition().x + (com->box.getSize().x - com->xb.getGlobalBounds().width),
+						 com->box.getPosition().y + (com->box.getSize().y - com->xb.getGlobalBounds().height));
 		com->txt.setPosition(com->box.getPosition());
-		com->deldox.setPosition(dbpos);
+		com->xb.setPosition(dbpos);
+		com->plusb.setPosition(dbpos.x - 25, dbpos.y);
 
 		com->txtpriority.setPosition(com->box.getPosition().x + (com->box.getSize().x - 20), com->box.getPosition().y);
 		
