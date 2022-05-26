@@ -30,6 +30,8 @@ private:
 	void update(Time deltaTime); //< do some updates
 	void render();//< draw all the stuff
 
+	void deads();
+
 	RenderWindow _window;
 
 	Time   _nextSaucer;

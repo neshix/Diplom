@@ -260,8 +260,10 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					}
 					else
 					{
-						if (true)
+						t = cl.getElapsedTime();
+						if (t.asMilliseconds()>= 500)
 						{
+							t = cl.restart();
 							bul.push_back(new Bullet(_sprite.getPosition(), e->_sprite.getPosition()));
 						}
 						finish = false;

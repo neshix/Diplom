@@ -7,9 +7,10 @@ Game::Game(int X, int Y) : _window(VideoMode(X,Y), "diplom")
 
 void Game::run(int minimum_frame_per_seconds)
 {
+    enemys.push_back(new Enemy);
+
     bots.push_back(new Bots);
     bots.push_back(new Bots(300, 300));
-    enemys.push_back(new Enemy);
 
     mineobj.push_back(new MineObj(500, 500, 0));
     mineobj.push_back(new MineObj(100, 300,1));
@@ -109,26 +110,10 @@ void Game::update(Time deltaTime)
     }
 
     for (auto& bul : bullets)
-        bul->update(deltaTime);
+        bul->update(deltaTime, enemys);
 
     //удаление трупов
-    for (auto c = mineobj.begin(); c != mineobj.end();)
-    {
-        MineObj* mine = *c;
-        if (mine->amount <= 0)
-        {
-            mine->life = false;
-        }
-
-        if (mine->life == false)
-        {
-            c = mineobj.erase(c);
-        }
-        else
-        {
-            c++;
-        }
-    }
+    deads();
 }
 
 void Game::render()
@@ -181,4 +166,97 @@ void Game::render()
 
     //Update the window
     _window.display();
+}
+
+void Game::deads()
+{
+    for (auto c = mineobj.begin(); c != mineobj.end();)
+    {
+        MineObj* mine = *c;
+        if (mine->amount <= 0)
+        {
+            mine->life = false;
+        }
+
+        if (mine->life == false)
+        {
+            c = mineobj.erase(c);
+        }
+        else
+        {
+            c++;
+        }
+    }
+
+    for (auto c = bots.begin(); c != bots.end();)
+    {
+        Bots* bot = *c;
+        if (bot->health <= 0)
+        {
+            bot->life = false;
+        }
+
+        if (bot->life == false)
+        {
+            c = bots.erase(c);
+        }
+        else
+        {
+            c++;
+        }
+    }
+
+    for (auto c = enemys.begin(); c != enemys.end();)
+    {
+        Enemy* enemy = *c;
+        if (enemy->health <= 0)
+        {
+            enemy->life = false;
+        }
+
+        if (enemy->life == false)
+        {
+            c = enemys.erase(c);
+        }
+        else
+        {
+            c++;
+        }
+    }
+
+    for (auto c = structure.begin(); c != structure.end();)
+    {
+        Structure* s = *c;
+        if (s->health <= 0)
+        {
+            s->life = false;
+        }
+
+        if (s->life == false)
+        {
+            c = structure.erase(c);
+        }
+        else
+        {
+            c++;
+        }
+    }
+
+    for (auto c = bullets.begin(); c != bullets.end();)
+    {
+        Bullet* bullet = *c;
+        if (bullet->health <= 0)
+        {
+            bullet->life = false;
+        }
+
+        if (bullet->life == false)
+        {
+            c = bullets.erase(c);
+        }
+        else
+        {
+            c++;
+        }
+    }
 }

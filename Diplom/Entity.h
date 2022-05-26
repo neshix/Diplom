@@ -10,10 +10,10 @@ using namespace sf;
 class Entity : public Drawable
 {
 protected:
+	friend class Bullet;
 	friend class Bots;
 	friend class Enemy;
 	friend class Structure;
-	friend class Bullet;
 
 	friend class Command;
 
