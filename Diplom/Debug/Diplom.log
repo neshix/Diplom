@@ -1,4 +1,4 @@
-﻿  Command.cpp
+﻿  Bots.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(18,30): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
           [
@@ -10,6 +10,17 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(18,27): warning C4244
               T=float
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(30,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(171,81): warning C4244: аргумент: преобразование "const T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(171,56): warning C4244: аргумент: преобразование "const T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(296,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(44,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
   Diplom.vcxproj -> C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe

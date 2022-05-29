@@ -54,13 +54,14 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txt.setString(t->getString() + " -> ");
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						isMove = true;
 
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 						choice->setSize(Vector2f(50, 15));
 						choice->setFillColor(Color::Green);
+
+						mpoint.setFillColor(Color::Red);
 						break;
 					}
 
@@ -70,7 +71,6 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txt.setString(t->getString() + " -> ");
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						isMine = true;
 						moveTarget = true;
 
@@ -87,7 +87,6 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txt.setString(t->getString() + " -> ");
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						movePatrolPos.clear();
 						points.clear();
 						isPatrol = true;
@@ -105,7 +104,6 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txt.setString(t->getString() + " -> ");
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						isBuild = true;
 
 						text.clear();
@@ -121,38 +119,38 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						isAttack = true;
 
 						text.clear();
 						break;
 					}
 
-					//реализовано частично
+					//реализовано++
 					if (t->getString() == "drop")
 					{
-						txt.setString(t->getString());
+						txt.setString(t->getString() + " -> ");
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						isDrop = true;
 
 						text.clear();
-						//text.push_back(new Text("materials", font, 15));
+						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
+						choice->setSize(Vector2f(50, 15));
+						choice->setFillColor(Color::Green);
+
+						mpoint.setFillColor(Color::Blue);
 						break;
 					}
 
-					//реализовано частично (возможно нужно перелапатить)
+					//реализовано++
 					if (t->getString() == "pickUp")
 					{
 						txt.setString(t->getString());
 						txt.setPosition(box.getPosition());
 
-						//falcom();
 						isPickUp = true;
 
 						text.clear();
-						//text.push_back(new Text("materials", font, 15));
 						break;
 					}
 				}
@@ -316,31 +314,29 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 		//+
 		if (isDrop)
 		{
-			for (auto& t : text)
+			//нажать на команду чтобы выбрать куда двигаться
+			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
-				if (t->getGlobalBounds().contains(mousePos))
-				{
-					t->setFillColor(Color::Green);
-					if (Mouse::isButtonPressed(Mouse::Left))
-					{
-						isPressed = true;
+				isPressed = true;
+				choice->setFillColor(Color(150, 255, 0, 255));
+				isMoving = true;
+			}
+			else if (!isMoving)
+			{
+				choice->setFillColor(Color::Green);
+			}
 
-						if (t->getString() == "materials")
-						{
-							txt.setString("drop(materials)");
-							txt.setPosition(box.getPosition());
+			//выбор позиции движения
+			if (Mouse::isButtonPressed(Mouse::Right) && isMoving == true)
+			{
+				isMoving = false;
+				onPoint = false;
+				moveTarget = true;
 
-							isMaterials = true;
-
-							text.clear();
-							break;
-						}
-					}
-				}
-				else
-				{
-					t->setFillColor(Color::White);
-				}
+				droping = true;
+   
+				movePos = mousePos;
+				mpoint.setPosition(mousePos);
 			}
 		}
 	}
@@ -360,11 +356,12 @@ void Command::falcom()
 
 	isBuild = false;
 	bildpos = false, startbulid = false;
-	
+
 	isAttack = false;
 
 	isDrop = false;
-	isMaterials = false, isWeapon = false;
+	droping = false;
+
 	isPickUp = false;
 
 	onPoint = true;
@@ -381,7 +378,7 @@ void Command::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(p, states);
 	}
 
-	if (isMove)
+	if (isMove || isDrop)
 		target.draw(mpoint, states);
 
 	target.draw(box, states);

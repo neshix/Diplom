@@ -51,7 +51,8 @@ public:
 	bool isAttack = false;
 
 	bool isDrop = false;
-	bool isMaterials = false, isWeapon = false;
+	bool droping = false;
+
 	bool isPickUp = false;
 
 	bool onPoint = true;
@@ -81,7 +82,7 @@ public:
 
 		mpoint.setSize(Vector2f(5, 5));
 		mpoint.setOrigin(2.5, 2.5);
-		mpoint.setFillColor(Color::Red);
+
 
 		texture.loadFromFile("data/img/icons/icons.png");
 		plusb.setTexture(texture);

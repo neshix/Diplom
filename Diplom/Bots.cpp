@@ -133,6 +133,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					}
 				}
 			}
+
 			if(com->isPatrol)
 			{
 				if (com->movePatrolPos.empty())
@@ -159,37 +160,41 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					*point = false;
 				}
 			}
+
 			if (com->isDrop)
 			{
 				if (iventory > 0)
 				{
-					if (com->isMaterials)
+					if (com->droping)
 					{
-						com->isDrop = false;
-						com->isMaterials = false;
-						com->txt.setString("drop -> droped");
-						mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 2));
-						MineObj& m = *mine.back();
-						m.amount = iventory % 1000000;
-						iventory -= m.amount;
+						if (*point)
+						{
+							com->txt.setString("drop -> ");
+							mine.push_back(new MineObj(_sprite.getPosition().x, _sprite.getPosition().y, 2));
+							MineObj& m = *mine.back();
+							m.amount = iventory % 1000000;
+							iventory -= m.amount;
 
-						//std::cout << m.amount << "   " << iventory << "\n";
+							capacity = (iventory % 100) + ((iventory / 100) % 100);
+						}
 					}
 				}
 			}
+
 			if (com->isPickUp)
 			{
 				if (!com->mineobjinit)
 				{
 					for (auto& e : mine)
 					{
-						if (com->isMaterials && e->name == "Materials")
+						if (e->name == "Materials")
 						{
-							com->isMaterials = false;
 							com->movePos = e->_sprite.getPosition();
 							com->mineobjinit = true;
 							*point = false;
 							obj = e;
+
+							std::cout << "ok\n";
 						}
 					}
 				}
@@ -202,12 +207,15 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					{
 						if (obj->name == "Materials")
 						{
+							com->mineobjinit = false;
+
 							iventory = obj->amount;
-							obj->life =false;
+							obj->life = false;
 						}
 					}
 				}
 			}
+
 			if(com->isBuild)
 			{
 				build = true;
@@ -249,6 +257,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					}
 				}
 			}
+
 			if (com->isAttack)
 			{
 				//std::cout << "a";
@@ -274,6 +283,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					}
 				}
 			}
+
 			break;
 		}
 	}
