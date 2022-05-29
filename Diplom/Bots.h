@@ -19,6 +19,8 @@ public:
 
 	int maxPriority = 0;
 
+	float smallerDistance = 10000;
+
 	int iventory = 2525;
 	int capacity = 0;
 

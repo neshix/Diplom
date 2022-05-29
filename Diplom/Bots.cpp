@@ -41,8 +41,9 @@ void Bots::setPosCommand(Vector2f pos)
 		com->xb.setPosition(dbpos);
 		com->plusb.setPosition(dbpos.x - 25, dbpos.y);
 
-		com->txtpriority.setPosition(com->box.getPosition().x + (com->box.getSize().x - 20), com->box.getPosition().y);
-		
+		com->priorityBox.setPosition(com->box.getPosition().x + (com->box.getSize().x - 20), com->box.getPosition().y);
+		com->txtpriority.setPosition(com->priorityBox.getPosition().x + 5 , com->priorityBox.getPosition().y);
+
 		int k = 0;
 		for (auto& t : com->text)
 		{
@@ -79,33 +80,50 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 			point = &com->onPoint;
 			if (!*point)
 			{
-				//std::cout << "move" << "\n";
 				finish = true;
 				target = com->movePos;
 			}
 
+			//++
 			if (com->isMine)
 			{
 				if (!com->mineobjinit)
 				{
+					smallerDistance = 10000;
 					for (auto& e : mine)
 					{
 						if (com->isMineIron && e->name == "Iron")
 						{
-							com->isMineIron = false;
-							com->movePos = e->_sprite.getPosition();
-							com->mineobjinit = true;
-							*point = false;
-							obj = e;
+							normal = e->_sprite.getPosition() - _sprite.getPosition();
+							distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+							if (smallerDistance > distanse)
+							{
+								com->isMineIron = false;
+								com->movePos = e->_sprite.getPosition();
+								com->mineobjinit = true;
+								*point = false;
+								obj = e;
+
+								smallerDistance = distanse;
+							}
 						}
 
 						if (com->isMineStone && e->name == "Stone")
 						{
-							com->isMineStone = false;
-							com->movePos = e->_sprite.getPosition();
-							com->mineobjinit = true;
-							*point = false;
-							obj = e;
+							normal = e->_sprite.getPosition() - _sprite.getPosition();
+							distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+							if (smallerDistance > distanse)
+							{
+								com->isMineIron = false;
+								com->movePos = e->_sprite.getPosition();
+								com->mineobjinit = true;
+								*point = false;
+								obj = e;
+
+								smallerDistance = distanse;
+							}
 						}
 					}
 				}
@@ -131,10 +149,16 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							obj->amount--;
 						}
 					}
+
+					if (obj->amount <= 0 )
+					{
+						com->mineobjinit = false;
+					}
 				}
 			}
 
-			if(com->isPatrol)
+			//++
+			if (com->isPatrol)
 			{
 				if (com->movePatrolPos.empty())
 					continue;
@@ -161,6 +185,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				}
 			}
 
+			//++
 			if (com->isDrop)
 			{
 				if (iventory > 0)
@@ -181,20 +206,28 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				}
 			}
 
+			//++
 			if (com->isPickUp)
 			{
 				if (!com->mineobjinit)
 				{
+					smallerDistance = 10000;
 					for (auto& e : mine)
 					{
 						if (e->name == "Materials")
 						{
-							com->movePos = e->_sprite.getPosition();
-							com->mineobjinit = true;
-							*point = false;
-							obj = e;
+							normal = e->_sprite.getPosition() - _sprite.getPosition();
+							distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 
-							std::cout << "ok\n";
+							if (smallerDistance > distanse)
+							{
+								com->movePos = e->_sprite.getPosition();
+								com->mineobjinit = true;
+								*point = false;
+								obj = e;
+
+								smallerDistance = distanse;
+							}
 						}
 					}
 				}
@@ -213,10 +246,16 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							obj->life = false;
 						}
 					}
+
+					if (obj->amount <= 0)
+					{
+						com->mineobjinit = false;
+					}
 				}
 			}
 
-			if(com->isBuild)
+			//--
+			if (com->isBuild)
 			{
 				build = true;
 				if (com->startbulid)
@@ -224,40 +263,43 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					int i = 0;
 					if (com->buildingName == "factory")
 					{
-						i = 1010;
+						i = 2020;
 						if (stor.delMatirials(i))
 						{
-							stor.dm(i);
+							if (*point)
+							{
+								stor.dm(i);
 
-							com->startbulid = false;
+								com->startbulid = false;
 
-							*point = false;
-							str.push_back(new Structure(com->buildingName));
-							str.back()->setPosition(com->movePos);
+								*point = false;
+								str.push_back(new Structure(com->buildingName));
+								str.back()->setPosition(com->movePos);
+							}
 						}
 					}
-					else if (com->buildingName == "storage")
+
+					if (com->buildingName == "storage")
 					{
-						i = 0;
+						i = 2010;
 						if (stor.delMatirials(i))
 						{
-							stor.dm(i);
+							if (*point)
+							{
+								stor.dm(i);
 
-							com->startbulid = false;
+								com->startbulid = false;
 
-							*point = false;
-							str.push_back(new Structure(com->buildingName));
-							str.back()->setPosition(com->movePos);
+								*point = false;
+								str.push_back(new Structure(com->buildingName));
+								str.back()->setPosition(com->movePos);
+							}
 						}
-					}
-					else
-					{
-						com->startbulid = false;
-						com->txt.setString("Build(no matirials)");
 					}
 				}
 			}
 
+			//++
 			if (com->isAttack)
 			{
 				//std::cout << "a";

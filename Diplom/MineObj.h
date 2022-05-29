@@ -33,7 +33,7 @@ public:
 			_texture.loadFromFile("data/img/stone.png");
 			_sprite.setTexture(_texture);
 
-			extractionTime = 15;
+			extractionTime = 5;
 			amount = rand() % 100 + 10;
 			break;
 		case idName::Iron:
@@ -41,7 +41,7 @@ public:
 			_texture.loadFromFile("data/img/iron.png");
 			_sprite.setTexture(_texture);
 
-			extractionTime = 25;
+			extractionTime = 10;
 			amount = rand() % 100 + 10;
 			break;
 		case idName::Materials:

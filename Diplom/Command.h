@@ -24,6 +24,7 @@ public:
 
 	std::list<RectangleShape> points;
 	RectangleShape ppoint;
+
 	RectangleShape mpoint;
 
 	Texture texture;
@@ -59,6 +60,7 @@ public:
 
 	int priority = 1;
 	Text txtpriority;
+	RectangleShape priorityBox;
 
 public:
 	Command(Font f) 
@@ -75,6 +77,9 @@ public:
 		box.setOutlineThickness(2);
 		box.setOutlineColor(Color::White);
 		box.setFillColor(Color(255,50,50,255));
+
+		priorityBox.setSize(Vector2f(25, 25));
+		priorityBox.setFillColor(Color(0,120,0,100));
 
 		ppoint.setSize(Vector2f(5, 5));
 		ppoint.setOrigin(2.5, 2.5);

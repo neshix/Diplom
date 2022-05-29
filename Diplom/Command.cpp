@@ -5,8 +5,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 	//std::cout << isPressed << "\n";
 	if (!isPressed)
 	{
-
-		if (txtpriority.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
+		//если нажал на приоритет
+		if (priorityBox.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 		{
 			isPressed = true;
 			if (priority <= 9)
@@ -20,7 +20,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			txtpriority.setString(std::to_string(priority));
 		}
 
-		//если нажал на квадрат команды
+		//если нажал на +
 		if (plusb.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 		{
 			falcom();
@@ -34,8 +34,6 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			text.push_back(new Text("attack", font, 15));
 			text.push_back(new Text("drop", font, 15));
 			text.push_back(new Text("pickUp", font, 15));
-
-			//text.push_back(new Text("if", font, 15));//это блядский if меня сломает(
 		}
 
 		//обработка нажатия на текст
@@ -278,12 +276,13 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 				text.push_back(new Text("storage", font, 15));
 			}
 
-			if (Mouse::isButtonPressed(Mouse::Left) && bildpos)
+			if (Mouse::isButtonPressed(Mouse::Right) && bildpos)
 			{
 				isPressed = true;
 				bildpos = false;
 				startbulid = true;
 				movePos = mousePos;
+				onPoint = false;
 			}
 
 			for (auto& t : text)
@@ -311,7 +310,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			}
 		}
 
-		//+
+		//++
 		if (isDrop)
 		{
 			//нажать на команду чтобы выбрать куда двигаться
@@ -385,6 +384,7 @@ void Command::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(plusb, states);
 	target.draw(xb, states);
 	target.draw(txt, states);
+	target.draw(priorityBox, states);
 	target.draw(txtpriority, states);
 	for (auto& t : text)
 	{
