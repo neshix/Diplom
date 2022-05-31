@@ -29,11 +29,18 @@ public:
 	bool build = false;
 	bool *point;
 
+	bool fullInv = false;
+	bool emptyInv = false;
+	bool enemyDetected = false;
+
 private:
 	Vector2f p;
 
 	Clock cl;
 	Time t;
+
+	Clock edcl;
+	Time edt;
 
 public://надо найти куда запихать в drawble
 	Font f;
@@ -53,6 +60,10 @@ public:
 		if (!f.loadFromFile("fons/calibri.ttf")) std::cout << "ne naideno";
 		infoTxt.setFont(f);
 		infoTxt.setCharacterSize(15);
+
+		reviewBox.setFillColor(Color(0, 0, 255, 30));
+		reviewBox.setSize(Vector2f(400, 400));
+		reviewBox.setOrigin(Vector2f(400 / 2, 400 / 2));
 	};
 
 	void AddCommand(Font font);
@@ -61,6 +72,7 @@ public:
 	void setInfoTXT();
 
 	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& en, std::list<Bullet*>& bul);
+	void statup(std::list<Enemy*>& enemy);
 
 	void moveTo(Time deltaTime);
 };

@@ -5,6 +5,64 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 	//std::cout << isPressed << "\n";
 	if (!isPressed)
 	{
+		if (iBox.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
+		{
+			text.clear();
+			text.push_back(new Text("enemy detected", font, 15));
+			text.push_back(new Text("full inventory", font, 15));
+			text.push_back(new Text("empty inventory", font, 15));
+
+			text.push_back(new Text("default", font, 15));
+		}
+
+		for (auto& t : text)
+		{
+			if (t->getGlobalBounds().contains(mousePos))
+			{
+				t->setFillColor(Color::Green);
+				if (Mouse::isButtonPressed(Mouse::Left))
+				{
+					isPressed = true;
+
+					if (t->getString() == "default")
+					{
+						iÑhoice = 0;
+
+						text.clear();
+						break;
+					}
+
+					if (t->getString() == "full inventory")
+					{
+						iÑhoice = 1;
+
+						text.clear();
+						break;
+					}
+
+					if (t->getString() == "empty inventory")
+					{
+						iÑhoice = 2;
+
+						text.clear();
+						break;
+					}
+
+					if (t->getString() == "enemy detected")
+					{
+						iÑhoice = 3;
+
+						text.clear();
+						break;
+					}
+				}
+			}
+			else
+			{
+				t->setFillColor(Color::White);
+			}
+		}
+
 		//åñëè íàæàë íà ïğèîğèòåò
 		if (priorityBox.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 		{
@@ -386,6 +444,9 @@ void Command::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(txt, states);
 	target.draw(priorityBox, states);
 	target.draw(txtpriority, states);
+
+	target.draw(iBox, states);
+
 	for (auto& t : text)
 	{
 		target.draw(*t, states);

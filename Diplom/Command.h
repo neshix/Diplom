@@ -62,6 +62,9 @@ public:
 	Text txtpriority;
 	RectangleShape priorityBox;
 
+	RectangleShape iBox;
+	int i—hoice = 0;
+
 public:
 	Command(Font f) 
 	{
@@ -80,6 +83,9 @@ public:
 
 		priorityBox.setSize(Vector2f(25, 25));
 		priorityBox.setFillColor(Color(0,120,0,100));
+
+		iBox.setSize(Vector2f(50, 20));
+		iBox.setFillColor(Color(95, 45, 80, 255));
 
 		ppoint.setSize(Vector2f(5, 5));
 		ppoint.setOrigin(2.5, 2.5);

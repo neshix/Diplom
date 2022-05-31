@@ -44,6 +44,8 @@ void Bots::setPosCommand(Vector2f pos)
 		com->priorityBox.setPosition(com->box.getPosition().x + (com->box.getSize().x - 20), com->box.getPosition().y);
 		com->txtpriority.setPosition(com->priorityBox.getPosition().x + 5 , com->priorityBox.getPosition().y);
 
+		com->iBox.setPosition(com->box.getPosition().x, com->box.getPosition().y + (com->box.getSize().y / 2));
+		
 		int k = 0;
 		for (auto& t : com->text)
 		{
@@ -59,12 +61,35 @@ void Bots::setPosCommand(Vector2f pos)
 
 void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& enemy, std::list<Bullet*>& bul)
 {
+	statup(enemy);
+
 	maxPriority = 0;
 	for (auto& com : command)
 	{
 		if (com->priority > maxPriority)
 		{
-			maxPriority = com->priority;
+			if (com->iÑhoice == 0)
+				maxPriority = com->priority;
+			if(fullInv && com->iÑhoice == 1)
+				maxPriority = com->priority;
+			if (emptyInv && com->iÑhoice == 2)
+				maxPriority = com->priority;
+			if (enemyDetected && com->iÑhoice == 3)
+			{
+				edt = edcl.getElapsedTime();
+				if (edt.asSeconds() >= 10)
+				{
+					edt = edcl.restart();
+				}
+			}
+
+
+			if (edt.asSeconds() <= 10)
+			{
+				edt = edcl.getElapsedTime();
+
+				maxPriority = com->priority;
+			}
 		}
 
 		if (finish && com->moveTarget)
@@ -254,7 +279,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				}
 			}
 
-			//--
+			//++
 			if (com->isBuild)
 			{
 				build = true;
@@ -307,7 +332,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				{
 					normal = e->_sprite.getPosition() - _sprite.getPosition();
 					distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
-					if (distanse >= 400)
+					if (distanse >= 200)
 					{
 						*point = false;
 						com->movePos = e->_sprite.getPosition();
@@ -332,6 +357,30 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 	setInfoTXT();
 }
 
+void Bots::statup(std::list<Enemy*>& enemy)
+{
+	capacity = (iventory % 100) + ((iventory / 100) % 100);
+	enemyDetected = false;
+
+	if (capacity >= 50)
+	{
+		fullInv = true;
+		emptyInv = false;
+	}
+	else
+	{
+		fullInv = false;
+		emptyInv = true;
+	}
+
+	for (auto& e: enemy)
+	{
+		if (e->_sprite.getGlobalBounds().intersects(reviewBox.getGlobalBounds()))
+			enemyDetected = true;
+	}
+	//std::cout << "fullInv: " << fullInv << " emptyInv: " << emptyInv << " enemyDetected: " << enemyDetected << "\n";
+}
+
 void Bots::moveTo(Time deltaTime)
 {
 	if (finish)
@@ -346,6 +395,7 @@ void Bots::moveTo(Time deltaTime)
 		if (distanse >= 5)
 		{
 			_sprite.move(moveToPoint);
+			reviewBox.setPosition(_sprite.getPosition());
 		}
 		else
 		{

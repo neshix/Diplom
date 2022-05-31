@@ -21,6 +21,8 @@ public:
 	Texture _texture;
 	Sprite _sprite;
 
+	RectangleShape reviewBox;
+
 	Vector2f normal;
 
 public:
@@ -42,6 +44,7 @@ public:
 	void setPosition(Args&& ... args)
 	{
 		_sprite.setPosition(std::forward<Args>(args)...);
+		reviewBox.setPosition(std::forward<Args>(args)...);
 	}
 
 private:

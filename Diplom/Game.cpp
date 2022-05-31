@@ -156,6 +156,8 @@ void Game::render()
     for (auto& bot : bots)
         if (bot->selected)
         {
+            _window.draw(bot->reviewBox);
+
             _window.draw(bot->info);
             _window.draw(bot->infoTxt);
             for (auto& com : bot->command)
