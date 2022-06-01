@@ -42,12 +42,13 @@ Structure::Structure(std::string selStruct): Entity()
 	reviewBox.setOrigin(size.x / 2, size.y / 2);
 }
 
-void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::list<MineObj*>& mine, Storage& store)
+void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::list<Enemy*>& enemy, std::list<MineObj*>& mine, Storage& store)
 {
 	if (factory)
 	{
 
 	}
+
 	if (storage)
 	{
 		for (auto& m : mine)
@@ -64,14 +65,32 @@ void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::
 			}
 		}
 	}
+
 	if (energy)
 	{
+		t = cl.getElapsedTime();
 		for (auto& b : bot)
 		{
-			if (b->getRect().intersects(reviewBox.getGlobalBounds()))
+			if (b->getRect().intersects(reviewBox.getGlobalBounds()) && t.asSeconds() >= 1)
 			{
-
+				if (b->energy <= 100)
+				{
+					b->energy += 5;
+				}
 			}
+		}
+
+		for (auto& e : enemy)
+		{
+			if (e->getRect().intersects(reviewBox.getGlobalBounds()) && t.asSeconds() >= 1)
+			{
+				e->health -= 5;
+			}
+		}
+
+		if (t.asSeconds() >= 1)
+		{
+			t = cl.restart();
 		}
 	}
 }

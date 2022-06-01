@@ -15,6 +15,9 @@ class Structure : public Entity
 private:
 	std::string name;
 
+	Clock cl;
+	Time t;
+
 	bool factory = false;
 	bool storage = false;
 	bool energy = false;
@@ -24,6 +27,6 @@ private:
 
 public:
 	Structure(std::string name);
-	void update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::list<MineObj*>& mine, Storage& store);
+	void update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::list<Enemy*>& enemy, std::list<MineObj*>& mine, Storage& store);
 };
 #endif

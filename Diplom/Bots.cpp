@@ -88,6 +88,8 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					edt = edcl.restart();
 				}
 			}
+			if (noEnergy && com->iÑhoice == 4)
+				maxPriority = com->priority;
 
 			if (edt.asSeconds() <= 10)
 			{
@@ -164,8 +166,9 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					capacity = (iventory % 100) + ((iventory / 100) % 100);
 					//std::cout << obj->amount << "\n";
 					t = cl.getElapsedTime();
-					if (capacity < 50 && t.asSeconds() >= obj->extractionTime)
+					if (capacity < 50 && t.asSeconds() >= obj->extractionTime + en)
 					{
+						energy--;
 						t = cl.restart();
 						if (obj->name == "Stone")
 						{
@@ -187,7 +190,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				}
 			}
 
-			//+-
+			//++
 			if (com->isPatrol)
 			{
 				if (com->movePatrolPos.empty())
@@ -340,6 +343,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							}
 						}
 					}
+
 				}
 			}
 
@@ -359,8 +363,9 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					else
 					{
 						t = cl.getElapsedTime();
-						if (t.asMilliseconds()>= 500)
+						if (t.asMilliseconds() >= 500 + (en * 50))
 						{
+							energy--;
 							t = cl.restart();
 							bul.push_back(new Bullet(_sprite.getPosition(), e->_sprite.getPosition()));
 						}
@@ -397,6 +402,23 @@ void Bots::statup(std::list<Enemy*>& enemy)
 		if (e->_sprite.getGlobalBounds().intersects(reviewBox.getGlobalBounds()))
 			enemyDetected = true;
 	}
+
+	if (energy >= 99)
+	{
+		noEnergy = false;
+	}
+
+	if (energy >= 0)
+	{
+		speed = 100;
+		en = 0;
+	}
+	else
+	{
+		en = 20;
+		speed = 15;
+		noEnergy = true;
+	}
 	//std::cout << "fullInv: " << fullInv << " emptyInv: " << emptyInv << " enemyDetected: " << enemyDetected << "\n";
 }
 
@@ -425,6 +447,13 @@ void Bots::moveTo(Time deltaTime)
 			finish = false;
 			*point = true;
 		}
+
+		t = enrgycl.getElapsedTime();
+		if (t.asSeconds() >= 2)
+		{
+			t = enrgycl.restart();
+			energy--;
+		}
 	}
 };
 
@@ -432,5 +461,7 @@ void Bots::setInfoTXT()
 {
 	infoTxt.setString(std::to_string(capacity) + "/50		health = " + std::to_string(health)
 		+ "\n Iron = " + std::to_string((iventory / 100) % 100)
-		+ "\n Stone = " + std::to_string(iventory % 100));
+		+ "\n Stone = " + std::to_string(iventory % 100)
+		+ "\n" "\n Energy = " + std::to_string(energy)
+	);
 }

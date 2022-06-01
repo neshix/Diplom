@@ -24,6 +24,9 @@ public:
 	int iventory = 2525;
 	int capacity = 0;
 
+	int energy = 10;
+	int en = 0;
+
 	bool finish = false;
 	bool selected = false;
 	bool build = false;
@@ -32,11 +35,13 @@ public:
 	bool fullInv = false;
 	bool emptyInv = false;
 	bool enemyDetected = false;
+	bool noEnergy = false;
 
 private:
 	Vector2f p;
 
 	Clock cl;
+	Clock enrgycl;
 	Time t;
 
 	Clock edcl;

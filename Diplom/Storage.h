@@ -13,12 +13,16 @@ private:
 	int stone = 100;
 	int iron = 100;
 
-	int s = 150;
-	Vector2f size = Vector2f(s, s);
+	int s = 160;
+	Vector2f size = Vector2f(s, s/2);
 	RectangleShape box;
 
 	Font f;
 	Text text;
+
+public:
+	RectangleShape consol;
+	RectangleShape bAdd;
 
 public:
 	Storage()
@@ -31,11 +35,23 @@ public:
 		text.setCharacterSize(30);
 
 		setTxt();
+
+		consol.setSize(Vector2f(200, 800));
+		consol.setPosition(1400, 0);
+		consol.setFillColor(Color::Red);
+
+		bAdd.setSize(Vector2f(50, 50));
+		bAdd.setPosition(1400, 0);
+		bAdd.setFillColor(Color(255, 100, 0, 255));
 	};
 
-	void setPos()
+	void setPos(Vector2f pos)
 	{
+		consol.setPosition(pos.x + 600, pos.y - 450);
+		bAdd.setPosition(consol.getPosition());
 
+		box.setPosition(pos.x - 800, pos.y - 450);
+		text.setPosition(box.getPosition());
 	};
 
 	void addMatirials(int& amount)
@@ -83,6 +99,8 @@ public:
 	{
 		target.draw(box, states);
 		target.draw(text, states);
+		target.draw(consol);
+		target.draw(bAdd);
 	}
 };
 #endif

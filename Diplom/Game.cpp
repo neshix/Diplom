@@ -54,6 +54,9 @@ void Game::update(Time deltaTime)
     pixelPos = Mouse::getPosition(_window);
     mousePos = _window.mapPixelToCoords(pixelPos);
 
+    camera.move(deltaTime);
+    storage.setPos(camera.view.getCenter());
+
     for (auto& bot : bots)
     {
         bot->update(mousePos, mineobj, structure, storage, enemys, bullets);
@@ -67,9 +70,9 @@ void Game::update(Time deltaTime)
         }
 
         //добавление команд
-        if (console.bAdd.getGlobalBounds().contains(mousePos))
+        if (storage.bAdd.getGlobalBounds().contains(mousePos))
         {
-            console.bAdd.setFillColor(Color(0, 255, 0, 255));
+            storage.bAdd.setFillColor(Color(0, 255, 0, 255));
             if (!IsKeyPressed)
             {
                 if (Mouse::isButtonPressed(Mouse::Right) && bot->selected)
@@ -81,14 +84,14 @@ void Game::update(Time deltaTime)
         }
         else
         {
-            console.bAdd.setFillColor(Color(255, 100, 0, 255));
+            storage.bAdd.setFillColor(Color(255, 100, 0, 255));
         }
 
         //управление командами
         if (bot->selected)
         {
             bot->delCommand(mousePos, IsKeyPressed);
-            bot->setPosCommand(console.consol.getPosition());
+            bot->setPosCommand(storage.consol.getPosition());
 
             //bot->update(mousePos, mineobj, structure, storage);
 
@@ -107,7 +110,7 @@ void Game::update(Time deltaTime)
 
     for (auto& str: structure)
     {
-        str->update(mousePos, IsKeyPressed, bots, mineobj, storage);
+        str->update(mousePos, IsKeyPressed, bots, enemys, mineobj, storage);
     }
 
     for (auto& bul : bullets)
@@ -123,6 +126,8 @@ void Game::render()
     _window.clear(Color(255, 125, 50, 255));
 
     //Draw
+    // камера
+    _window.draw(camera);
     //обекты игры
     for (auto& m : mineobj)
     {
@@ -155,7 +160,6 @@ void Game::render()
     }
 
     //интерфейс
-    _window.draw(console);
     _window.draw(storage);
 
     for (auto& bot : bots)

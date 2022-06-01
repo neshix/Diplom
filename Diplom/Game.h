@@ -8,11 +8,11 @@
 #include "Entity.h"
 #include "Bots.h"
 #include "Enemy.h"
-#include "Console.h"
 #include "MineObj.h"
 #include "Structure.h"
 #include "Storage.h"
 #include "Bullet.h"
+#include "Camera.h"
 
 using namespace sf;
 
@@ -47,8 +47,8 @@ private:
 
 	bool IsKeyPressed = false;
 
-	Console console;
 	Storage storage;
+	Camera camera;
 
 	Vector2i pixelPos;
 	Vector2f mousePos;

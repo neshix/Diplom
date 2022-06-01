@@ -12,6 +12,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			text.push_back(new Text("enemy detected", font, 15));
 			text.push_back(new Text("full inventory", font, 15));
 			text.push_back(new Text("empty inventory", font, 15));
+			text.push_back(new Text("no energy", font, 15));
 
 			text.push_back(new Text("", font, 15));
 			text.push_back(new Text("default", font, 15));
@@ -59,6 +60,16 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					if (t->getString() == "enemy detected")
 					{
 						iÑhoice = 3;
+						txtif.setString("if -> " + t->getString());
+						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
+
+						text.clear();
+						break;
+					}
+
+					if (t->getString() == "no energy")
+					{
+						iÑhoice = 4;
 						txtif.setString("if -> " + t->getString());
 						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
