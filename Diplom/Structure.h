@@ -17,6 +17,7 @@ private:
 
 	bool factory = false;
 	bool storage = false;
+	bool energy = false;
 
 	bool build = false;
 	bool constructionZone = false;

@@ -30,10 +30,9 @@ public:
 	float distanse = 0;
 
 	bool life = false;
+
 private:
 	float time = 0;
-
-	//bool life = false;
 
 public:
 	Entity(std::string pathToTexture);
@@ -45,6 +44,11 @@ public:
 	{
 		_sprite.setPosition(std::forward<Args>(args)...);
 		reviewBox.setPosition(std::forward<Args>(args)...);
+	}
+
+	FloatRect getRect()
+	{
+		return _sprite.getGlobalBounds();
 	}
 
 private:

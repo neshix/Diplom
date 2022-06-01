@@ -49,5 +49,8 @@ private:
 
 	Console console;
 	Storage storage;
+
+	Vector2i pixelPos;
+	Vector2f mousePos;
 };
 #endif GAME_H

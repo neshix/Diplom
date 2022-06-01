@@ -44,12 +44,18 @@ void Bots::setPosCommand(Vector2f pos)
 		com->priorityBox.setPosition(com->box.getPosition().x + (com->box.getSize().x - 20), com->box.getPosition().y);
 		com->txtpriority.setPosition(com->priorityBox.getPosition().x + 5 , com->priorityBox.getPosition().y);
 
-		com->iBox.setPosition(com->box.getPosition().x, com->box.getPosition().y + (com->box.getSize().y / 2));
-		
+		com->txtif.setPosition(com->box.getPosition().x, com->box.getPosition().y + (com->box.getSize().y / 2));
+		com->iBox.setPosition(com->txtif.getPosition().x + 25, com->txtif.getPosition().y + 5);
+
 		int k = 0;
+		float tsize = 0;
 		for (auto& t : com->text)
 		{
-			t->setPosition(Vector2f(com->box.getPosition().x - 60, com->box.getPosition().y + (t->getCharacterSize() * k)));
+			if (t->getGlobalBounds().width +5 >= tsize)
+			{
+				tsize = t->getGlobalBounds().width + 5;
+			}
+			t->setPosition(Vector2f(com->box.getPosition().x - tsize, com->box.getPosition().y + (t->getCharacterSize() * k)));
 			k++;
 		}
 		i++;
@@ -82,7 +88,6 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					edt = edcl.restart();
 				}
 			}
-
 
 			if (edt.asSeconds() <= 10)
 			{
@@ -182,7 +187,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 				}
 			}
 
-			//++
+			//+-
 			if (com->isPatrol)
 			{
 				if (com->movePatrolPos.empty())
@@ -246,9 +251,10 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 
 							if (smallerDistance > distanse)
 							{
-								com->movePos = e->_sprite.getPosition();
-								com->mineobjinit = true;
+								com->movePos = obj->_sprite.getPosition();
 								*point = false;
+
+								com->mineobjinit = true;
 								obj = e;
 
 								smallerDistance = distanse;
@@ -267,14 +273,9 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						{
 							com->mineobjinit = false;
 
-							iventory = obj->amount;
+							iventory += obj->amount;
 							obj->life = false;
 						}
-					}
-
-					if (obj->amount <= 0)
-					{
-						com->mineobjinit = false;
 					}
 				}
 			}
@@ -307,6 +308,24 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 					if (com->buildingName == "storage")
 					{
 						i = 2010;
+						if (stor.delMatirials(i))
+						{
+							if (*point)
+							{
+								stor.dm(i);
+
+								com->startbulid = false;
+
+								*point = false;
+								str.push_back(new Structure(com->buildingName));
+								str.back()->setPosition(com->movePos);
+							}
+						}
+					}
+
+					if (com->buildingName == "energy tower")
+					{
+						i = 3030;
 						if (stor.delMatirials(i))
 						{
 							if (*point)
@@ -392,9 +411,13 @@ void Bots::moveTo(Time deltaTime)
 		moveToPoint = (normal / v) * speed * time;
 		distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 
+		angle = std::atan2(normal.y, normal.x) * 180 / 3.14159265;
+
 		if (distanse >= 5)
 		{
 			_sprite.move(moveToPoint);
+			_sprite.setRotation(angle);
+
 			reviewBox.setPosition(_sprite.getPosition());
 		}
 		else

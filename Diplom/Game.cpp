@@ -51,8 +51,8 @@ void Game::processEvents()
 
 void Game::update(Time deltaTime)
 {
-    Vector2i pixelPos = Mouse::getPosition(_window);
-    Vector2f mousePos = _window.mapPixelToCoords(pixelPos);
+    pixelPos = Mouse::getPosition(_window);
+    mousePos = _window.mapPixelToCoords(pixelPos);
 
     for (auto& bot : bots)
     {
@@ -120,7 +120,7 @@ void Game::update(Time deltaTime)
 void Game::render()
 {
     //Clear screen
-    _window.clear();
+    _window.clear(Color(255, 125, 50, 255));
 
     //Draw
     //обекты игры
@@ -132,6 +132,11 @@ void Game::render()
     for (auto& s : structure)
     {
         _window.draw(*s);
+        if (s->getRect().contains(mousePos))
+        {
+            //std::cout << "a";
+            _window.draw(s->reviewBox);
+        }
     }
 
     for (auto& bot : bots)

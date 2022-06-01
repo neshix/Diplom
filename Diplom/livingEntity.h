@@ -11,6 +11,8 @@ public:
 	Vector2f moveToPoint;
 	Vector2f target;
 
+	float angle = 0;
+
 public:
 	livingEntity(std::string pathToTexture);
 };

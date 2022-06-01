@@ -7,11 +7,13 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 	{
 		if (iBox.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 		{
+			isPressed = true;
 			text.clear();
 			text.push_back(new Text("enemy detected", font, 15));
 			text.push_back(new Text("full inventory", font, 15));
 			text.push_back(new Text("empty inventory", font, 15));
 
+			text.push_back(new Text("", font, 15));
 			text.push_back(new Text("default", font, 15));
 		}
 
@@ -27,6 +29,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					if (t->getString() == "default")
 					{
 						iÑhoice = 0;
+						txtif.setString("if -> " + t->getString());
+						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
 						text.clear();
 						break;
@@ -35,6 +39,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					if (t->getString() == "full inventory")
 					{
 						iÑhoice = 1;
+						txtif.setString("if -> " + t->getString());
+						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
 						text.clear();
 						break;
@@ -43,6 +49,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					if (t->getString() == "empty inventory")
 					{
 						iÑhoice = 2;
+						txtif.setString("if -> " + t->getString());
+						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
 						text.clear();
 						break;
@@ -51,6 +59,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					if (t->getString() == "enemy detected")
 					{
 						iÑhoice = 3;
+						txtif.setString("if -> " + t->getString());
+						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
 						text.clear();
 						break;
@@ -248,7 +258,9 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 		{
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
+				
 				text.clear();
+
 				text.push_back(new Text("Iron", font, 15));
 				text.push_back(new Text("Stone", font, 15));
 			}
@@ -263,11 +275,13 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 					{
 						mineobjinit = false;
 						isPressed = true;
+
 						if (t->getString() == "Iron")
 						{
 							txt.setString("mine -> Iron ");
 							txt.setPosition(box.getPosition());
 							isMineIron = true;
+							text.clear();
 							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 							break;
 						}
@@ -277,6 +291,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 							txt.setString("mine -> Stone ");
 							txt.setPosition(box.getPosition());
 							isMineStone = true;
+							text.clear();
 							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 							break;
 						}
@@ -330,6 +345,7 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
 				text.clear();
+				text.push_back(new Text("energy tower", font, 15));
 				text.push_back(new Text("factory", font, 15));
 				text.push_back(new Text("storage", font, 15));
 			}
@@ -446,7 +462,7 @@ void Command::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(txtpriority, states);
 
 	target.draw(iBox, states);
-
+	target.draw(txtif, states);
 	for (auto& t : text)
 	{
 		target.draw(*t, states);

@@ -63,6 +63,7 @@ public:
 	RectangleShape priorityBox;
 
 	RectangleShape iBox;
+	Text txtif;
 	int iÑhoice = 0;
 
 public:
@@ -71,6 +72,13 @@ public:
 		font = f;
 		txt.setFont(font);
 		txt.setCharacterSize(15);
+
+		txtif.setFont(font);
+		txtif.setCharacterSize(15);
+		txtif.setString("if -> default");
+
+		iBox.setSize(Vector2f(50, 15));
+		iBox.setFillColor(Color(95, 45, 80, 255));
 
 		txtpriority.setFont(font);
 		txtpriority.setCharacterSize(15);
@@ -83,9 +91,6 @@ public:
 
 		priorityBox.setSize(Vector2f(25, 25));
 		priorityBox.setFillColor(Color(0,120,0,100));
-
-		iBox.setSize(Vector2f(50, 20));
-		iBox.setFillColor(Color(95, 45, 80, 255));
 
 		ppoint.setSize(Vector2f(5, 5));
 		ppoint.setOrigin(2.5, 2.5);
