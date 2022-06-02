@@ -38,6 +38,7 @@ void Bots::setPosCommand(Vector2f pos)
 		dbpos = Vector2f(com->box.getPosition().x + (com->box.getSize().x - com->xb.getGlobalBounds().width),
 						 com->box.getPosition().y + (com->box.getSize().y - com->xb.getGlobalBounds().height));
 		com->txt.setPosition(com->box.getPosition());
+		com->choice->setPosition(com->txt.getPosition().x + com->txt.getGlobalBounds().width, com->txt.getPosition().y + 3);
 		com->xb.setPosition(dbpos);
 		com->plusb.setPosition(dbpos.x - 25, dbpos.y);
 
@@ -62,7 +63,7 @@ void Bots::setPosCommand(Vector2f pos)
 	}
 
 	info.setPosition(pos.x - info.getSize().x, pos.y);
-	infoTxt.setPosition(info.getPosition() * 1.01f);
+	infoTxt.setPosition(info.getPosition().x + 1, info.getPosition().y + 1);
 }
 
 void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& enemy, std::list<Bullet*>& bul)
@@ -75,21 +76,38 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 		if (com->priority > maxPriority)
 		{
 			if (com->iÑhoice == 0)
-				maxPriority = com->priority;
-			if(fullInv && com->iÑhoice == 1)
-				maxPriority = com->priority;
-			if (emptyInv && com->iÑhoice == 2)
-				maxPriority = com->priority;
-			if (enemyDetected && com->iÑhoice == 3)
 			{
+				com->activcom = true;
+				maxPriority = com->priority;
+			}
+			else if (fullInv && com->iÑhoice == 1)
+			{
+				com->activcom = true;
+				maxPriority = com->priority;
+			}
+			else if (emptyInv && com->iÑhoice == 2)
+			{
+				com->activcom = true;
+				maxPriority = com->priority;
+			}
+			else if (enemyDetected && com->iÑhoice == 3)
+			{
+				com->activcom = true;
 				edt = edcl.getElapsedTime();
 				if (edt.asSeconds() >= 10)
 				{
 					edt = edcl.restart();
 				}
 			}
-			if (noEnergy && com->iÑhoice == 4)
+			else if (noEnergy && com->iÑhoice == 4)
+			{
+				com->activcom = true;
 				maxPriority = com->priority;
+			}
+			else
+			{
+				com->activcom = false;
+			}
 
 			if (edt.asSeconds() <= 10)
 			{
@@ -107,7 +125,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 
 	for (auto& com : command)
 	{
-		if (maxPriority == com->priority)
+		if (maxPriority == com->priority && com->activcom == true)
 		{
 			point = &com->onPoint;
 			if (!*point)

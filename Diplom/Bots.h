@@ -24,7 +24,7 @@ public:
 	int iventory = 2525;
 	int capacity = 0;
 
-	int energy = 10;
+	int energy = 100;
 	int en = 0;
 
 	bool finish = false;

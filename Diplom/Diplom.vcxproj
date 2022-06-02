@@ -150,6 +150,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Leviathan.cpp" />
     <ClCompile Include="livingEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Command.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Leviathan.h" />
     <ClInclude Include="livingEntity.h" />
     <ClInclude Include="MineObj.h" />
     <ClInclude Include="Command.h" />

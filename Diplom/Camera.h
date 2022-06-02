@@ -9,7 +9,7 @@ public:
 	View view;
 	Vector2f velocity;
 
-	float speed = 200;
+	float speed = 400;
 
 public:
 	Camera()

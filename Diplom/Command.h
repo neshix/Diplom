@@ -64,6 +64,7 @@ public:
 
 	RectangleShape iBox;
 	Text txtif;
+	bool activcom = false;
 	int i—hoice = 0;
 
 public:

@@ -13,6 +13,7 @@
 #include "Storage.h"
 #include "Bullet.h"
 #include "Camera.h"
+#include "Leviathan.h"
 
 using namespace sf;
 
