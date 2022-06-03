@@ -12,11 +12,19 @@
 
 class Structure : public Entity
 {
+public:
+	Texture texture;
+	Sprite addB;
+
+	bool AB = false;
+
 private:
 	std::string name;
 
 	Clock cl;
 	Time t;
+
+	Vector2f spawnPoint;
 
 	bool factory = false;
 	bool storage = false;

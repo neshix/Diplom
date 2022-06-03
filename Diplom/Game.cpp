@@ -8,6 +8,7 @@ Game::Game(int X, int Y) : _window(VideoMode(X,Y), "diplom")
 void Game::run(int minimum_frame_per_seconds)
 {
     enemys.push_back(new Enemy);
+    Leviathans.push_back(new Leviathan);
 
     bots.push_back(new Bots);
     bots.push_back(new Bots(300, 300));
@@ -38,7 +39,6 @@ void Game::run(int minimum_frame_per_seconds)
 
 void Game::processEvents()
 {
-    Event event;
     while (_window.pollEvent(event))
     {
         if (event.type == Event::Closed)
@@ -54,8 +54,13 @@ void Game::update(Time deltaTime)
     pixelPos = Mouse::getPosition(_window);
     mousePos = _window.mapPixelToCoords(pixelPos);
 
-    camera.move(deltaTime);
+    camera.update(deltaTime);
     storage.setPos(camera.view.getCenter());
+
+    for (auto& l : Leviathans)
+    {
+        l->update(deltaTime);
+    }
 
     for (auto& bot : bots)
     {
@@ -136,12 +141,13 @@ void Game::render()
 
     for (auto& s : structure)
     {
-        _window.draw(*s);
         if (s->getRect().contains(mousePos))
         {
             //std::cout << "a";
             _window.draw(s->reviewBox);
         }
+        _window.draw(*s);
+        _window.draw(s->addB);
     }
 
     for (auto& bot : bots)
@@ -157,6 +163,10 @@ void Game::render()
     for (auto& bullet : bullets)
     {
         _window.draw(*bullet);
+    }
+    for (auto& l : Leviathans)
+    {
+        _window.draw(*l);
     }
 
     //интерфейс

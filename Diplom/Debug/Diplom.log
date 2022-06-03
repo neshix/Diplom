@@ -22,9 +22,9 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(249,56): warning C4244
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(450,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bots.cpp(454,48): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   Bullet.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
@@ -38,9 +38,25 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Bullet.cpp(8,10): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Camera.cpp
+  Command.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   Enemy.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
@@ -53,16 +69,16 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244
               T=float
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
           with
           [
               _Ty=int
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Enemy.cpp(5): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int,int>(int &&,int &&)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
           with
           [
               _Ty=int
@@ -79,40 +95,12 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244
               T=float
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   Leviathan.cpp
-  main.cpp
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  Command.cpp
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(46,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(50,48): warning C4244: =: преобразование "double" в "float", возможна потеря данных
   Structure.cpp
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
           with
@@ -125,8 +113,33 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244
               T=float
           ]
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(45,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Structure.cpp(73,52): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Structure.cpp(73,38): warning C4244: аргумент: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  main.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   Создание кода...
   Diplom.vcxproj -> C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe

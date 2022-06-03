@@ -13,6 +13,9 @@ Structure::Structure(std::string selStruct): Entity()
 
 		factory = true;
 		health = 100;
+
+		texture.loadFromFile("data/img/icons/plus.png");
+		addB.setTexture(texture);
 	}
 	else if (name == "storage")
 	{
@@ -46,7 +49,30 @@ void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::
 {
 	if (factory)
 	{
+		if (!kp)
+		{
+			addB.setPosition(_sprite.getPosition().x + 10, _sprite.getPosition().y - 10);
+			if (addB.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Right) && !AB)
+			{
+				int i = 2525;
+				if (store.delMatirials(i)) 
+				{
+					store.dm(i);
 
+					kp = true;
+					t = cl.restart();
+					AB = true;
+				}
+			}
+
+			t = cl.getElapsedTime();
+			if (AB && t.asSeconds() >= 5)
+			{
+				AB = false;
+				spawnPoint = Vector2f(_sprite.getPosition().x + 200, _sprite.getPosition().y + 200);
+				bot.push_back(new Bots(spawnPoint.x, spawnPoint.y));
+			}
+		}
 	}
 
 	if (storage)

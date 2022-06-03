@@ -42,6 +42,7 @@ private:
 
 	std::list<Bots*> bots;
 	std::list<Enemy*> enemys;
+	std::list<Leviathan*> Leviathans;
 	std::list<MineObj*> mineobj;
 	std::list<Structure*> structure;
 	std::list<Bullet*> bullets;
@@ -53,5 +54,7 @@ private:
 
 	Vector2i pixelPos;
 	Vector2f mousePos;
+
+	Event event;
 };
 #endif GAME_H

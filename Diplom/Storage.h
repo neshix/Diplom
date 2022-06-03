@@ -72,12 +72,11 @@ public:
 
 		if (stone >= (amount / 100) % 100 && iron >= amount % 100)
 		{
-			std::cout << "yes" << "\n";
 			return true;
 		}
 		else
 		{
-			std::cout << "no" << "\n";
+			//std::cout << "no" << "\n";
 			return false;
 		}
 	}

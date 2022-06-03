@@ -17,7 +17,7 @@ public:
 		view.reset(sf::FloatRect(0, 0, 1600, 900));
 	};
 
-	void move(Time deltaTime)
+	void update(Time deltaTime)
 	{
 		float time = deltaTime.asSeconds();
 
@@ -42,7 +42,6 @@ public:
 		}
 
 		view.move(velocity);
-
 	};
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override

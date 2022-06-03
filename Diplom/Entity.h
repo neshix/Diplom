@@ -13,6 +13,7 @@ protected:
 	friend class Bullet;
 	friend class Bots;
 	friend class Enemy;
+	friend class Leviathan;
 	friend class Structure;
 
 	friend class Command;
@@ -49,6 +50,11 @@ public:
 	FloatRect getRect()
 	{
 		return _sprite.getGlobalBounds();
+	}
+
+	Vector2f getSize()
+	{
+		return Vector2f(getRect().width, getRect().height);
 	}
 
 private:
