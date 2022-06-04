@@ -24,9 +24,11 @@ private:
 	Clock cl;
 	Time t;
 
-	Vector2f spawnPoint;
+	Vector2f sp;
 
 	bool factory = false;
+	bool move = true;
+
 	bool storage = false;
 	bool energy = false;
 

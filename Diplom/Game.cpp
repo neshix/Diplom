@@ -7,7 +7,7 @@ Game::Game(int X, int Y) : _window(VideoMode(X,Y), "diplom")
 
 void Game::run(int minimum_frame_per_seconds)
 {
-    enemys.push_back(new Enemy);
+    enemys.push_back(new Enemy(Vector2f(800,800)));
     Leviathans.push_back(new Leviathan);
 
     bots.push_back(new Bots);
@@ -59,7 +59,12 @@ void Game::update(Time deltaTime)
 
     for (auto& l : Leviathans)
     {
-        l->update(deltaTime);
+        l->update(deltaTime, enemys);
+    }
+
+    for (auto& e : enemys)
+    {
+        e->update(deltaTime, enemys);
     }
 
     for (auto& bot : bots)

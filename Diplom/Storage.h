@@ -10,8 +10,8 @@ using namespace sf;
 class Storage : public Drawable
 {
 private:
-	int stone = 100;
-	int iron = 100;
+	int stone = 1000;
+	int iron = 1000;
 
 	int s = 160;
 	Vector2f size = Vector2f(s, s/2);

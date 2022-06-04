@@ -69,8 +69,25 @@ void Structure::update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::
 			if (AB && t.asSeconds() >= 5)
 			{
 				AB = false;
-				spawnPoint = Vector2f(_sprite.getPosition().x + 200, _sprite.getPosition().y + 200);
-				bot.push_back(new Bots(spawnPoint.x, spawnPoint.y));
+				int x = rand() % 200 - 100;
+				if (x > 0)
+					x += _sprite.getPosition().x + 75;
+				else
+					x += _sprite.getPosition().x - 75;
+
+				int y = rand() % 200 - 100;
+				if (y > 0)
+					y += _sprite.getPosition().y + 75;
+				else
+					y += _sprite.getPosition().y - 75;
+
+				sp = Vector2f(x,y);
+
+				//std::cout << "x: " << x << " y: " << y << "\n";
+				bot.push_back(new Bots(_sprite.getPosition().x, _sprite.getPosition().y));
+				bot.back()->target = sp;
+				bot.back()->finish = true;
+				bot.back()->point = &move;
 			}
 		}
 	}

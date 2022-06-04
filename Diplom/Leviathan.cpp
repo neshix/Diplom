@@ -6,15 +6,9 @@ Leviathan::Leviathan() : livingEntity("data/img/boss.png")
 	speed = 10;
 }
 
-void Leviathan::update(Time deltaTime)
+void Leviathan::update(Time deltaTime, std::list<Enemy*>& enemy)
 {
-	t = cl.getElapsedTime();
-	if (wait && t.asSeconds() >= waitingTime)
-	{
-		wait = false;
-		random = rand() % 100;
-	}
-
+	//работа с передвижением
 	if (random >= 0 && random <= 50 && !wait)
 	{
 		//стоять на месте
@@ -33,7 +27,36 @@ void Leviathan::update(Time deltaTime)
 
 		std::cout << random << "\n";
 	}
+
+	t = cl.getElapsedTime();
+	if (wait && t.asSeconds() >= waitingTime)
+	{
+		wait = false;
+		random = rand() % 100;
+	}
+
 	move(deltaTime);
+	//////////////////////////////////////////////////////////////
+	// спавн ботов
+
+	tSpawn = clSpawn.getElapsedTime();
+	if (tSpawn.asSeconds() >= enemy.size())
+	{
+		tSpawn = clSpawn.restart();
+		int x = rand() % 50 - 25;
+		if (x > 0)
+			x += _sprite.getPosition().x + 150;
+		else
+			x += _sprite.getPosition().x - 150;
+
+		int y = rand() % 50 - 25;
+		if (y > 0)
+			y += _sprite.getPosition().y + 150;
+		else
+			y += _sprite.getPosition().y - 150;
+
+		enemy.push_back(new Enemy(Vector2f(x,y)));
+	}
 }
 
 void Leviathan::move(Time deltaTime)
@@ -51,8 +74,8 @@ void Leviathan::move(Time deltaTime)
 
 		if (distanse >= 5)
 		{
-			_sprite.move(moveToPoint);
 
+			_sprite.move(moveToPoint);
 			_sprite.setRotation(angle);
 		}
 		else

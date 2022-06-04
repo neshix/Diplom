@@ -1,6 +1,7 @@
 #pragma once
 
 #include "livingEntity.h"
+#include "Enemy.h"
 
 class Leviathan : public livingEntity
 {
@@ -14,10 +15,13 @@ private:
 	Clock cl;
 	Time t;
 
+	Clock clSpawn;
+	Time tSpawn;
+
 public:
 	Leviathan();
 
-	void update(Time deltaTime);
+	void update(Time deltaTime, std::list<Enemy*>& enemy);
 	void move(Time deltaTime);
 
 private:
