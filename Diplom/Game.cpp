@@ -8,7 +8,7 @@ Game::Game(int X, int Y) : _window(VideoMode(X,Y), "diplom")
 void Game::run(int minimum_frame_per_seconds)
 {
     enemys.push_back(new Enemy(Vector2f(800,800)));
-    Leviathans.push_back(new Leviathan);
+    leviathans.push_back(new Leviathan);
 
     bots.push_back(new Bots);
     bots.push_back(new Bots(300, 300));
@@ -57,14 +57,14 @@ void Game::update(Time deltaTime)
     camera.update(deltaTime);
     storage.setPos(camera.view.getCenter());
 
-    for (auto& l : Leviathans)
+    for (auto& l : leviathans)
     {
-        l->update(deltaTime, enemys);
+        l->update(deltaTime, enemys, bots);
     }
 
     for (auto& e : enemys)
     {
-        e->update(deltaTime, enemys);
+        e->update(deltaTime, enemys, leviathans, bots);
     }
 
     for (auto& bot : bots)
@@ -169,7 +169,7 @@ void Game::render()
     {
         _window.draw(*bullet);
     }
-    for (auto& l : Leviathans)
+    for (auto& l : leviathans)
     {
         _window.draw(*l);
     }

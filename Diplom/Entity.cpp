@@ -4,9 +4,6 @@ Entity::Entity(std::string pathToTexture)
 {
 	life = true;
 
-	reviewBox.setOutlineThickness(4);
-	reviewBox.setOutlineColor(Color(255, 255, 255, 50));
-
 	_texture.loadFromFile(pathToTexture);
 	_sprite.setTexture(_texture);
 	Vector2f size= Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height);

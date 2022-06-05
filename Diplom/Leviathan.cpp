@@ -2,12 +2,30 @@
 
 Leviathan::Leviathan() : livingEntity("data/img/boss.png")
 {
+	reviewBox.setFillColor(Color(255, 0, 0, 30));
+	reviewBox.setSize(Vector2f(700, 700));
+	reviewBox.setOrigin(Vector2f(700 / 2, 700 / 2));
+
 	random = rand() % 100;
 	speed = 10;
 }
 
-void Leviathan::update(Time deltaTime, std::list<Enemy*>& enemy)
+void Leviathan::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Bots*> bot)
 {
+	for (auto& b : bot)
+	{
+		if (b->getRect().intersects(reviewBox.getGlobalBounds()))
+		{
+			attBotPos = b->_sprite.getPosition();
+			attack = true;
+			break;
+		}
+		else
+		{
+			attack = false;
+		}
+	}
+
 	//работа с передвижением
 	if (random >= 0 && random <= 50 && !wait)
 	{
@@ -16,7 +34,7 @@ void Leviathan::update(Time deltaTime, std::list<Enemy*>& enemy)
 		waitingTime = rand() % 60;
 		t = cl.restart();
 
-		std::cout << random << "\n";
+		//std::cout << random << "\n";
 	}
 	if (random > 50 && random <= 100 && !action)
 	{
@@ -25,7 +43,7 @@ void Leviathan::update(Time deltaTime, std::list<Enemy*>& enemy)
 		target.x = _sprite.getPosition().x + (rand() % 2000 - 1000);
 		target.y = _sprite.getPosition().y + (rand() % 2000 - 1000);
 
-		std::cout << random << "\n";
+		//std::cout << random << "\n";
 	}
 
 	t = cl.getElapsedTime();
@@ -74,9 +92,10 @@ void Leviathan::move(Time deltaTime)
 
 		if (distanse >= 5)
 		{
-
 			_sprite.move(moveToPoint);
 			_sprite.setRotation(angle);
+
+			reviewBox.setPosition(_sprite.getPosition());
 		}
 		else
 		{
@@ -85,9 +104,4 @@ void Leviathan::move(Time deltaTime)
 
 		}
 	}
-}
-
-void Leviathan::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	target.draw(_sprite, states);
 }

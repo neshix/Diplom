@@ -2,9 +2,14 @@
 
 #include "livingEntity.h"
 #include "Enemy.h"
+#include "Bots.h"
 
 class Leviathan : public livingEntity
 {
+public:
+	bool attack = false;
+	Vector2f attBotPos;
+
 private:
 	bool action = false;
 	bool wait = false;
@@ -21,9 +26,6 @@ private:
 public:
 	Leviathan();
 
-	void update(Time deltaTime, std::list<Enemy*>& enemy);
+	void update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Bots*> bot);
 	void move(Time deltaTime);
-
-private:
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
