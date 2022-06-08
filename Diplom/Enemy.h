@@ -10,6 +10,7 @@
 class Enemy : public livingEntity
 {
 private:
+	bool botf = false;
 	bool action = false;
 	bool wait = false;
 
@@ -29,7 +30,7 @@ private:
 
 public:
 	Enemy(Vector2f pos);
-	void update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan*> Leviathan, std::list<Bots*> bot);
+	void update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan*> Leviathan, std::list<Bots*> bot, std::list<Structure*>& s);
 	void move(Time deltaTime);
 
 };

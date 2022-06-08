@@ -31,7 +31,7 @@ Enemy::Enemy(Vector2f pos) :livingEntity("data/img/enemy.png")
 
 };
 
-void Enemy::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan*> leviathan, std::list<Bots*> bot)
+void Enemy::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan*> leviathan, std::list<Bots*> bot, std::list<Structure*>& s)
 {
 	for (auto& l : leviathan)
 	{
@@ -45,32 +45,6 @@ void Enemy::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan
 				target = l->attBotPos;
 				action = true;
 			}
-		}
-	}
-
-	for (auto& b : bot)
-	{
-		if (b->getRect().intersects(reviewBox.getGlobalBounds()))
-		{
-			normal = b->_sprite.getPosition() - _sprite.getPosition();
-			distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
-			
-			if (distanse > 25)
-			{
-				target = b->_sprite.getPosition();
-				action = true;
-			}
-			else
-			{
-				t = cl.getElapsedTime();
-				if (t.asMilliseconds() >= 1000)
-				{
-					t = cl.restart();
-					b->health -= 10;
-				}
-				action = false;
-			}
-			break;
 		}
 	}
 
@@ -173,7 +147,63 @@ void Enemy::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan
 			break;
 		}
 	}
-	//если идти
+
+	for (auto& sr : s)
+	{
+		if (sr->getRect().intersects(reviewBox.getGlobalBounds()))
+		{
+			normal = sr->_sprite.getPosition() - _sprite.getPosition();
+			distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+			if (distanse > 150)
+			{
+				target = sr->_sprite.getPosition();
+				action = true;
+			}
+			else
+			{
+				t = cl.getElapsedTime();
+				if (t.asMilliseconds() >= 1000)
+				{
+					t = cl.restart();
+					sr->health -= 10;
+				}
+				action = false;
+			}
+			break;
+		}
+	}
+
+	for (auto& b : bot)
+	{
+		if (b->getRect().intersects(reviewBox.getGlobalBounds()))
+		{
+			normal = b->_sprite.getPosition() - _sprite.getPosition();
+			distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+			std::cout << action << "  ";
+			if (distanse >= 25)
+			{
+				target = b->_sprite.getPosition();
+				action = true;
+			}
+			std::cout << action << "  ";
+			if (distanse <= 30)
+			{
+				t = cl.getElapsedTime();
+				if (t.asMilliseconds() >= 1000)
+				{
+					t = cl.restart();
+					b->health -= 10;
+				}
+				action = false;
+			}
+			std::cout << action << "\n";
+			break;
+		}
+	}
+
+	//идти
 	move(deltaTime);
 }
 
@@ -200,7 +230,6 @@ void Enemy::move(Time deltaTime)
 		{
 			action = false;
 			random = rand() % 100;
-
 		}
 	}
 }

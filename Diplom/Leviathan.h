@@ -24,7 +24,7 @@ private:
 	Time tSpawn;
 
 public:
-	Leviathan();
+	Leviathan(int x = 0, int y = 0);
 
 	void update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Bots*> bot);
 	void move(Time deltaTime);

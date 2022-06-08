@@ -7,15 +7,7 @@ Game::Game(int X, int Y) : _window(VideoMode(X,Y), "diplom")
 
 void Game::run(int minimum_frame_per_seconds)
 {
-    enemys.push_back(new Enemy(Vector2f(800,800)));
-    leviathans.push_back(new Leviathan);
-
-    bots.push_back(new Bots);
-    bots.push_back(new Bots(300, 300));
-
-    mineobj.push_back(new MineObj(500, 500, 0));
-    mineobj.push_back(new MineObj(100, 300, 1));
-    mineobj.push_back(new MineObj(250, 700, 0));
+    generator();
 
    Clock clock;
    Time timeSinceLastUpdate;
@@ -54,7 +46,7 @@ void Game::update(Time deltaTime)
     pixelPos = Mouse::getPosition(_window);
     mousePos = _window.mapPixelToCoords(pixelPos);
 
-    camera.update(deltaTime);
+    camera.update(deltaTime, wSize);
     storage.setPos(camera.view.getCenter());
 
     for (auto& l : leviathans)
@@ -64,7 +56,7 @@ void Game::update(Time deltaTime)
 
     for (auto& e : enemys)
     {
-        e->update(deltaTime, enemys, leviathans, bots);
+        e->update(deltaTime, enemys, leviathans, bots, structure);
     }
 
     for (auto& bot : bots)
@@ -286,4 +278,65 @@ void Game::deads()
             c++;
         }
     }
+}
+
+void Game::generator()
+{
+    for (int i = 0; i <= amountStone + amountIron;)
+    {
+        if (amountStone >=0)
+        {
+            int w = rand() % wSize - wSize / 2;
+            int h = rand() % wSize - wSize / 2;
+            mineobj.push_back(new MineObj(w, h, 0));
+            i++;
+        }
+
+        if (amountIron >= 0)
+        {
+            int w = rand() % wSize - wSize / 2;
+            int h = rand() % wSize - wSize / 2;
+            mineobj.push_back(new MineObj(w, h, 1));
+            i++;
+        }
+    }
+
+    for (size_t i = 0; i < amountBoss; i++)
+    {
+        int gener = rand() % 80;
+
+        int x = 0, y = 0;
+
+        if (gener <= 20)
+        {
+            x = rand() % wSize - wSize / 2;
+            y = wSize / 2 - 500;
+        }
+
+        if(gener <= 40 && gener > 20)
+        {
+            y = rand() % wSize - wSize / 2;
+            x = wSize / 2 - 500;
+        }
+
+        if (gener <= 60 && gener > 40)
+        {
+            x = rand() % wSize - wSize / 2;
+            y = -wSize / 2 + 500;
+        }
+
+        if (gener <= 80 && gener > 60)
+        {
+            y = rand() % wSize - wSize / 2;
+            x = -wSize / 2 + 500;
+        }
+
+        std::cout << x << "  " << y << " " << gener <<  "\n";
+        leviathans.push_back(new Leviathan(x, y));
+    }
+
+    bots.push_back(new Bots);
+    bots.push_back(new Bots(300, 300));
+
+    //leviathans.push_back(new Leviathan);
 }

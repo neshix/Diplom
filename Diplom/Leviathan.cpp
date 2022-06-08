@@ -1,7 +1,9 @@
 #include "Leviathan.h"
 
-Leviathan::Leviathan() : livingEntity("data/img/boss.png")
+Leviathan::Leviathan(int x, int y) : livingEntity("data/img/boss.png")
 {
+	setPosition(x,y);
+
 	reviewBox.setFillColor(Color(255, 0, 0, 30));
 	reviewBox.setSize(Vector2f(700, 700));
 	reviewBox.setOrigin(Vector2f(700 / 2, 700 / 2));
@@ -12,6 +14,12 @@ Leviathan::Leviathan() : livingEntity("data/img/boss.png")
 
 void Leviathan::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Bots*> bot)
 {
+	// тут х для дипплома
+	if (bot.empty())
+	{
+		attack = false;
+	}
+
 	for (auto& b : bot)
 	{
 		if (b->getRect().intersects(reviewBox.getGlobalBounds()))

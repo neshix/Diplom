@@ -27,6 +27,14 @@ public:
 	void run(int minimum_frame_per_seconds = 30);
 
 private:
+	void generator();
+
+	int wSize = 10000;
+	int amountStone = 100;
+	int amountIron = 100;
+	int amountBoss = 5;
+
+private:
 	void processEvents();//< Process events
 	void update(Time deltaTime); //< do some updates
 	void render();//< draw all the stuff

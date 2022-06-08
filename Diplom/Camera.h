@@ -17,7 +17,7 @@ public:
 		view.reset(sf::FloatRect(0, 0, 1600, 900));
 	};
 
-	void update(Time deltaTime)
+	void update(Time deltaTime, int worldSize)
 	{
 		float time = deltaTime.asSeconds();
 
@@ -27,18 +27,42 @@ public:
 		if (Keyboard::isKeyPressed(Keyboard::W))
 		{
 			velocity.y = -speed * time;
+
+			int h = view.getViewport().height / 2;
+			if (view.getCenter().y - h <= -worldSize / 2)
+			{
+				velocity.y = 0;
+			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::A))
 		{
 			velocity.x = -speed * time;
+
+			int w = view.getViewport().width / 2;
+			if (view.getCenter().x - w <= -worldSize / 2)
+			{
+				velocity.x = 0;
+			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::S))
 		{
 			velocity.y = speed * time;
+
+			int h = view.getViewport().height / 2;
+			if (view.getCenter().y + h >= worldSize / 2)
+			{
+				velocity.y = 0;
+			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::D))
 		{
 			velocity.x = speed * time;
+
+			int w = view.getViewport().width / 2;
+			if (view.getCenter().x + w >= worldSize / 2)
+			{
+				velocity.x = 0;
+			}
 		}
 
 		view.move(velocity);
