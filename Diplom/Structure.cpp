@@ -1,7 +1,8 @@
 #include "Structure.h"
 
-Structure::Structure(std::string selStruct): Entity()
+Structure::Structure(std::string selStruct, Vector2f pos): Entity()
 {
+	setPosition(pos);
 	name = selStruct;
 	build = true;
 

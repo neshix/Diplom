@@ -62,7 +62,7 @@ public:
 
 		capacity = (iventory % 100) + ((iventory / 100) % 100);
 
-		if (!f.loadFromFile("fons/calibri.ttf")) std::cout << "ne naideno";
+		if (!f.loadFromFile("data/fons/calibri.ttf")) std::cout << "ne naideno";
 		infoTxt.setFont(f);
 		infoTxt.setCharacterSize(15);
 

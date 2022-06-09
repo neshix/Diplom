@@ -320,8 +320,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 								com->startbulid = false;
 
 								*point = false;
-								str.push_back(new Structure(com->buildingName));
-								str.back()->setPosition(com->movePos);
+								str.push_back(new Structure(com->buildingName, com->movePos));
 							}
 						}
 					}
@@ -338,8 +337,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 								com->startbulid = false;
 
 								*point = false;
-								str.push_back(new Structure(com->buildingName));
-								str.back()->setPosition(com->movePos);
+								str.push_back(new Structure(com->buildingName, com->movePos));
 							}
 						}
 					}
@@ -356,8 +354,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 								com->startbulid = false;
 
 								*point = false;
-								str.push_back(new Structure(com->buildingName));
-								str.back()->setPosition(com->movePos);
+								str.push_back(new Structure(com->buildingName, com->movePos));
 							}
 						}
 					}

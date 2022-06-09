@@ -36,7 +36,7 @@ private:
 	bool constructionZone = false;
 
 public:
-	Structure(std::string name);
+	Structure(std::string name, Vector2f pos);
 	void update(Vector2f mousePos, bool& kp, std::list<Bots*>& bot, std::list<Enemy*>& enemy, std::list<MineObj*>& mine, Storage& store);
 };
 #endif

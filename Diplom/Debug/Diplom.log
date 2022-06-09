@@ -1,37 +1,34 @@
-﻿  Game.cpp
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+﻿  Menu.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(56,61): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(56,42): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(63,63): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(63,41): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(33,43): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(31,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(41,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(51,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(61,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Game.cpp(304,26): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(157,30): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(169,29): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(181,33): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Menu.cpp(193,28): warning C4244: =: преобразование "float" в "int", возможна потеря данных
   Diplom.vcxproj -> C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe

@@ -14,6 +14,7 @@
 #include "Bullet.h"
 #include "Camera.h"
 #include "Leviathan.h"
+#include "Menu.h"
 
 using namespace sf;
 
@@ -42,6 +43,7 @@ private:
 	void deads();
 
 	RenderWindow _window;
+	Menu menu;
 
 	Time   _nextSaucer;
 	Text   _txt;

@@ -30,7 +30,7 @@ public:
 		box.setSize(size);
 		box.setFillColor(Color(50, 50, 50, 150));
 
-		if (!f.loadFromFile("fons/calibri.ttf"));
+		if (!f.loadFromFile("data/fons/calibri.ttf"));
 		text.setFont(f);
 		text.setCharacterSize(30);
 
