@@ -57,7 +57,7 @@ public:
 	{
 		setPosition(x, y);
 
-		info.setSize(Vector2f(200, 200));
+		info.setSize(Vector2f(200, 100));
 		info.setFillColor(Color(128, 128, 128, 255));
 
 		capacity = (iventory % 100) + ((iventory / 100) % 100);

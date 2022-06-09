@@ -57,6 +57,11 @@ public:
 		return Vector2f(getRect().width, getRect().height);
 	}
 
+	Vector2f getPosition()
+	{
+		return _sprite.getPosition();
+	}
+
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

@@ -68,6 +68,11 @@ public:
 		view.move(velocity);
 	};
 
+	Vector2f getCenter()
+	{
+		return view.getCenter();
+	}
+
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override
 	{
 		target.setView(view);

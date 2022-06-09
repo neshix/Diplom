@@ -135,37 +135,68 @@ void Game::render()
 	//обекты игры
 	for (auto& m : mineobj)
 	{
-		_window.draw(*m);
+		normal = m->getPosition() - camera.getCenter();
+		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+		if (dis < 900)
+		{
+			_window.draw(*m);
+		}
 	}
 
 	for (auto& s : structure)
 	{
-		if (s->getRect().contains(mousePos))
+		normal = s->getPosition() - camera.getCenter();
+		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+		if (dis < 900)
 		{
-			//std::cout << "a";
-			_window.draw(s->reviewBox);
+			if (s->getRect().contains(mousePos))
+			{
+				//std::cout << "a";
+				_window.draw(s->reviewBox);
+			}
+			_window.draw(*s);
+			_window.draw(s->addB);
 		}
-		_window.draw(*s);
-		_window.draw(s->addB);
 	}
 
 	for (auto& bot : bots)
 	{
-		_window.draw(*bot);
+		normal = bot->getPosition() - camera.getCenter();
+		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
+		if (dis < 900)
+		{
+			_window.draw(*bot);
+		}
 	}
-
 	for (auto& enemy : enemys)
 	{
-		_window.draw(*enemy);
+		normal = enemy->getPosition() - camera.getCenter();
+		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
+		if (dis < 900)
+		{
+			_window.draw(*enemy);
+		}
 	}
 
 	for (auto& bullet : bullets)
 	{
-		_window.draw(*bullet);
+		normal = bullet->getPosition() - camera.getCenter();
+		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
+		if (dis < 900)
+		{
+			_window.draw(*bullet);
+		}
 	}
 	for (auto& l : leviathans)
 	{
-		_window.draw(*l);
+		normal = l->getPosition() - camera.getCenter();
+		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
+		if (dis < 900)
+		{
+			_window.draw(*l);
+		}
 	}
 
 	//интерфейс

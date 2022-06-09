@@ -30,10 +30,10 @@ public:
 private:
 	void generator();
 
-	int wSize = 10000;
-	int amountStone = 100;
-	int amountIron = 100;
-	int amountBoss = 5;
+	int wSize = 5000;
+	int amountStone = 10;
+	int amountIron = 10;
+	int amountBoss = 1;
 
 private:
 	void processEvents();//< Process events
@@ -66,5 +66,8 @@ private:
 	Vector2f mousePos;
 
 	Event event;
+
+	Vector2f normal;
+	float dis = 0;
 };
 #endif GAME_H

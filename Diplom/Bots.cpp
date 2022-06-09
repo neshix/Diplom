@@ -147,9 +147,10 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							normal = e->_sprite.getPosition() - _sprite.getPosition();
 							distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 
+							std::cout << distanse << "\n";
+
 							if (smallerDistance > distanse)
 							{
-								com->isMineIron = false;
 								com->movePos = e->_sprite.getPosition();
 								com->mineobjinit = true;
 								*point = false;
@@ -166,7 +167,6 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 
 							if (smallerDistance > distanse)
 							{
-								com->isMineIron = false;
 								com->movePos = e->_sprite.getPosition();
 								com->mineobjinit = true;
 								*point = false;
@@ -176,6 +176,8 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							}
 						}
 					}
+					com->isMineStone = false;
+					com->isMineIron = false;
 				}
 
 				if (*point && com->mineobjinit)
@@ -203,6 +205,8 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 
 					if (obj->amount <= 0 )
 					{
+						com->isMineStone = true;
+						com->isMineIron = true;
 						com->mineobjinit = false;
 					}
 				}
