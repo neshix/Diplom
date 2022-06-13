@@ -50,6 +50,7 @@ public:
 	std::string buildingName;
 
 	bool isAttack = false;
+	bool attackEnemy = false, attackLeviavan = false;
 
 	bool isDrop = false;
 	bool droping = false;
@@ -66,6 +67,8 @@ public:
 	Text txtif;
 	bool activcom = false;
 	int i—hoice = 0;
+
+	bool lastclick = false;
 
 public:
 	Command(Font f) 
@@ -110,7 +113,7 @@ public:
 		choice = new RectangleShape;
 	};
 
-	void create(Vector2f mousePos, bool& isPressed);
+	void update(Vector2f mousePos, bool& isPressed, std::list<Command*>& command);
 
 	void falcom();
 

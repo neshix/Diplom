@@ -63,9 +63,6 @@ void Game::update(Time deltaTime)
 
 	for (auto& bot : bots)
 	{
-		bot->update(mousePos, mineobj, structure, storage, enemys, bullets);
-		bot->moveTo(deltaTime);
-
 		//выбор бота
 		if (Mouse::isButtonPressed(Mouse::Right) && bot->_sprite.getGlobalBounds().contains(mousePos))
 		{
@@ -76,10 +73,13 @@ void Game::update(Time deltaTime)
 		//добавление команд
 		if (storage.bAdd.getGlobalBounds().contains(mousePos))
 		{
-			storage.bAdd.setFillColor(Color(0, 255, 0, 255));
+			if (bot->selected)
+			{
+				storage.bAdd.setColor(Color::Green);
+			}
 			if (!IsKeyPressed)
 			{
-				if (Mouse::isButtonPressed(Mouse::Right) && bot->selected)
+				if (Mouse::isButtonPressed(Mouse::Left) && bot->selected)
 				{
 					bot->AddCommand(font);
 					IsKeyPressed = true;
@@ -88,28 +88,23 @@ void Game::update(Time deltaTime)
 		}
 		else
 		{
-			storage.bAdd.setFillColor(Color(255, 100, 0, 255));
+			storage.bAdd.setColor(Color::White);
 		}
 
 		//управление командами
 		if (bot->selected)
 		{
 			bot->delCommand(mousePos, IsKeyPressed);
-			bot->setPosCommand(storage.consol.getPosition());
-
-			//bot->update(mousePos, mineobj, structure, storage);
-
 			for (auto& com : bot->command)
 			{
-				com->create(mousePos, IsKeyPressed);
+				com->update(mousePos, IsKeyPressed, bot->command);
 			}
-
+			bot->setPosCommand(storage.consol.getPosition());
 			//bot->_sprite.setOutlineThickness(3);
 		}
-		else
-		{
-			//bot->_sprite.setOutlineThickness(0);
-		}
+
+		bot->update(mousePos, mineobj, structure, storage, enemys, leviathans, bullets);
+		bot->moveTo(deltaTime);
 	}
 
 	for (auto& str: structure)

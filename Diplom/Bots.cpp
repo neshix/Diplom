@@ -66,7 +66,7 @@ void Bots::setPosCommand(Vector2f pos)
 	infoTxt.setPosition(info.getPosition().x + 1, info.getPosition().y + 1);
 }
 
-void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& enemy, std::list<Bullet*>& bul)
+void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& enemy, std::list<Leviathan*>& leviathan, std::list<Bullet*>& bul)
 {
 	statup(enemy);
 
@@ -147,7 +147,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 							normal = e->_sprite.getPosition() - _sprite.getPosition();
 							distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 
-							std::cout << distanse << "\n";
+							//std::cout << distanse << "\n";
 
 							if (smallerDistance > distanse)
 							{
@@ -194,20 +194,23 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 						{
 							iventory += 1;
 							obj->amount--;
+							if (obj->amount <= 0)
+							{
+								com->isMineStone = true;
+								com->mineobjinit = false;
+							}
 						}
 
 						if (obj->name == "Iron")
 						{
 							iventory += 100;
 							obj->amount--;
+							if (obj->amount <= 0)
+							{
+								com->isMineIron = true;
+								com->mineobjinit = false;
+							}
 						}
-					}
-
-					if (obj->amount <= 0 )
-					{
-						com->isMineStone = true;
-						com->isMineIron = true;
-						com->mineobjinit = false;
 					}
 				}
 			}
@@ -370,30 +373,71 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 			if (com->isAttack)
 			{
 				//std::cout << "a";
-				for (auto& e : enemy)
+				smallerDistance = 10000;
+				if (com->attackEnemy)
 				{
-					normal = e->_sprite.getPosition() - _sprite.getPosition();
-					distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
-					if (distanse >= 200)
+					for (auto& e : enemy)
 					{
-						*point = false;
-						com->movePos = e->_sprite.getPosition();
-					}
-					else
-					{
-						t = cl.getElapsedTime();
-						if (t.asMilliseconds() >= 500 + (en * 50))
+						normal = e->_sprite.getPosition() - _sprite.getPosition();
+						distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+						if (smallerDistance > distanse)
 						{
-							energy--;
-							t = cl.restart();
-							bul.push_back(new Bullet(_sprite.getPosition(), e->_sprite.getPosition()));
+							if (distanse >= 200)
+							{
+								*point = false;
+								com->movePos = e->_sprite.getPosition();
+							}
+							else
+							{
+								t = cl.getElapsedTime();
+								if (t.asMilliseconds() >= 500 + (en * 50))
+								{
+									energy--;
+									t = cl.restart();
+									bul.push_back(new Bullet(_sprite.getPosition(), e->_sprite.getPosition()));
+								}
+								finish = false;
+								*point = true;
+							}
+
+							smallerDistance = distanse;
 						}
-						finish = false;
-						*point = true;
+					}
+				}
+
+				if (com->attackLeviavan)
+				{
+					for (auto& l : leviathan)
+					{
+						normal = l->_sprite.getPosition() - _sprite.getPosition();
+						distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
+
+						if (smallerDistance > distanse)
+						{
+							if (distanse >= 200)
+							{
+								*point = false;
+								com->movePos = l->_sprite.getPosition();
+							}
+							else
+							{
+								t = cl.getElapsedTime();
+								if (t.asMilliseconds() >= 500 + (en * 50))
+								{
+									energy--;
+									t = cl.restart();
+									bul.push_back(new Bullet(_sprite.getPosition(), l->_sprite.getPosition()));
+								}
+								finish = false;
+								*point = true;
+							}
+
+							smallerDistance = distanse;
+						}
 					}
 				}
 			}
-
 			break;
 		}
 	}

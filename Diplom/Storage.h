@@ -10,8 +10,8 @@ using namespace sf;
 class Storage : public Drawable
 {
 private:
-	int stone = 1000;
-	int iron = 1000;
+	int stone = 100;
+	int iron = 100;
 
 	int s = 160;
 	Vector2f size = Vector2f(s, s/2);
@@ -22,7 +22,8 @@ private:
 
 public:
 	RectangleShape consol;
-	RectangleShape bAdd;
+	Texture bad;
+	Sprite bAdd;
 
 public:
 	Storage()
@@ -40,9 +41,10 @@ public:
 		consol.setPosition(1400, 0);
 		consol.setFillColor(Color::Red);
 
-		bAdd.setSize(Vector2f(50, 50));
+		bad.loadFromFile("data/img/icons/ADD.png");
+		bAdd.setTexture(bad);
 		bAdd.setPosition(1400, 0);
-		bAdd.setFillColor(Color(255, 100, 0, 255));
+		bAdd.setColor(Color::White);
 	};
 
 	void setPos(Vector2f pos)

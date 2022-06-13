@@ -1,6 +1,6 @@
 #include "Command.h"
 
-void Command::create(Vector2f mousePos, bool& isPressed)
+void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& command)
 {
 	//std::cout << isPressed << "\n";
 	if (!isPressed)
@@ -33,6 +33,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txtif.setString("if -> " + t->getString());
 						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						break;
 					}
@@ -43,6 +45,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txtif.setString("if -> " + t->getString());
 						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						break;
 					}
@@ -53,6 +57,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txtif.setString("if -> " + t->getString());
 						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						break;
 					}
@@ -63,6 +69,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txtif.setString("if -> " + t->getString());
 						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						break;
 					}
@@ -73,6 +81,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						txtif.setString("if -> " + t->getString());
 						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						break;
 					}
@@ -105,6 +115,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 			falcom();
 
 			isPressed = true;
+			for (auto& i : text)
+				delete i;
 			text.clear();
 			text.push_back(new Text("move", font, 15));
 			text.push_back(new Text("mine", font, 15));
@@ -133,6 +145,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 
 						isMove = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 						choice->setSize(Vector2f(50, 15));
@@ -151,6 +165,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						isMine = true;
 						moveTarget = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 						choice->setSize(Vector2f(50, 15));
@@ -168,6 +184,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 						points.clear();
 						isPatrol = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 						choice->setSize(Vector2f(50, 15));
@@ -183,6 +201,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 
 						isBuild = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 						choice->setSize(Vector2f(50, 15));
@@ -198,7 +218,12 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 
 						isAttack = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
+						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
+						choice->setSize(Vector2f(50, 15));
+						choice->setFillColor(Color::Green);
 						break;
 					}
 
@@ -210,6 +235,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 
 						isDrop = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 						choice->setSize(Vector2f(50, 15));
@@ -227,6 +254,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 
 						isPickUp = true;
 
+						for (auto& i : text)
+							delete i;
 						text.clear();
 						break;
 					}
@@ -269,7 +298,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 		{
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
-				
+				for (auto& i : text)
+					delete i;
 				text.clear();
 
 				text.push_back(new Text("Iron", font, 15));
@@ -355,6 +385,8 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 		{
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
+				for (auto& i : text)
+					delete i;
 				text.clear();
 				text.push_back(new Text("energy tower", font, 15));
 				text.push_back(new Text("factory", font, 15));
@@ -423,6 +455,69 @@ void Command::create(Vector2f mousePos, bool& isPressed)
 				mpoint.setPosition(mousePos);
 			}
 		}
+
+		//++
+		if (isAttack)
+		{
+			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
+			{
+				for (auto& i : text)
+					delete i;
+				text.clear();
+				text.push_back(new Text("enemy", font, 15));
+				text.push_back(new Text("leviavans", font, 15));
+			}
+
+			for (auto& t : text)
+			{
+				if (t->getGlobalBounds().contains(mousePos))
+				{
+					isPressed = true;
+					t->setFillColor(Color::Green);
+					if (Mouse::isButtonPressed(Mouse::Left))
+					{
+
+						if (t->getString() == "enemy")
+						{
+							txt.setString("attack -> " + t->getString() + " ");
+							txt.setPosition(box.getPosition());
+							attackEnemy = true;
+							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
+							text.clear();
+							break;
+						}
+
+						if (t->getString() == "leviavans")
+						{
+							txt.setString("attack -> " + t->getString() + " ");
+							txt.setPosition(box.getPosition());
+							attackLeviavan = true;
+							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
+							text.clear();
+							break;
+						}
+					}
+				}
+				else
+				{
+					t->setFillColor(Color::White);
+				}
+			}
+		}
+	}
+
+	if (box.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
+	{
+		for (auto &i: command)
+		{
+			i->lastclick = false;
+		}
+		lastclick = true;
+	}
+
+	if (!lastclick)
+	{
+		text.clear();
 	}
 }
 
@@ -442,6 +537,7 @@ void Command::falcom()
 	bildpos = false, startbulid = false;
 
 	isAttack = false;
+	attackEnemy = false, attackLeviavan = false;
 
 	isDrop = false;
 	droping = false;

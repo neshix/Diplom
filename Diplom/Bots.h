@@ -21,7 +21,7 @@ public:
 
 	float smallerDistance = 10000;
 
-	int iventory = 2525;
+	int iventory = 0;
 	int capacity = 0;
 
 	int energy = 100;
@@ -76,7 +76,7 @@ public:
 	void setPosCommand(Vector2f pos);
 	void setInfoTXT();
 
-	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& en, std::list<Bullet*>& bul);
+	void update(Vector2f t, std::list<MineObj*>& mine, std::list<Structure*>& str, Storage& stor, std::list<Enemy*>& en, std::list<Leviathan*>& leviathan, std::list<Bullet*>& bul);
 	void statup(std::list<Enemy*>& enemy);
 
 	void moveTo(Time deltaTime);
