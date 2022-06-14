@@ -1,7 +1,11 @@
 #include "Game.h"
 
-Game::Game(int X, int Y) : _window(VideoMode(X,Y), "diplom")
+Game::Game(int X, int Y) : _window(VideoMode(X,Y), "among sand")
 {
+	sf::Image icon;
+	icon.loadFromFile("data/img/sign.png"); // File/Image/Pixel
+	_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
 	if (!font.loadFromFile("data/fons/calibri.ttf")) std::cout << "ne naideno";
 }
 
@@ -41,10 +45,29 @@ void Game::processEvents()
 
 	if (event.type == Event::MouseButtonReleased)
 		IsKeyPressed = false;
+
+	if (event.type == Event::KeyReleased)
+		IsKeyPress = false;
 }
 
 void Game::update(Time deltaTime)
 {
+	if (Keyboard::isKeyPressed(Keyboard::Escape) && stop == false && IsKeyPress == false)
+	{
+		IsKeyPressed = true;
+		stop = true;
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Escape) && stop == true && IsKeyPress == false)
+	{
+		IsKeyPressed = true;
+		stop = false;
+	}
+
+	if (stop)
+	{
+		return;
+	}
+
 	pixelPos = Mouse::getPosition(_window);
 	mousePos = _window.mapPixelToCoords(pixelPos);
 
@@ -133,7 +156,7 @@ void Game::render()
 		normal = m->getPosition() - camera.getCenter();
 		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
 
-		if (dis < 900)
+		if (dis < 1000)
 		{
 			_window.draw(*m);
 		}
@@ -144,7 +167,7 @@ void Game::render()
 		normal = s->getPosition() - camera.getCenter();
 		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
 
-		if (dis < 900)
+		if (dis < 1000)
 		{
 			if (s->getRect().contains(mousePos))
 			{
@@ -160,16 +183,32 @@ void Game::render()
 	{
 		normal = bot->getPosition() - camera.getCenter();
 		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
-		if (dis < 900)
+		if (dis < 1000)
 		{
+			if (bot->getRect().contains(mousePos))
+			{
+				_window.draw(bot->reviewBox);
+			}
+
 			_window.draw(*bot);
+			for (auto& com : bot->command)
+			{
+				for (auto& p : com->points)
+				{
+					_window.draw(p);
+				}
+
+				if (com->isMove || com->isDrop)
+					_window.draw(com->mpoint);
+			}
 		}
 	}
+
 	for (auto& enemy : enemys)
 	{
 		normal = enemy->getPosition() - camera.getCenter();
 		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
-		if (dis < 900)
+		if (dis < 1000)
 		{
 			_window.draw(*enemy);
 		}
@@ -179,16 +218,17 @@ void Game::render()
 	{
 		normal = bullet->getPosition() - camera.getCenter();
 		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
-		if (dis < 900)
+		if (dis < 1000)
 		{
 			_window.draw(*bullet);
 		}
 	}
+
 	for (auto& l : leviathans)
 	{
 		normal = l->getPosition() - camera.getCenter();
 		dis = sqrt(normal.x * normal.x + normal.y * normal.y);
-		if (dis < 900)
+		if (dis < 1000)
 		{
 			_window.draw(*l);
 		}
@@ -200,8 +240,6 @@ void Game::render()
 	for (auto& bot : bots)
 		if (bot->selected)
 		{
-			_window.draw(bot->reviewBox);
-
 			_window.draw(bot->info);
 			_window.draw(bot->infoTxt);
 			for (auto& com : bot->command)
@@ -227,6 +265,7 @@ void Game::deads()
 
 		if (mine->life == false)
 		{
+			delete* c;
 			c = mineobj.erase(c);
 		}
 		else
@@ -245,6 +284,7 @@ void Game::deads()
 
 		if (bot->life == false)
 		{
+			delete* c;
 			c = bots.erase(c);
 		}
 		else
@@ -263,6 +303,7 @@ void Game::deads()
 
 		if (enemy->life == false)
 		{
+			delete* c;
 			c = enemys.erase(c);
 		}
 		else
@@ -281,6 +322,7 @@ void Game::deads()
 
 		if (s->life == false)
 		{
+			delete* c;
 			c = structure.erase(c);
 		}
 		else
@@ -299,6 +341,7 @@ void Game::deads()
 
 		if (bullet->life == false)
 		{
+			delete* c;
 			c = bullets.erase(c);
 		}
 		else

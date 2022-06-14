@@ -149,7 +149,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
-						choice->setSize(Vector2f(50, 15));
+						choice->setSize(Vector2f(15, 15));
 						choice->setFillColor(Color::Green);
 
 						mpoint.setFillColor(Color::Red);
@@ -169,7 +169,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
-						choice->setSize(Vector2f(50, 15));
+						choice->setSize(Vector2f(15, 15));
 						choice->setFillColor(Color::Green);
 						break;
 					}
@@ -188,7 +188,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
-						choice->setSize(Vector2f(50, 15));
+						choice->setSize(Vector2f(15, 15));
 						choice->setFillColor(Color::Green);
 						break;
 					}
@@ -205,7 +205,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
-						choice->setSize(Vector2f(50, 15));
+						choice->setSize(Vector2f(15, 15));
 						choice->setFillColor(Color::Green);
 						break;
 					}
@@ -213,7 +213,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					//реализовано++
 					if (t->getString() == "attack")
 					{
-						txt.setString(t->getString());
+						txt.setString(t->getString() + " -> ");
 						txt.setPosition(box.getPosition());
 
 						isAttack = true;
@@ -222,7 +222,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
-						choice->setSize(Vector2f(50, 15));
+						choice->setSize(Vector2f(15, 15));
 						choice->setFillColor(Color::Green);
 						break;
 					}
@@ -239,7 +239,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							delete i;
 						text.clear();
 						choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
-						choice->setSize(Vector2f(50, 15));
+						choice->setSize(Vector2f(15, 15));
 						choice->setFillColor(Color::Green);
 
 						mpoint.setFillColor(Color::Blue);
@@ -274,7 +274,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
 				isPressed = true;
-				choice->setFillColor(Color(150, 255, 0, 255));
+				choice->setFillColor(Color::Red);
 				isMoving = true;
 			}
 			else if (!isMoving)
@@ -304,6 +304,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 
 				text.push_back(new Text("Iron", font, 15));
 				text.push_back(new Text("Stone", font, 15));
+				choice->setFillColor(Color::Red);
 			}
 
 			//выбор чего копать
@@ -324,6 +325,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							isMineIron = true;
 							text.clear();
 							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
+							choice->setFillColor(Color::Green);
 							break;
 						}
 
@@ -334,6 +336,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							isMineStone = true;
 							text.clear();
 							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
+							choice->setFillColor(Color::Green);
 							break;
 						}
 					}
@@ -352,7 +355,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left) && !isMoving)
 			{
 				isPressed = true;
-				choice->setFillColor(Color(150, 255, 0, 255));
+				choice->setFillColor(Color::Red);
 				isMoving = true;
 			}
 			else if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left) && isMoving)
@@ -391,6 +394,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				text.push_back(new Text("energy tower", font, 15));
 				text.push_back(new Text("factory", font, 15));
 				text.push_back(new Text("storage", font, 15));
+				choice->setFillColor(Color::Red);
 			}
 
 			if (Mouse::isButtonPressed(Mouse::Right) && bildpos)
@@ -400,6 +404,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				startbulid = true;
 				movePos = mousePos;
 				onPoint = false;
+				choice->setFillColor(Color::Green);
 			}
 
 			for (auto& t : text)
@@ -434,7 +439,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 			if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 			{
 				isPressed = true;
-				choice->setFillColor(Color(150, 255, 0, 255));
+				choice->setFillColor(Color::Red);
 				isMoving = true;
 			}
 			else if (!isMoving)
@@ -466,17 +471,17 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				text.clear();
 				text.push_back(new Text("enemy", font, 15));
 				text.push_back(new Text("leviavans", font, 15));
+				choice->setFillColor(Color::Red);
 			}
 
 			for (auto& t : text)
 			{
 				if (t->getGlobalBounds().contains(mousePos))
 				{
-					isPressed = true;
 					t->setFillColor(Color::Green);
 					if (Mouse::isButtonPressed(Mouse::Left))
 					{
-
+						isPressed = true;
 						if (t->getString() == "enemy")
 						{
 							txt.setString("attack -> " + t->getString() + " ");
@@ -484,6 +489,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							attackEnemy = true;
 							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 							text.clear();
+							choice->setFillColor(Color::Green);
 							break;
 						}
 
@@ -494,6 +500,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 							attackLeviavan = true;
 							choice->setPosition(txt.getPosition().x + txt.getGlobalBounds().width, txt.getPosition().y + 3);
 							text.clear();
+							choice->setFillColor(Color::Green);
 							break;
 						}
 					}
@@ -553,13 +560,6 @@ void Command::falcom()
 
 void Command::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (auto& p : points)
-	{
-		target.draw(p, states);
-	}
-
-	if (isMove || isDrop)
-		target.draw(mpoint, states);
 
 	target.draw(box, states);
 	target.draw(plusb, states);

@@ -58,6 +58,7 @@ private:
 	std::list<Bullet*> bullets;
 
 	bool IsKeyPressed = false;
+	bool IsKeyPress = false;
 
 	Storage storage;
 	Camera camera;
@@ -69,5 +70,7 @@ private:
 
 	Vector2f normal;
 	float dis = 0;
+
+	bool stop = false;
 };
 #endif GAME_H

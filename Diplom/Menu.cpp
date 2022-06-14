@@ -207,7 +207,7 @@ void Menu::update(RenderWindow& w, int& sizeworld, int& aStone, int& aIron, int&
 		w.draw(tstone);
 		w.draw(stoneShape);
 		w.draw(cstoneShape);
-
+		
 		w.draw(tsize);
 		w.draw(sizeShape);
 		w.draw(csizeShape);
