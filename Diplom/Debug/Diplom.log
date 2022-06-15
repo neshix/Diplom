@@ -30,7 +30,7 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(61,10): warning C4244:
           [
               T=float
           ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Game.cpp(370,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Game.cpp(444,23): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных

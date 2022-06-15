@@ -6,7 +6,13 @@ Game::Game(int X, int Y) : _window(VideoMode(X,Y), "among sand")
 	icon.loadFromFile("data/img/sign.png"); // File/Image/Pixel
 	_window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
+	prom.loadFromFile("data/img/icons/prompt1.png");
+	prompt.setTexture(prom);
+	education = true;
+
 	if (!font.loadFromFile("data/fons/calibri.ttf")) std::cout << "ne naideno";
+	_txt.setFont(font);
+	_txt.setCharacterSize(24);
 }
 
 void Game::run(int minimum_frame_per_seconds)
@@ -48,10 +54,7 @@ void Game::processEvents()
 
 	if (event.type == Event::KeyReleased)
 		IsKeyPress = false;
-}
 
-void Game::update(Time deltaTime)
-{
 	if (Keyboard::isKeyPressed(Keyboard::Escape) && stop == false && IsKeyPress == false)
 	{
 		IsKeyPressed = true;
@@ -62,7 +65,10 @@ void Game::update(Time deltaTime)
 		IsKeyPressed = true;
 		stop = false;
 	}
+}
 
+void Game::update(Time deltaTime)
+{
 	if (stop)
 	{
 		return;
@@ -91,6 +97,8 @@ void Game::update(Time deltaTime)
 		{
 			for (auto& b : bots) { b->selected = false; }
 			bot->selected = true;
+
+			pressed = 6;
 		}
 
 		//добавление команд
@@ -106,6 +114,7 @@ void Game::update(Time deltaTime)
 				{
 					bot->AddCommand(font);
 					IsKeyPressed = true;
+					pressed = 7;
 				}
 			}
 		}
@@ -117,13 +126,17 @@ void Game::update(Time deltaTime)
 		//управление командами
 		if (bot->selected)
 		{
+			bot->_sprite.setTextureRect(IntRect(0, 0, 50, 50));
 			bot->delCommand(mousePos, IsKeyPressed);
 			for (auto& com : bot->command)
 			{
-				com->update(mousePos, IsKeyPressed, bot->command);
+				com->update(mousePos, IsKeyPressed, bot->command, pressed);
 			}
 			bot->setPosCommand(storage.consol.getPosition());
-			//bot->_sprite.setOutlineThickness(3);
+		}
+		else
+		{
+			bot->_sprite.setTextureRect(IntRect(50, 0, 50, 50));
 		}
 
 		bot->update(mousePos, mineobj, structure, storage, enemys, leviathans, bullets);
@@ -140,6 +153,61 @@ void Game::update(Time deltaTime)
 
 	//удаление трупов
 	deads();
+
+	//обучение
+	if (education)
+	{
+		if (pressed == 6)
+		{
+			prom.loadFromFile("data/img/icons/prompt2.png");
+			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 20);
+		}
+
+		if (pressed == 7)
+		{
+			prom.loadFromFile("data/img/icons/prompt3.png");
+			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
+		}
+
+		if (pressed == 1)
+		{
+			prom.loadFromFile("data/img/icons/prompt4.png");
+			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
+		}
+
+		if (pressed == 4)
+		{
+			prom.loadFromFile("data/img/icons/prompt5.png");
+			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
+		}
+
+		if (pressed == 2)
+		{
+			prom.loadFromFile("data/img/icons/prompt6.png");
+			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
+		}
+
+		if (pressed == 5)
+		{
+			prom.loadFromFile("data/img/icons/prompt7.png");
+			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
+		}
+
+		//if (pressed == 3)
+		//{
+		//	education = false;
+		//}
+	}
+
+	//цель
+	_txt.setString(L"Левеафанов\nосталось: " + std::to_string(leviathans.size()));
+	_txt.setPosition(camera.view.getCenter().x - 800, camera.view.getCenter().y - 300);
 }
 
 void Game::render()
@@ -190,7 +258,6 @@ void Game::render()
 				_window.draw(bot->reviewBox);
 			}
 
-			_window.draw(*bot);
 			for (auto& com : bot->command)
 			{
 				for (auto& p : com->points)
@@ -201,6 +268,8 @@ void Game::render()
 				if (com->isMove || com->isDrop)
 					_window.draw(com->mpoint);
 			}
+
+			_window.draw(*bot);
 		}
 	}
 
@@ -248,7 +317,12 @@ void Game::render()
 			}
 		}
 
+	if (education)
+	{
+		_window.draw(prompt);
+	}
 
+	_window.draw(_txt);
 	//Update the window
 	_window.display();
 }
@@ -404,4 +478,6 @@ void Game::generator()
 	bots.push_back(new Bots);
 	bots.push_back(new Bots(300, 300));
 	structure.push_back(new Structure("storage", Vector2f(0.0,0.0)));
+
+	prompt.setPosition(bots.back()->getPosition().x - 25, bots.back()->getPosition().y - 75);
 }

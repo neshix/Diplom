@@ -53,12 +53,12 @@ public://надо найти куда запихать в drawble
 	Text infoTxt;
 
 public:
-	Bots(int x = 500, int y = 500) :livingEntity("data/img/bot.png")
+	Bots(int x = 500, int y = 500) :livingEntity("data/img/bots.png")
 	{
 		setPosition(x, y);
 
 		info.setSize(Vector2f(200, 100));
-		info.setFillColor(Color(128, 128, 128, 255));
+		info.setFillColor(Color(128, 128, 128, 150));
 
 		capacity = (iventory % 100) + ((iventory / 100) % 100);
 
@@ -69,6 +69,9 @@ public:
 		reviewBox.setFillColor(Color(0, 0, 255, 30));
 		reviewBox.setSize(Vector2f(400, 400));
 		reviewBox.setOrigin(Vector2f(400 / 2, 400 / 2));
+
+		Vector2f size = Vector2f(_sprite.getGlobalBounds().width, _sprite.getGlobalBounds().height);
+		_sprite.setOrigin(size.x / 4, size.y / 2);
 	};
 
 	void AddCommand(Font font);

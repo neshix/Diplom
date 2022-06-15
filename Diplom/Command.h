@@ -113,7 +113,7 @@ public:
 		choice = new RectangleShape;
 	};
 
-	void update(Vector2f mousePos, bool& isPressed, std::list<Command*>& command);
+	void update(Vector2f mousePos, bool& isPressed, std::list<Command*>& command, int& p);
 
 	void falcom();
 

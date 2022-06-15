@@ -62,7 +62,7 @@ void Bots::setPosCommand(Vector2f pos)
 		i++;
 	}
 
-	info.setPosition(pos.x - info.getSize().x, pos.y);
+	info.setPosition(getPosition().x + 50, getPosition().y -50);
 	infoTxt.setPosition(info.getPosition().x + 1, info.getPosition().y + 1);
 }
 

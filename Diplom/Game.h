@@ -36,6 +36,10 @@ private:
 	int amountBoss = 1;
 
 private:
+	Texture prom;
+	Sprite prompt;
+
+private:
 	void processEvents();//< Process events
 	void update(Time deltaTime); //< do some updates
 	void render();//< draw all the stuff
@@ -45,8 +49,8 @@ private:
 	RenderWindow _window;
 	Menu menu;
 
-	Time   _nextSaucer;
-	Text   _txt;
+	Time _nextSaucer;
+	Text _txt;
 
 	Font font;
 
@@ -72,5 +76,8 @@ private:
 	float dis = 0;
 
 	bool stop = false;
+
+	bool education = false;
+	int pressed = 0;
 };
 #endif GAME_H

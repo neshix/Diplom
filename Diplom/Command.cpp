@@ -1,6 +1,6 @@
 #include "Command.h"
 
-void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& command)
+void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& command, int& p)
 {
 	//std::cout << isPressed << "\n";
 	if (!isPressed)
@@ -113,7 +113,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 		if (plusb.getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left))
 		{
 			falcom();
-
+			p = 4;
 			isPressed = true;
 			for (auto& i : text)
 				delete i;
@@ -136,7 +136,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				if (Mouse::isButtonPressed(Mouse::Left))
 				{
 					isPressed = true;
-
+					p = 1;
 					//реализовано++
 					if (t->getString() == "move")
 					{
@@ -247,6 +247,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					}
 
 					//реализовано++
+					p = 3;
 					if (t->getString() == "pickUp")
 					{
 						txt.setString(t->getString());
@@ -275,6 +276,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 			{
 				isPressed = true;
 				choice->setFillColor(Color::Red);
+				p = 2;
 				isMoving = true;
 			}
 			else if (!isMoving)
@@ -290,6 +292,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				moveTarget = true;
 				movePos = mousePos;
 				mpoint.setPosition(mousePos);
+				p = 3;
 			}
 		}
 
@@ -305,6 +308,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				text.push_back(new Text("Iron", font, 15));
 				text.push_back(new Text("Stone", font, 15));
 				choice->setFillColor(Color::Red);
+				p = 5;
 			}
 
 			//выбор чего копать
@@ -317,7 +321,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						mineobjinit = false;
 						isPressed = true;
-
+						p = 3;
 						if (t->getString() == "Iron")
 						{
 							txt.setString("mine -> Iron ");
@@ -356,6 +360,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 			{
 				isPressed = true;
 				choice->setFillColor(Color::Red);
+				p = 2;
 				isMoving = true;
 			}
 			else if (choice->getGlobalBounds().contains(mousePos) && Mouse::isButtonPressed(Mouse::Left) && isMoving)
@@ -363,6 +368,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				isPressed = true;
 				isMoving = false;
 				choice->setFillColor(Color::Green);
+				p = 3;
 			}
 
 			//выбор позиции движени€
@@ -395,6 +401,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				text.push_back(new Text("factory", font, 15));
 				text.push_back(new Text("storage", font, 15));
 				choice->setFillColor(Color::Red);
+				p = 5;
 			}
 
 			if (Mouse::isButtonPressed(Mouse::Right) && bildpos)
@@ -416,6 +423,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						isPressed = true;
 						bildpos = true;
+						p = 2;
 
 						buildingName = t->getString();
 						txt.setString("Build -> " + buildingName + " ");
@@ -441,10 +449,12 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				isPressed = true;
 				choice->setFillColor(Color::Red);
 				isMoving = true;
+				p = 2;
 			}
 			else if (!isMoving)
 			{
 				choice->setFillColor(Color::Green);
+				p = 3;
 			}
 
 			//выбор позиции движени€
@@ -472,6 +482,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				text.push_back(new Text("enemy", font, 15));
 				text.push_back(new Text("leviavans", font, 15));
 				choice->setFillColor(Color::Red);
+				p = 5;
 			}
 
 			for (auto& t : text)
@@ -482,6 +493,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					if (Mouse::isButtonPressed(Mouse::Left))
 					{
 						isPressed = true;
+						p = 3;
 						if (t->getString() == "enemy")
 						{
 							txt.setString("attack -> " + t->getString() + " ");
