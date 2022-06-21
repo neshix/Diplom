@@ -10,7 +10,6 @@ Enemy::Enemy(Vector2f pos) :livingEntity("data/img/enemy.png")
 
 	//определение поведения врага
 	int i = rand() % 100;
-	std::cout << i << "\n";
 	if (i >= 0 && i <= 70)
 	{
 		follow = false;
@@ -181,13 +180,13 @@ void Enemy::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan
 			normal = b->_sprite.getPosition() - _sprite.getPosition();
 			distanse = sqrt(normal.x * normal.x + normal.y * normal.y);
 
-			std::cout << action << "  ";
+			//std::cout << action << "  ";
 			if (distanse >= 25)
 			{
 				target = b->_sprite.getPosition();
 				action = true;
 			}
-			std::cout << action << "  ";
+			//std::cout << action << "  ";
 			if (distanse <= 30)
 			{
 				t = cl.getElapsedTime();
@@ -198,7 +197,7 @@ void Enemy::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan
 				}
 				action = false;
 			}
-			std::cout << action << "\n";
+			//std::cout << action << "\n";
 			break;
 		}
 	}

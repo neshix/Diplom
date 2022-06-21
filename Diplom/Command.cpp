@@ -9,13 +9,13 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 		{
 			isPressed = true;
 			text.clear();
-			text.push_back(new Text("enemy detected", font, 15));
-			text.push_back(new Text("full inventory", font, 15));
-			text.push_back(new Text("empty inventory", font, 15));
-			text.push_back(new Text("no energy", font, 15));
+			text.push_back(new Text("enemy detected", font, 20));
+			text.push_back(new Text("full inventory", font, 20));
+			text.push_back(new Text("empty inventory", font, 20));
+			text.push_back(new Text("no energy", font, 20));
 
 			text.push_back(new Text("", font, 15));
-			text.push_back(new Text("default", font, 15));
+			text.push_back(new Text("default", font, 20));
 		}
 
 		for (auto& t : text)
@@ -31,7 +31,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						i—hoice = 0;
 						txtif.setString("if -> " + t->getString());
-						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
+						iBox.setSize(Vector2f(t->getGlobalBounds().width - 20, 15));
 
 						for (auto& i : text)
 							delete i;
@@ -43,7 +43,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						i—hoice = 1;
 						txtif.setString("if -> " + t->getString());
-						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
+						iBox.setSize(Vector2f(t->getGlobalBounds().width - 20, 15));
 
 						for (auto& i : text)
 							delete i;
@@ -55,7 +55,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						i—hoice = 2;
 						txtif.setString("if -> " + t->getString());
-						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
+						iBox.setSize(Vector2f(t->getGlobalBounds().width - 20, 15));
 
 						for (auto& i : text)
 							delete i;
@@ -67,7 +67,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						i—hoice = 3;
 						txtif.setString("if -> " + t->getString());
-						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
+						iBox.setSize(Vector2f(t->getGlobalBounds().width - 20, 15));
 
 						for (auto& i : text)
 							delete i;
@@ -79,7 +79,7 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					{
 						i—hoice = 4;
 						txtif.setString("if -> " + t->getString());
-						iBox.setSize(Vector2f(t->getGlobalBounds().width, 15));
+						iBox.setSize(Vector2f(t->getGlobalBounds().width - 20, 15));
 
 						for (auto& i : text)
 							delete i;
@@ -118,13 +118,13 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 			for (auto& i : text)
 				delete i;
 			text.clear();
-			text.push_back(new Text("move", font, 15));
-			text.push_back(new Text("mine", font, 15));
-			text.push_back(new Text("patrol", font, 15));
-			text.push_back(new Text("build", font, 15));
-			text.push_back(new Text("attack", font, 15));
-			text.push_back(new Text("drop", font, 15));
-			text.push_back(new Text("pickUp", font, 15));
+			text.push_back(new Text("move", font, 20));
+			text.push_back(new Text("mine", font, 20));
+			text.push_back(new Text("patrol", font, 20));
+			text.push_back(new Text("build", font, 20));
+			text.push_back(new Text("attack", font, 20));
+			text.push_back(new Text("drop", font, 20));
+			text.push_back(new Text("pickUp", font, 20));
 		}
 
 		//Ó·‡·ÓÚÍ‡ Ì‡Ê‡ÚËˇ Ì‡ ÚÂÍÒÚ
@@ -305,8 +305,8 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 					delete i;
 				text.clear();
 
-				text.push_back(new Text("Iron", font, 15));
-				text.push_back(new Text("Stone", font, 15));
+				text.push_back(new Text("Iron", font, 20));
+				text.push_back(new Text("Stone", font, 20));
 				choice->setFillColor(Color::Red);
 				p = 5;
 			}
@@ -397,9 +397,9 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				for (auto& i : text)
 					delete i;
 				text.clear();
-				text.push_back(new Text("energy tower", font, 15));
-				text.push_back(new Text("factory", font, 15));
-				text.push_back(new Text("storage", font, 15));
+				text.push_back(new Text("energy tower", font, 20));
+				text.push_back(new Text("factory", font, 20));
+				text.push_back(new Text("storage", font, 20));
 				choice->setFillColor(Color::Red);
 				p = 5;
 			}
@@ -479,8 +479,8 @@ void Command::update(Vector2f mousePos, bool& isPressed, std::list<Command*>& co
 				for (auto& i : text)
 					delete i;
 				text.clear();
-				text.push_back(new Text("enemy", font, 15));
-				text.push_back(new Text("leviavans", font, 15));
+				text.push_back(new Text("enemy", font, 20));
+				text.push_back(new Text("leviavans", font, 20));
 				choice->setFillColor(Color::Red);
 				p = 5;
 			}

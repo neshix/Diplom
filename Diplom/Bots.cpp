@@ -415,7 +415,7 @@ void Bots::update(Vector2f mp, std::list<MineObj*>& mine, std::list<Structure*>&
 
 						if (smallerDistance > distanse)
 						{
-							if (distanse >= 200)
+							if (distanse >= 350)
 							{
 								*point = false;
 								com->movePos = l->_sprite.getPosition();

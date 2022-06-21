@@ -2,6 +2,7 @@
 
 Leviathan::Leviathan(int x, int y) : livingEntity("data/img/boss.png")
 {
+	health = 1000;
 	setPosition(x,y);
 
 	reviewBox.setFillColor(Color(255, 0, 0, 30));

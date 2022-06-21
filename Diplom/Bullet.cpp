@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-void Bullet::update(Time deltaTime, std::list<Enemy*>& enemy)
+void Bullet::update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan*>& leviathans)
 {
 	time = deltaTime.asSeconds();
 
@@ -20,11 +20,22 @@ void Bullet::update(Time deltaTime, std::list<Enemy*>& enemy)
 
 	for (auto& en : enemy)
 	{
-		
 		if (en->_sprite.getGlobalBounds().intersects(_sprite.getGlobalBounds()))
 		{
 			en->health -= 20;
 			life = false;
+		}
+	}
+
+	for (auto& en : leviathans)
+	{
+		if (en->_sprite.getGlobalBounds().intersects(_sprite.getGlobalBounds()))
+		{
+			if (a == false)
+			{
+				en->health -= 20;
+			}
+			a = true;
 		}
 	}
 }

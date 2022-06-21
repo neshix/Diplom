@@ -30,8 +30,76 @@ C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(61,10): warning C4244:
           [
               T=float
           ]
-C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Game.cpp(444,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Game.cpp(439,23): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
 C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Leviathan.cpp
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,31): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(17,27): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Storage.h(34,48): warning C4390: ";": обнаружен пустой контролируемый оператор; это правильно?
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(31,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(41,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(51,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Camera.h(61,10): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(75,38): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(77,38): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(81,38): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(83,38): warning C4244: +=: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(85,40): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(85,38): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(96,11): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Leviathan.cpp(100,48): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(46,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\MineObj.h(54): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Entity::setPosition<int&,int&>(int &,int &)"
+C:\Users\DS\Desktop\progect\Diplom\Diplom\Diplom\Entity.h(47,43): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Создание кода...
   Diplom.vcxproj -> C:\Users\DS\Desktop\progect\Diplom\Diplom\Debug\Diplom.exe

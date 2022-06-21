@@ -8,6 +8,8 @@
 
 class Bullet : public livingEntity
 {
+private:
+	bool a = false;
 
 public:
 	Bullet(Vector2f spos, Vector2f fpos) : livingEntity("data/img/bullet.png")
@@ -17,6 +19,6 @@ public:
 		setPosition(spos);
 	};
 
-	void update(Time deltaTime, std::list<Enemy*>& enemy);
+	void update(Time deltaTime, std::list<Enemy*>& enemy, std::list<Leviathan*>& leviathans);
 };
 #endif BULLET_H

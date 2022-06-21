@@ -51,28 +51,10 @@ void Game::processEvents()
 
 	if (event.type == Event::MouseButtonReleased)
 		IsKeyPressed = false;
-
-	if (event.type == Event::KeyReleased)
-		IsKeyPress = false;
-
-	if (Keyboard::isKeyPressed(Keyboard::Escape) && stop == false && IsKeyPress == false)
-	{
-		IsKeyPressed = true;
-		stop = true;
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Escape) && stop == true && IsKeyPress == false)
-	{
-		IsKeyPressed = true;
-		stop = false;
-	}
 }
 
 void Game::update(Time deltaTime)
 {
-	if (stop)
-	{
-		return;
-	}
 
 	pixelPos = Mouse::getPosition(_window);
 	mousePos = _window.mapPixelToCoords(pixelPos);
@@ -149,7 +131,7 @@ void Game::update(Time deltaTime)
 	}
 
 	for (auto& bul : bullets)
-		bul->update(deltaTime, enemys);
+		bul->update(deltaTime, enemys, leviathans);
 
 	//удаление трупов
 	deads();
@@ -161,48 +143,42 @@ void Game::update(Time deltaTime)
 		{
 			prom.loadFromFile("data/img/icons/prompt2.png");
 			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
-			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 20);
 		}
 
 		if (pressed == 7)
 		{
 			prom.loadFromFile("data/img/icons/prompt3.png");
 			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
-			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
 		}
 
 		if (pressed == 1)
 		{
 			prom.loadFromFile("data/img/icons/prompt4.png");
 			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
-			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
 		}
 
 		if (pressed == 4)
 		{
 			prom.loadFromFile("data/img/icons/prompt5.png");
 			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
-			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
 		}
 
 		if (pressed == 2)
 		{
 			prom.loadFromFile("data/img/icons/prompt6.png");
 			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
-			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
 		}
 
 		if (pressed == 5)
 		{
 			prom.loadFromFile("data/img/icons/prompt7.png");
 			prompt.setTextureRect(IntRect(0, 0, prom.getSize().x, prom.getSize().y));
-			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 60);
 		}
 
-		//if (pressed == 3)
-		//{
-		//	education = false;
-		//}
+		if (pressed != 0)
+		{
+			prompt.setPosition(storage.consol.getPosition().x - prompt.getGlobalBounds().width, storage.consol.getPosition().y + 20);
+		}
 	}
 
 	//цель
@@ -423,6 +399,25 @@ void Game::deads()
 			c++;
 		}
 	}
+
+	for (auto c = leviathans.begin(); c != leviathans.end();)
+	{
+		Leviathan* enemy = *c;
+		if (enemy->health <= 0)
+		{
+			enemy->life = false;
+		}
+
+		if (enemy->life == false)
+		{
+			delete* c;
+			c = leviathans.erase(c);
+		}
+		else
+		{
+			c++;
+		}
+	}
 }
 
 void Game::generator()
@@ -433,51 +428,48 @@ void Game::generator()
 		int h = rand() % wSize - wSize / 2;
 		mineobj.push_back(new MineObj(w, h, 0));
 	}
-
+	
 	for (int i = 0; i <= amountIron; i++)
 	{
 		int w = rand() % wSize - wSize / 2;
 		int h = rand() % wSize - wSize / 2;
 		mineobj.push_back(new MineObj(w, h, 1));
 	}
-
+	
 	for (size_t i = 0; i < amountBoss; i++)
 	{
 		int gener = rand() % 80;
-
 		int x = 0, y = 0;
-
+	
 		if (gener <= 20)
 		{
 			x = rand() % wSize - wSize / 2;
 			y = wSize / 2 - 500;
 		}
-
+	
 		if(gener <= 40 && gener > 20)
 		{
 			y = rand() % wSize - wSize / 2;
 			x = wSize / 2 - 500;
 		}
-
+	
 		if (gener <= 60 && gener > 40)
 		{
 			x = rand() % wSize - wSize / 2;
 			y = -wSize / 2 + 500;
 		}
-
+	
 		if (gener <= 80 && gener > 60)
 		{
 			y = rand() % wSize - wSize / 2;
 			x = -wSize / 2 + 500;
 		}
-
-		std::cout << x << "  " << y << " " << gener <<  "\n";
 		leviathans.push_back(new Leviathan(x, y));
 	}
-
+	 
 	bots.push_back(new Bots);
 	bots.push_back(new Bots(300, 300));
 	structure.push_back(new Structure("storage", Vector2f(0.0,0.0)));
-
+	
 	prompt.setPosition(bots.back()->getPosition().x - 25, bots.back()->getPosition().y - 75);
 }
